@@ -3,13 +3,12 @@ package Entity;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- * User: Mark Bryzgalov
- * Time: 2019-05-15 12:12
- */
 @Entity
 @Table(name = "client", schema = "public", catalog = "ipr")
 public class ClientEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
     private String name;
     private String surname;
@@ -17,15 +16,6 @@ public class ClientEntity {
     private Date vacationDateFrom;
     private Date vacationDateTo;
 
-    @Id
-    @Column(name = "id")
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "name")
@@ -76,6 +66,8 @@ public class ClientEntity {
     public void setVacationDateTo(Date vacationDateTo) {
         this.vacationDateTo = vacationDateTo;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

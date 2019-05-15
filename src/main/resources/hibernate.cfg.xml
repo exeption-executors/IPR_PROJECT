@@ -6,6 +6,8 @@
   <session-factory>
     <property name="connection.url">jdbc:postgresql://localhost:5432/ipr</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
+    <property name="org.hibernate.dialect.MySQL5Dialect">true</property>
+    <property name="hibernate.physical_naming_strategy">PhysicalNamingStrategyStandardImpl</property>
     <mapping class="Entity.ClientEntity"/>
     <mapping class="Entity.PlanEntity"/>
     <mapping class="Entity.PlanTasksListEntity"/>

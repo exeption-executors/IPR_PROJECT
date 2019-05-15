@@ -5,10 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * User: Mark Bryzgalov
- * Time: 2019-05-15 12:12
- */
+
 @Entity
 @Table(name = "plan_tasks_list", schema = "public", catalog = "ipr")
 public class PlanTasksListEntity {
