@@ -1,11 +1,9 @@
 package Entity;
 
+
 import javax.persistence.*;
 
-/**
- * User: Mark Bryzgalov
- * Time: 2019-05-15 12:12
- */
+
 @Entity
 @Table(name = "plan", schema = "public", catalog = "ipr")
 public class PlanEntity {
@@ -21,6 +19,7 @@ public class PlanEntity {
     public void setId(int id) {
         this.id = id;
     }
+
 
     @Basic
     @Column(name = "plan_description")

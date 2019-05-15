@@ -2,10 +2,7 @@ package Entity;
 
 import javax.persistence.*;
 
-/**
- * User: Mark Bryzgalov
- * Time: 2019-05-15 12:12
- */
+
 @Entity
 @Table(name = "task", schema = "public", catalog = "ipr")
 public class TaskEntity {
