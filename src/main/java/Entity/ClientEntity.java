@@ -1,31 +1,58 @@
 package Entity;
 
+import com.example.jdbc.entity.Client;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
 @Table(name = "client", schema = "public", catalog = "ipr")
 public class ClientEntity {
-    private int id;
-    private String name;
-    private String surname;
-    private String email;
-    private Date vacationDateFrom;
-    private Date vacationDateTo;
+
+    public ClientEntity() {
+    }
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @Basic
+    @Column(name = "name")
+    private String name;
+
+    @Basic
+    @Column(name = "surname")
+    private String surname;
+
+    @Basic
+    @Column(name = "email")
+    private String email;
+
+    @Basic
+    @Column(name = "vacation_date_from")
+    private Date vacationDateFrom;
+
+    @Basic
+    @Column(name = "vacation_date_to")
+    private Date vacationDateTo;
+
+    //@OneToOne(mappedBy = "ClientEntity", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<PlanEntity> plans;
+
+/*    public ClientEntity(String name, String email){
+        this.name = name;
+        this.email = email;*/
+        //plans = new ArrayList<>();
+
+
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    @Basic
-    @Column(name = "name")
     public String getName() {
         return name;
     }
@@ -34,8 +61,6 @@ public class ClientEntity {
         this.name = name;
     }
 
-    @Basic
-    @Column(name = "surname")
     public String getSurname() {
         return surname;
     }
@@ -44,8 +69,7 @@ public class ClientEntity {
         this.surname = surname;
     }
 
-    @Basic
-    @Column(name = "email")
+
     public String getEmail() {
         return email;
     }
@@ -54,8 +78,7 @@ public class ClientEntity {
         this.email = email;
     }
 
-    @Basic
-    @Column(name = "vacation_date_from")
+
     public Date getVacationDateFrom() {
         return vacationDateFrom;
     }
@@ -64,8 +87,6 @@ public class ClientEntity {
         this.vacationDateFrom = vacationDateFrom;
     }
 
-    @Basic
-    @Column(name = "vacation_date_to")
     public Date getVacationDateTo() {
         return vacationDateTo;
     }
