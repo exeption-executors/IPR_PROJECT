@@ -1,8 +1,8 @@
 package entity;
 
-import com.example.jdbc.entity.Client;
-
 import javax.persistence.*;
+import java.util.List;
+import java.util.Objects;
 
 @Entity(name="Client")
 @Table(name = "client", schema = "public", catalog = "ipr")
@@ -32,8 +32,9 @@ public class ClientEntity {
     @Column(name = "fired")
     private boolean fired;
 
-    @OneToOne(cascade = CascadeType.ALL,  mappedBy = "clientEntity")
-    private PlanEntity clientEntity;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id")
+    private List<PlanEntity> planEntities;
 
 
     public int getId() {
@@ -77,29 +78,16 @@ public class ClientEntity {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ClientEntity that = (ClientEntity) o;
-
-        if (id != that.id) return false;
-        if (fired != that.fired) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
-        if (email != null ? !email.equals(that.email) : that.email != null) return false;
-
-        return true;
+    public List<PlanEntity> getPlanEntities() {
+        return planEntities;
     }
 
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (surname != null ? surname.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (fired ? 1 : 0);
-        return result;
+    public void setPlanEntities(List<PlanEntity> planEntities) {
+        this.planEntities = planEntities;
+    }
+
+    public void addPlanEntity(PlanEntity planEntity) {
+        planEntity.setClientId(id);
+        this.planEntities.add(planEntity);
     }
 }
