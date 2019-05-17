@@ -7,10 +7,11 @@
     <property name="connection.url">jdbc:postgresql://localhost:5432/ipr</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="org.hibernate.dialect.MySQL5Dialect">true</property>
-    <mapping class="Entity.ClientEntity"/>
-    <mapping class="Entity.PlanEntity"/>
-    <mapping class="Entity.PlanTasksListEntity"/>
-    <mapping class="Entity.TaskEntity"/>
+    <mapping class="entity.ClientEntity"/>
+    <mapping class="entity.PlanEntity"/>
+    <mapping class="entity.MembersListEntity"/>
+    <mapping class="entity.TasksListEntity"/>
+    <mapping class="entity.PlanTasksEntity"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 

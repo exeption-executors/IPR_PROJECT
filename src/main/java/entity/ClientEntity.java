@@ -1,23 +1,24 @@
-package Entity;
+package entity;
 
 import com.example.jdbc.entity.Client;
 
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
-
-@Entity
+@Entity(name="Client")
 @Table(name = "client", schema = "public", catalog = "ipr")
 public class ClientEntity {
+    public ClientEntity(){
 
-    public ClientEntity() {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @OneToOne (optional = true, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    private PlanEntity clientPlan;
 
     @Basic
     @Column(name = "name")
@@ -32,26 +33,16 @@ public class ClientEntity {
     private String email;
 
     @Basic
-    @Column(name = "vacation_date_from")
-    private Date vacationDateFrom;
-
-    @Basic
-    @Column(name = "vacation_date_to")
-    private Date vacationDateTo;
-
-    //@OneToOne(mappedBy = "ClientEntity", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<PlanEntity> plans;
-
-/*    public ClientEntity(String name, String email){
-        this.name = name;
-        this.email = email;*/
-        //plans = new ArrayList<>();
-
+    @Column(name = "fired")
+    private boolean fired;
 
     public int getId() {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -69,7 +60,6 @@ public class ClientEntity {
         this.surname = surname;
     }
 
-
     public String getEmail() {
         return email;
     }
@@ -78,22 +68,14 @@ public class ClientEntity {
         this.email = email;
     }
 
-
-    public Date getVacationDateFrom() {
-        return vacationDateFrom;
+    public boolean isFired() {
+        return fired;
     }
 
-    public void setVacationDateFrom(Date vacationDateFrom) {
-        this.vacationDateFrom = vacationDateFrom;
+    public void setFired(boolean fired) {
+        this.fired = fired;
     }
 
-    public Date getVacationDateTo() {
-        return vacationDateTo;
-    }
-
-    public void setVacationDateTo(Date vacationDateTo) {
-        this.vacationDateTo = vacationDateTo;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -103,13 +85,10 @@ public class ClientEntity {
         ClientEntity that = (ClientEntity) o;
 
         if (id != that.id) return false;
+        if (fired != that.fired) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (surname != null ? !surname.equals(that.surname) : that.surname != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (vacationDateFrom != null ? !vacationDateFrom.equals(that.vacationDateFrom) : that.vacationDateFrom != null)
-            return false;
-        if (vacationDateTo != null ? !vacationDateTo.equals(that.vacationDateTo) : that.vacationDateTo != null)
-            return false;
 
         return true;
     }
@@ -120,8 +99,7 @@ public class ClientEntity {
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (surname != null ? surname.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (vacationDateFrom != null ? vacationDateFrom.hashCode() : 0);
-        result = 31 * result + (vacationDateTo != null ? vacationDateTo.hashCode() : 0);
+        result = 31 * result + (fired ? 1 : 0);
         return result;
     }
 }
