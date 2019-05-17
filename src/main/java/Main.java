@@ -1,16 +1,8 @@
 import entity.*;
 import org.hibernate.*;
-import org.hibernate.query.Query;
 import org.hibernate.cfg.Configuration;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import java.sql.Date;
-
-import javax.persistence.metamodel.EntityType;
-
-import java.sql.SQLOutput;
-import java.text.SimpleDateFormat;
-import java.util.Map;
 
 public class Main {
     private static final SessionFactory ourSessionFactory;
@@ -85,42 +77,46 @@ public class Main {
         }
     }
 
-    private void recordsPlan() {
-        Transaction tx;
-        Session session = getSession();
-        try {
-            System.out.println("Добавление записи плана");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            tx = session.beginTransaction();
-
-            PlanEntity plan = new PlanEntity();
-         /*   ClientEntity client;
-            client =  (ClientEntity) session.get(ClientEntity.class, 2);*/
-
-            plan.setClientId(31);
-            plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
-            plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
-
-
-
-
-            session.save(plan);
-
-            tx.commit();
-            logger.info("------------- Customer saved successfully... ------------");
-            System.out.println("Запись добавлена");
-
-        } catch (Exception e) {
-            logger.error("-------------- Failed to save customer..." + e + "----------------");
-            System.out.println(e.getMessage());
-        } finally {
-            session.close();
-        }
-    }
+//    private void recordsPlan() {
+//        Transaction tx;
+//        Session session = getSession();
+//        try {
+////            System.out.println("Добавление записи плана");
+////            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+////            tx = session.beginTransaction();
+//////
+//////            PlanEntity plan = new PlanEntity();
+//////            PlanTasksEntity planTasks = new PlanTasksEntity();
+//////            planTasks.setPlanTasksDescription("Superhero plan");
+//////
+//////            MembersListEntity membersList = new MembersListEntity();
+////         /*   ClientEntity client;
+////            client =  (ClientEntity) session.get(ClientEntity.class, 2);*/
+////
+//////            plan.setClientId(31);
+//////            plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
+//////            plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
+////
+////
+////
+////
+//////            session.save();
+////
+////            tx.commit();
+////            logger.info("------------- Customer saved successfully... ------------");
+////            System.out.println("Запись добавлена");
+//
+//        } catch (Exception e) {
+//            logger.error("-------------- Failed to save customer..." + e + "----------------");
+//            System.out.println(e.getMessage());
+//        } finally {
+//            session.close();
+//        }
+//    }
 
     public Main() {
         recordsClient();
-        recordsPlan();
+        //recordsPlan();
 
     }
 }
