@@ -13,6 +13,9 @@ public class MembersListEntity {
     @Column(name = "requirements")
     private String requirements;
 
+    @Column(name = "plan_tasks_id")
+    @OneToOne(mappedBy = "membersList")
+    private PlanTasksEntity planTasksEntity;
 
     public int getId() {
         return id;
