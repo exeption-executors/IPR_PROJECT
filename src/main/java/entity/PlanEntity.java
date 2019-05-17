@@ -2,6 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity(name = "Plan")
 @Table(name = "plan", schema = "public", catalog = "ipr")
@@ -12,6 +13,11 @@ public class PlanEntity {
     @Column(name = "id")
     private int id;
 
+
+    @Basic
+    @Column(name = "client_id")
+    private int clientId;
+
     @Basic
     @Column(name = "plan_date_start")
     private Date planDateStart;
@@ -20,9 +26,9 @@ public class PlanEntity {
     @Column(name = "plan_date_end")
     private Date planDateEnd;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
-    private ClientEntity clientEntity;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "plan_id")
+    private List<PlanTasksEntity> planTasksEntities;
 
     public int getId() {
         return id;
@@ -48,10 +54,13 @@ public class PlanEntity {
         this.planDateEnd = planDateEnd;
     }
 
-    public Integer getClientEntity() { return clientEntity.getId(); }
+    public int getClientId() {
+        return clientId;
+    }
 
-    public void setClientEntity(ClientEntity clientEntity) { this.clientEntity = clientEntity; }
-
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
+    }
 
     @Override
     public boolean equals(Object o) {

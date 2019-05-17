@@ -70,6 +70,7 @@ public class Main {
             //client.setVacationDateFrom(new Date(dateFormat.parse("01/02/1999").getTime()));
             //client.setVacationDateTo(new Date(dateFormat.parse("02/03/1999").getTime()));
 
+
             session.save(client);
 
             tx.commit();
@@ -93,18 +94,15 @@ public class Main {
             tx = session.beginTransaction();
 
             PlanEntity plan = new PlanEntity();
-            ClientEntity client  = new ClientEntity();
-            client.setName("John");
-            client.setEmail("sdfsf`2hammadf.com");
-            client.setSurname("Johnovich");
-            //client =  (ClientEntity) session.get(ClientEntity.class, 2);
+         /*   ClientEntity client;
+            client =  (ClientEntity) session.get(ClientEntity.class, 2);*/
 
-            session.save(client);
-            //session.delete(client);
-
-            plan.setClientEntity(client);
+            plan.setClientId(31);
             plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
             plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
+
+
+
 
             session.save(plan);
 

@@ -2,18 +2,31 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "plan_tasks", schema = "public", catalog = "ipr")
 public class PlanTasksEntity {
-    private int id;
-    private Date planTasksDateEnd;
-    private String planTasksDescription;
-    private String priority;
-    private PlanEntity planByPlanId;
+    public PlanTasksEntity(){
 
+    }
     @Id
     @Column(name = "id")
+    private int id;
+    @Basic
+    @Column(name = "plan_id")
+    private int planId;
+    @Basic
+    @Column(name = "plan_tasks_date_end")
+    private Date planTasksDateEnd;
+    @Basic
+    @Column(name = "plan_tasks_description")
+    private String planTasksDescription;
+    @Basic
+    @Column(name = "priority")
+    private String priority;
+
+
     public int getId() {
         return id;
     }
@@ -22,8 +35,7 @@ public class PlanTasksEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "plan_tasks_date_end")
+
     public Date getPlanTasksDateEnd() {
         return planTasksDateEnd;
     }
@@ -32,8 +44,6 @@ public class PlanTasksEntity {
         this.planTasksDateEnd = planTasksDateEnd;
     }
 
-    @Basic
-    @Column(name = "plan_tasks_description")
     public String getPlanTasksDescription() {
         return planTasksDescription;
     }
@@ -42,8 +52,6 @@ public class PlanTasksEntity {
         this.planTasksDescription = planTasksDescription;
     }
 
-    @Basic
-    @Column(name = "priority")
     public String getPriority() {
         return priority;
     }
@@ -81,13 +89,4 @@ public class PlanTasksEntity {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "plan_id", referencedColumnName = "id", nullable = false)
-    public PlanEntity getPlanByPlanId() {
-        return planByPlanId;
-    }
-
-    public void setPlanByPlanId(PlanEntity planByPlanId) {
-        this.planByPlanId = planByPlanId;
-    }
 }
