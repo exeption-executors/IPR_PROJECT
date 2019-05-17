@@ -93,8 +93,14 @@ public class Main {
             tx = session.beginTransaction();
 
             PlanEntity plan = new PlanEntity();
-            ClientEntity client;
-            client =  (ClientEntity) session.get(ClientEntity.class, 4);
+            ClientEntity client  = new ClientEntity();
+            client.setName("John");
+            client.setEmail("sdfsf`2hammadf.com");
+            client.setSurname("Johnovich");
+            //client =  (ClientEntity) session.get(ClientEntity.class, 2);
+
+            session.save(client);
+            //session.delete(client);
 
             plan.setClientEntity(client);
             plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
@@ -109,6 +115,8 @@ public class Main {
         } catch (Exception e) {
             logger.error("-------------- Failed to save customer..." + e + "----------------");
             System.out.println(e.getMessage());
+        } finally {
+            session.close();
         }
     }
 

@@ -8,6 +8,7 @@ import java.sql.Date;
 public class PlanEntity {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -17,11 +18,10 @@ public class PlanEntity {
 
     @Basic
     @Column(name = "plan_date_end")
-
     private Date planDateEnd;
 
-
-    @OneToOne(mappedBy = "clientPlan")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_id")
     private ClientEntity clientEntity;
 
     public int getId() {
