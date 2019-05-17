@@ -16,10 +16,6 @@ public class ClientEntity {
     @Column(name = "id")
     private Integer id;
 
-    @OneToOne (optional = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private PlanEntity clientPlan;
-
     @Basic
     @Column(name = "name")
     private String name;
@@ -35,6 +31,10 @@ public class ClientEntity {
     @Basic
     @Column(name = "fired")
     private boolean fired;
+
+    @OneToOne(cascade = CascadeType.ALL,  mappedBy = "clientEntity")
+    private PlanEntity clientEntity;
+
 
     public int getId() {
         return id;
