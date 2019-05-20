@@ -17,10 +17,6 @@ public class PlanTasksEntity {
     private int id;
 
     @Basic
-    @Column(name = "plan_id")
-    private int planId;
-
-    @Basic
     @Column(name = "plan_tasks_date_end")
     private Date planTasksDateEnd;
 
@@ -35,14 +31,6 @@ public class PlanTasksEntity {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "plan_tasks_id")
     private List<TasksListEntity>  tasksListEntities;
-
-    public int getPlanId() {
-        return planId;
-    }
-
-    public void setPlanId(int planId) {
-        this.planId = planId;
-    }
 
     public int getId() {
         return id;

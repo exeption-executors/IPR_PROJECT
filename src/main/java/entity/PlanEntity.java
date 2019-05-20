@@ -1,5 +1,7 @@
 package entity;
 
+import com.example.jdbc.entity.Client;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -13,11 +15,6 @@ public class PlanEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-
-
-    @Basic
-    @Column(name = "client_id", nullable = false, updatable = false, insertable = false)
-    private int clientId;
 
     @Basic
     @Column(name = "plan_date_start")
@@ -65,14 +62,6 @@ public class PlanEntity {
 
     public void setPlanDateEnd(Date planDateEnd) {
         this.planDateEnd = planDateEnd;
-    }
-
-    public int getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
     }
 
     @Override
