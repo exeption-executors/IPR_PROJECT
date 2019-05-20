@@ -32,7 +32,7 @@ public class PlanTasksEntity {
     @Column(name = "priority")
     private String priority;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "plan_tasks_id")
     private List<TasksListEntity>  tasksListEntities;
 

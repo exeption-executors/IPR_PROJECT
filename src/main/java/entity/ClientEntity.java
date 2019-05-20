@@ -1,11 +1,11 @@
 package entity;
 
-import net.bytebuddy.asm.Advice;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 @Entity(name = "Client")
@@ -35,29 +35,30 @@ public class ClientEntity {
     @Column(name = "fired")
     private boolean fired;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
     private List<PlanEntity> planEntities;
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "members_clients",
-            joinColumns = @JoinColumn(name = "client_id"),
-            inverseJoinColumns = @JoinColumn(name = "members_list_id")
-    )
-    private Set<MembersListEntity> allIncludesMembersList = new HashSet<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "members_clients",
+//            joinColumns = @JoinColumn(name = "client_id"),
+//            inverseJoinColumns = @JoinColumn(name = "members_list_id")
+//    )
+//    private Set<MembersListEntity> allIncludesMembersList = new HashSet<>();
+//
+//    public Set<MembersListEntity> getAllIncludesMembersList() {
+//        return allIncludesMembersList;
+//    }
+//
+//    public void setAllIncludesMembersList(Set<MembersListEntity> allIncludesMembersList) {
+//        this.allIncludesMembersList = allIncludesMembersList;
+//    }
 
-    public Set<MembersListEntity> getAllIncludesMembersList() {
-        return allIncludesMembersList;
-    }
-
-    public void setAllIncludesMembersList(Set<MembersListEntity> allIncludesMembersList) {
-        this.allIncludesMembersList = allIncludesMembersList;
-    }
-
-    public void addMembersListToClient(MembersListEntity membersList) {
-        allIncludesMembersList.add(membersList);
-    }
+//    public void addMembersListToClient(MembersListEntity membersList) {
+//        allIncludesMembersList.add(membersList);
+//    }
 
     public int getId() {
         return id;
@@ -109,7 +110,6 @@ public class ClientEntity {
     }
 
     public void addPlanEntity(PlanEntity planEntity) {
-        planEntity.setClientId(id);
         this.planEntities.add(planEntity);
     }
 }
