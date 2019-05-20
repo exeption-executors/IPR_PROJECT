@@ -77,8 +77,6 @@ public class PlanTasksEntity {
         this.priority = priority;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private MembersListEntity membersList;
 
     @Override
     public boolean equals(Object o) {
