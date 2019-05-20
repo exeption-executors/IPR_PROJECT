@@ -211,11 +211,10 @@ public class Main {
 
     public Main() {
 //        createClient();
-//        createPlan();
+        createPlan();
 //        createPlanTask();
 //        createTasksList();
 //        createMembersList();
 //        wireMembersListToSpecificClient();
-
     }
 }

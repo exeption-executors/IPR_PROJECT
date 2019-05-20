@@ -41,24 +41,24 @@ public class ClientEntity {
     private List<PlanEntity> planEntities;
 
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "members_clients",
-//            joinColumns = @JoinColumn(name = "client_id"),
-//            inverseJoinColumns = @JoinColumn(name = "members_list_id")
-//    )
-//    private Set<MembersListEntity> allIncludesMembersList = new HashSet<>();
-//
-//    public Set<MembersListEntity> getAllIncludesMembersList() {
-//        return allIncludesMembersList;
-//    }
-//
-//    public void setAllIncludesMembersList(Set<MembersListEntity> allIncludesMembersList) {
-//        this.allIncludesMembersList = allIncludesMembersList;
-//    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "members_clients",
+            joinColumns = @JoinColumn(name = "client_id"),
+            inverseJoinColumns = @JoinColumn(name = "members_list_id")
+    )
+    private Set<MembersListEntity> allIncludesMembersList = new HashSet<>();
 
-//    public void addMembersListToClient(MembersListEntity membersList) {
-//        allIncludesMembersList.add(membersList);
-//    }
+    public Set<MembersListEntity> getAllIncludesMembersList() {
+        return allIncludesMembersList;
+    }
+
+    public void setAllIncludesMembersList(Set<MembersListEntity> allIncludesMembersList) {
+        this.allIncludesMembersList = allIncludesMembersList;
+    }
+
+    public void addMembersListToClient(MembersListEntity membersList) {
+        allIncludesMembersList.add(membersList);
+    }
 
     public int getId() {
         return id;
