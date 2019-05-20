@@ -1,5 +1,7 @@
 package entity;
 
+import com.example.jdbc.entity.Client;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,7 @@ public class MembersListEntity {
     @Basic
     @Column(name = "requirements")
     private String requirements;
+
 
 
     public int getId() {

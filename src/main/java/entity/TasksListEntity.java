@@ -63,7 +63,7 @@ public class TasksListEntity {
         return result;
     }
 
-    @ManyToOne
+/*    @ManyToOne
     @JoinColumn(name = "plan_tasks_id", referencedColumnName = "id", nullable = false)
     public PlanTasksEntity getPlanTasksByPlanTasksId() {
         return planTasksByPlanTasksId;
@@ -71,5 +71,5 @@ public class TasksListEntity {
 
     public void setPlanTasksByPlanTasksId(PlanTasksEntity planTasksByPlanTasksId) {
         this.planTasksByPlanTasksId = planTasksByPlanTasksId;
-    }
+    }*/
 }
