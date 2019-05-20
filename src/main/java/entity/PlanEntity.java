@@ -16,7 +16,7 @@ public class PlanEntity {
 
 
     @Basic
-    @Column(name = "client_id")
+    @Column(name = "client_id", nullable = false, updatable = false, insertable = false)
     private int clientId;
 
     @Basic
@@ -27,7 +27,7 @@ public class PlanEntity {
     @Column(name = "plan_date_end")
     private Date planDateEnd;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "plan_id")
     private List<PlanTasksEntity> planTasksEntities = new ArrayList<>();
 

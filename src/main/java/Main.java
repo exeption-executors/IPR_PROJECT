@@ -67,7 +67,7 @@ public class Main {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
             PlanEntity plan = new PlanEntity();
-            plan.setClientId(1);
+            plan.setClientId(0);
             plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
             plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
             session.save(plan);
@@ -90,7 +90,7 @@ public class Main {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
             PlanTasksEntity planTasks = new PlanTasksEntity();
-            planTasks.setPlanId(1);
+            planTasks.setPlanId(0);
             planTasks.setPlanTasksDateEnd(new Date(dateFormat.parse("01/02/1999").getTime()));
             planTasks.setPlanTasksDescription("TestDescription1");
             planTasks.setPriority("High");
@@ -114,7 +114,7 @@ public class Main {
             tx = session.beginTransaction();
 
             TasksListEntity tasksList = new TasksListEntity();
-            tasksList.setPlanTaskId(1);
+            tasksList.setPlanTaskId(0);
             tasksList.setTaskDescription("85% - процент покрытия на основе отчета (описание задачи)");
             tasksList.setTaskIsDone(true);
             session.save(tasksList);
@@ -140,7 +140,7 @@ public class Main {
             tx = session.beginTransaction();
 
             MembersListEntity membersList = new MembersListEntity();
-            membersList.setPlanTasksList(1);
+            membersList.setPlanTasksList(0);
             membersList.setRequirements("Все должно быть сделано на уровне mvp: Шоб работало");
 
             session.save(membersList);
@@ -157,27 +157,52 @@ public class Main {
         }
     }
 
-    private void wireMembersListToSpecificClient() {
+//    private void wireMembersListToSpecificClient() {
+//        Transaction tx;
+//        Session session = getSession();
+//        try {
+//            System.out.println("Связывание members-листа и клиента");
+//            tx = session.beginTransaction();
+//
+//
+//            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 0);
+//            MembersListEntity membersList = (MembersListEntity) session.get(MembersListEntity.class, 0);
+//
+//            specificClient.addMembersListToClient(membersList);
+//
+//            session.update(specificClient);
+//            tx.commit();
+//
+//            logger.info("------------- members wired with specific client successfully... ------------");
+//            System.out.println("client добавлен в members list, таблица m2m пополнилась на одну связь");
+//
+//        } catch (Exception e) {
+//            logger.error("-------------- Failed to wire members list and specific client..." + e + "----------------");
+//            System.out.println(e.getMessage());
+//        } finally {
+//            session.close();
+//        }
+//    }
+
+    private void deleteSpecificClientWithCascadeEffect() {
         Transaction tx;
         Session session = getSession();
         try {
-            System.out.println("Связывание members-листа и клиента");
+            System.out.println("Удаление клиентаи каскадное удаление всех связных таблиц");
             tx = session.beginTransaction();
 
 
-            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 1);
-            MembersListEntity membersList = (MembersListEntity) session.get(MembersListEntity.class, 0);
+            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 0);
 
-            specificClient.addMembersListToClient(membersList);
+            session.delete(specificClient);
 
-            session.update(specificClient);
             tx.commit();
 
-            logger.info("------------- members wired with specific client successfully... ------------");
-            System.out.println("client добавлен в members list, таблица m2m пополнилась на одну связь");
+            logger.info("------------- client was removed frpm db with connected entities .. ------------");
+            System.out.println("client был удален со всеми связынми сущностями");
 
         } catch (Exception e) {
-            logger.error("-------------- Failed to wire members list and specific client..." + e + "----------------");
+            logger.error("-------------- Failed to delete specific client..." + e + "----------------");
             System.out.println(e.getMessage());
         } finally {
             session.close();
@@ -191,6 +216,6 @@ public class Main {
 //        createTasksList();
 //        createMembersList();
 //        wireMembersListToSpecificClient();
-
+        deleteSpecificClientWithCascadeEffect();
     }
 }

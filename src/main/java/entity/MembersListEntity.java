@@ -10,6 +10,7 @@ import java.util.Set;
 @Table(name = "members_list", schema = "public", catalog = "ipr")
 public class MembersListEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -17,12 +18,12 @@ public class MembersListEntity {
     @Column(name = "requirements")
     private String requirements;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "members_clients",
-            joinColumns = @JoinColumn(name = "members_list_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_id")
-    )
-    private Set<ClientEntity> clients = new HashSet<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "members_clients",
+//            joinColumns = @JoinColumn(name = "members_list_id"),
+//            inverseJoinColumns = @JoinColumn(name = "client_id")
+//    )
+//    private Set<ClientEntity> clients = new HashSet<>();
 
 
     @Basic
@@ -65,17 +66,17 @@ public class MembersListEntity {
         this.members = members;
     }
 
-    public Set<ClientEntity> getClients() {
-        return clients;
-    }
-
-    public void setClients(Set<ClientEntity> clients) {
-        this.clients = clients;
-    }
-
-    public void addClient(ClientEntity client) {
-        this.clients.add(client);
-    }
+//    public Set<ClientEntity> getClients() {
+//        return clients;
+//    }
+//
+//    public void setClients(Set<ClientEntity> clients) {
+//        this.clients = clients;
+//    }
+//
+//    public void addClient(ClientEntity client) {
+//        this.clients.add(client);
+//    }
 
     @Override
     public boolean equals(Object o) {
