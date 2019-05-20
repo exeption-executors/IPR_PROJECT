@@ -35,9 +35,8 @@ public class ClientEntity {
     @Column(name = "fired")
     private boolean fired;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JoinColumn(name = "client_id", referencedColumnName = "id", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "client_id", nullable = false)
     private List<PlanEntity> planEntities;
 
 

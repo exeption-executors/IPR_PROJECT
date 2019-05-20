@@ -67,10 +67,14 @@ public class Main {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
             PlanEntity plan = new PlanEntity();
-            plan.setClientId(0);
+            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 4);
+
             plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
             plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
-            session.save(plan);
+
+            specificClient.addPlanEntity(plan);
+//            session.save(plan);
+            session.save(specificClient);
             System.out.println("Запись плана добавлена");
             tx.commit();
 
@@ -90,7 +94,6 @@ public class Main {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
             PlanTasksEntity planTasks = new PlanTasksEntity();
-            planTasks.setPlanId(0);
             planTasks.setPlanTasksDateEnd(new Date(dateFormat.parse("01/02/1999").getTime()));
             planTasks.setPlanTasksDescription("TestDescription1");
             planTasks.setPriority("High");
@@ -114,7 +117,6 @@ public class Main {
             tx = session.beginTransaction();
 
             TasksListEntity tasksList = new TasksListEntity();
-            tasksList.setPlanTaskId(0);
             tasksList.setTaskDescription("85% - процент покрытия на основе отчета (описание задачи)");
             tasksList.setTaskIsDone(true);
             session.save(tasksList);
@@ -186,13 +188,12 @@ public class Main {
 
     private void deleteSpecificClientWithCascadeEffect() {
         Transaction tx;
-        Session session = getSession();
-        try {
+        try (Session session = getSession()) {
             System.out.println("Удаление клиентаи каскадное удаление всех связных таблиц");
             tx = session.beginTransaction();
 
 
-            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 0);
+            ClientEntity specificClient = session.get(ClientEntity.class, 2);
 
             session.delete(specificClient);
 
@@ -204,17 +205,16 @@ public class Main {
         } catch (Exception e) {
             logger.error("-------------- Failed to delete specific client..." + e + "----------------");
             System.out.println(e.getMessage());
-        } finally {
-            session.close();
         }
     }
 
     public Main() {
-            createClient();
+        createClient();
 //        createPlan();
 //        createPlanTask();
 //        createTasksList();
 //        createMembersList();
 //        wireMembersListToSpecificClient();
+       // deleteSpecificClientWithCascadeEffect();
     }
 }

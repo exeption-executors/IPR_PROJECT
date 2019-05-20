@@ -13,10 +13,6 @@ public class TasksListEntity {
     private int id;
 
     @Basic
-    @Column(name = "plan_tasks_id")
-    private int planTaskId;
-
-    @Basic
     @Column(name = "task_is_done")
     private boolean taskIsDone;
 
@@ -46,14 +42,6 @@ public class TasksListEntity {
 
     public void setTaskIsDone(boolean taskIsDone) {
         this.taskIsDone = taskIsDone;
-    }
-
-    public int getPlanTaskId() {
-        return planTaskId;
-    }
-
-    public void setPlanTaskId(int planTaskId) {
-        this.planTaskId = planTaskId;
     }
 
     @Override
