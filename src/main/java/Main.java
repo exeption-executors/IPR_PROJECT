@@ -38,22 +38,26 @@ public class Main {
         Transaction tx;
         Session session = getSession();
         try {
-//            System.out.println("Добавление записи клиента");
+            System.out.println("Добавление записи в Client");
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
-            ClientEntity client = new ClientEntity();
+            Client client = new Client();
+
             client.setName("TestName1");
             client.setSurname("TestSurname1");
             client.setEmail("TestMail1@gmail.com");
             client.setFired(false);
+
             session.save(client);
+            logger.info("------------- Client saved successfully... ------------");
+
             tx.commit();
-            logger.info("------------- Customer saved successfully... ------------");
-            System.out.println("Запись клиента добавлена");
+            System.out.println("Запись в Client добавлена");
 
         } catch (Exception e) {
-            logger.error("-------------- Failed to save customer..." + e + "----------------");
+            logger.error("-------------- Failed to save Client..." + e + "----------------");
             System.out.println(e.getMessage());
+
         } finally {
             session.close();
         }
@@ -61,13 +65,12 @@ public class Main {
 
     private void createPlan() {
         Transaction tx;
-        Session session = getSession();
-        try {
-            System.out.println("Добавление записи плана");
+        try (Session session = getSession()) {
+            System.out.println("Добавление записи в Plan");
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
-            PlanEntity plan = new PlanEntity();
-            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 4);
+            Plan plan = new Plan();
+            Client specificClient = session.get(Client.class, 0);
 
             plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
             plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
@@ -75,62 +78,63 @@ public class Main {
             specificClient.addPlanEntity(plan);
 //            session.save(plan);
             session.save(specificClient);
-            System.out.println("Запись плана добавлена");
+            logger.info("------------- Plan saved successfully... ------------");
+
             tx.commit();
+            System.out.println("Запись в Plan добавлена");
 
         } catch (Exception e) {
-            logger.error("-------------- Failed to save customer..." + e + "----------------");
+            logger.error("-------------- Failed to save Plan.." + e + "----------------");
             System.out.println(e.getMessage());
-        } finally {
-            session.close();
         }
     }
 
     private void createPlanTask() {
         Transaction tx;
-        Session session = getSession();
-        try {
-            System.out.println("Добавление записи заданий плана");
+        try (Session session = getSession()) {
+            System.out.println("Добавление записи в Plan Task");
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
-            PlanTasksEntity planTasks = new PlanTasksEntity();
+            PlanTasks planTasks = new PlanTasks();
+            Plan specificPlan = session.get(Plan.class, 0);
+
             planTasks.setPlanTasksDateEnd(new Date(dateFormat.parse("01/02/1999").getTime()));
             planTasks.setPlanTasksDescription("TestDescription1");
             planTasks.setPriority("High");
-            session.save(planTasks);
-            System.out.println("Запись заданий плана добавлена");
+            specificPlan.addPlanTasksEntity(planTasks);
+//            session.save(planTasks);
+            session.save(specificPlan);
+            logger.info("------------- Plan Task saved successfully... ------------");
             tx.commit();
+            System.out.println("Запись в Plan Task добавлена");
 
         } catch (Exception e) {
-            logger.error("-------------- Failed to save customer..." + e + "----------------");
+            logger.error("-------------- Failed to save Plan Tasks..." + e + "----------------");
             System.out.println(e.getMessage());
-        } finally {
-            session.close();
         }
     }
 
     private void createTasksList() {
         Transaction tx;
-        Session session = getSession();
-        try {
-            System.out.println("Добавление записи Tasks List");
+        try (Session session = getSession()) {
+            System.out.println("Добавление записи в Tasks List");
             tx = session.beginTransaction();
+            TasksList tasksList = new TasksList();
+            PlanTasks specificPlanTask = session.get(PlanTasks.class, 0);
 
-            TasksListEntity tasksList = new TasksListEntity();
-            tasksList.setTaskDescription("85% - процент покрытия на основе отчета (описание задачи)");
+            tasksList.setTaskDescription("Test Task List Description1");
             tasksList.setTaskIsDone(true);
-            session.save(tasksList);
+            specificPlanTask.addTasksListEntity(tasksList);
+//            session.save(tasksList);
+            session.save(specificPlanTask);
+            logger.info("------------- Tasks List saved successfully... ------------");
 
             tx.commit();
-
-            logger.info("------------- tasks list save save successfully... ------------");
-            System.out.println("tasks list добавлен и заполнен");
+            System.out.println("Запись в Tasks List добавлена");
 
         } catch (Exception e) {
-            logger.error("-------------- Failed to save tasks list..." + e + "----------------");
+            logger.error("-------------- Failed to save TasksList..." + e + "----------------");
             System.out.println(e.getMessage());
-        } finally {
-            session.close();
         }
     }
 
@@ -138,21 +142,21 @@ public class Main {
         Transaction tx;
         Session session = getSession();
         try {
-            System.out.println("Создание members-листа");
+            System.out.println("Добавление записи в Members List");
             tx = session.beginTransaction();
+            MembersList membersList = new MembersList();
+            PlanTasks specificalPlanTask = session.get(PlanTasks.class, 0);
+            membersList.setRequirements("Test Members List Requirements ");
+            specificalPlanTask.addMembersListEntity(membersList);
+//            session.save(membersList);
+            session.save(specificalPlanTask);
+            logger.info("------------- Members List saved successfully... ------------");
 
-            MembersListEntity membersList = new MembersListEntity();
-            membersList.setPlanTasksList(0);
-            membersList.setRequirements("Все должно быть сделано на уровне mvp: Шоб работало");
-
-            session.save(membersList);
             tx.commit();
-
-            logger.info("------------- members list save save successfully... ------------");
-            System.out.println("members list создан и добавлен в базу");
+            System.out.println("Запись в Members List добавлена");
 
         } catch (Exception e) {
-            logger.error("-------------- Failed to save members list..." + e + "----------------");
+            logger.error("-------------- Failed to save Members list..." + e + "----------------");
             System.out.println(e.getMessage());
         } finally {
             session.close();
@@ -166,9 +170,8 @@ public class Main {
             System.out.println("Связывание members-листа и клиента");
             tx = session.beginTransaction();
 
-
-            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 0);
-            MembersListEntity membersList = (MembersListEntity) session.get(MembersListEntity.class, 0);
+            Client specificClient = session.get(Client.class, 0);
+            MembersList membersList = session.get(MembersList.class, 0);
 
             specificClient.addMembersListToClient(membersList);
 
@@ -189,11 +192,11 @@ public class Main {
     private void deleteSpecificClientWithCascadeEffect() {
         Transaction tx;
         try (Session session = getSession()) {
-            System.out.println("Удаление клиентаи каскадное удаление всех связных таблиц");
+            System.out.println("Удаление клиента и каскадное удаление всех связных таблиц");
             tx = session.beginTransaction();
 
 
-            ClientEntity specificClient = session.get(ClientEntity.class, 2);
+            Client specificClient = session.get(Client.class, 0);
 
             session.delete(specificClient);
 
@@ -209,12 +212,12 @@ public class Main {
     }
 
     public Main() {
-        createClient();
+//        createClient();
 //        createPlan();
 //        createPlanTask();
 //        createTasksList();
 //        createMembersList();
 //        wireMembersListToSpecificClient();
-       // deleteSpecificClientWithCascadeEffect();
+        deleteSpecificClientWithCascadeEffect();
     }
 }

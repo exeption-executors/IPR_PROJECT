@@ -1,14 +1,11 @@
 package entity;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "members_list", schema = "public", catalog = "ipr")
-public class MembersListEntity {
+public class MembersList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -23,16 +20,18 @@ public class MembersListEntity {
 //            joinColumns = @JoinColumn(name = "members_list_id"),
 //            inverseJoinColumns = @JoinColumn(name = "client_id")
 //    )
-//    private Set<ClientEntity> clients = new HashSet<>();
+//    private Set<Client> clients = new HashSet<>();
 
 
     @Basic
-    @Column(name = "plan_tasks_id")
+    @Column(name = "plan_tasks_id",insertable = false,updatable = false)
     private Integer planTasksList;
 
+
     @OneToMany
-    @JoinColumn(name = "id")
-    private List<ClientEntity> members;
+    @JoinColumn(name = "id", nullable = false, insertable = false,updatable = false)
+    private List<Client> members;
+
 
     public Integer getPlanTasksList() {
         return planTasksList;
@@ -58,23 +57,23 @@ public class MembersListEntity {
         this.requirements = requirements;
     }
 
-    public List<ClientEntity> getMembers() {
+    public List<Client> getMembers() {
         return members;
     }
 
-    public void setMembers(List<ClientEntity> members) {
+    public void setMembers(List<Client> membersListEntities) {
         this.members = members;
     }
 
-//    public Set<ClientEntity> getClients() {
+//    public Set<Client> getClients() {
 //        return clients;
 //    }
 //
-//    public void setClients(Set<ClientEntity> clients) {
+//    public void setClients(Set<Client> clients) {
 //        this.clients = clients;
 //    }
 //
-//    public void addClient(ClientEntity client) {
+//    public void addClient(Client client) {
 //        this.clients.add(client);
 //    }
 
@@ -83,7 +82,7 @@ public class MembersListEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MembersListEntity that = (MembersListEntity) o;
+        MembersList that = (MembersList) o;
 
         if (id != that.id) return false;
         if (requirements != null ? !requirements.equals(that.requirements) : that.requirements != null) return false;

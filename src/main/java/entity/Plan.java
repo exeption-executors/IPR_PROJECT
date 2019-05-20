@@ -1,16 +1,12 @@
 package entity;
 
-import com.example.jdbc.entity.Client;
-
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Plan")
 @Table(name = "plan", schema = "public", catalog = "ipr")
-public class PlanEntity {
-
+public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -24,19 +20,20 @@ public class PlanEntity {
     @Column(name = "plan_date_end")
     private Date planDateEnd;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "plan_id")
-    private List<PlanTasksEntity> planTasksEntities = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "plan_id", nullable = false)
+    private List<PlanTasks> planTasksEntities;
 
-    public void addPlanTasksList(PlanTasksEntity planTasksEntity) {
-        planTasksEntities.add(planTasksEntity);
+
+    public void addPlanTasksEntity(PlanTasks planTasks) {
+        planTasksEntities.add(planTasks);
     }
 
-    public List<PlanTasksEntity> getPlanTasksEntities() {
+    public List<PlanTasks> getPlanTasksEntities() {
         return planTasksEntities;
     }
 
-    public void setPlanTasksEntities(List<PlanTasksEntity> planTasksEntities) {
+    public void setPlanTasksEntities(List<PlanTasks> planTasksEntities) {
         this.planTasksEntities = planTasksEntities;
     }
 
@@ -64,12 +61,13 @@ public class PlanEntity {
         this.planDateEnd = planDateEnd;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlanEntity that = (PlanEntity) o;
+        Plan that = (Plan) o;
 
         if (id != that.id) return false;
         if (planDateStart != null ? !planDateStart.equals(that.planDateStart) : that.planDateStart != null)

@@ -1,12 +1,10 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "tasks_list", schema = "public", catalog = "ipr")
-public class TasksListEntity {
-
+public class TasksList {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
@@ -19,6 +17,7 @@ public class TasksListEntity {
     @Basic
     @Column(name = "task_description")
     private String taskDescription;
+
 
     public String getTaskDescription() {
         return taskDescription;
@@ -49,7 +48,7 @@ public class TasksListEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        TasksListEntity that = (TasksListEntity) o;
+        TasksList that = (TasksList) o;
 
         if (id != that.id) return false;
         if (taskIsDone != that.taskIsDone) return false;
