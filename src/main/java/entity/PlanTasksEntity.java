@@ -12,21 +12,37 @@ public class PlanTasksEntity {
     }
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     @Basic
     @Column(name = "plan_id")
     private int planId;
+
     @Basic
     @Column(name = "plan_tasks_date_end")
     private Date planTasksDateEnd;
+
     @Basic
     @Column(name = "plan_tasks_description")
     private String planTasksDescription;
+
     @Basic
     @Column(name = "priority")
     private String priority;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "plan_tasks_id")
+    private List<TasksListEntity>  tasksListEntities;
+
+    public int getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(int planId) {
+        this.planId = planId;
+    }
 
     public int getId() {
         return id;
@@ -61,16 +77,8 @@ public class PlanTasksEntity {
         this.priority = priority;
     }
 
-    public int getPlanId() {
-        return planId;
-    }
-
-    public void setPlanId(int planId) {
-        this.planId = planId;
-    }
-
-    ////    @OneToOne(cascade = CascadeType.ALL)
-//    private MembersListEntity membersList;
+    @OneToOne(cascade = CascadeType.ALL)
+    private MembersListEntity membersList;
 
     @Override
     public boolean equals(Object o) {
