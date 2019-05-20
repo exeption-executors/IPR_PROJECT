@@ -7,9 +7,10 @@ import java.util.List;
 @Entity
 @Table(name = "plan_tasks", schema = "public", catalog = "ipr")
 public class PlanTasksEntity {
-    public PlanTasksEntity(){
+    public PlanTasksEntity() {
 
     }
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
@@ -76,8 +77,6 @@ public class PlanTasksEntity {
         this.priority = priority;
     }
 
-    //@OneToOne(cascade = CascadeType.ALL)
-    //private MembersListEntity membersList;
 
     @Override
     public boolean equals(Object o) {

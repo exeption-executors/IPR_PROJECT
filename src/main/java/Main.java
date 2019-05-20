@@ -4,8 +4,8 @@ import org.hibernate.cfg.Configuration;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import java.text.SimpleDateFormat;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class Main {
     private static final SessionFactory ourSessionFactory;
@@ -34,11 +34,11 @@ public class Main {
         System.exit(0);
     }
 
-    private void recordClient() {
+    private void createClient() {
         Transaction tx;
         Session session = getSession();
         try {
-            System.out.println("Добавление записи клиента");
+//            System.out.println("Добавление записи клиента");
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
             ClientEntity client = new ClientEntity();
@@ -59,7 +59,7 @@ public class Main {
         }
     }
 
-    private void recordPlan() {
+    private void createPlan() {
         Transaction tx;
         Session session = getSession();
         try {
@@ -67,12 +67,12 @@ public class Main {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
             PlanEntity plan = new PlanEntity();
-           plan.setClientId(1);
-           plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
-           plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
-           session.save(plan);
-           System.out.println("Запись плана добавлена");
-           tx.commit();
+            plan.setClientId(1);
+            plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
+            plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
+            session.save(plan);
+            System.out.println("Запись плана добавлена");
+            tx.commit();
 
         } catch (Exception e) {
             logger.error("-------------- Failed to save customer..." + e + "----------------");
@@ -81,7 +81,8 @@ public class Main {
             session.close();
         }
     }
-    private void recordPlanTask() {
+
+    private void createPlanTask() {
         Transaction tx;
         Session session = getSession();
         try {
@@ -105,10 +106,10 @@ public class Main {
         }
     }
 
-    private  void recordTasksList(){
+    private void createTasksList() {
         Transaction tx;
         Session session = getSession();
-        try{
+        try {
             System.out.println("Добавление записи Tasks List");
             tx = session.beginTransaction();
 
@@ -123,7 +124,7 @@ public class Main {
             logger.info("------------- tasks list save save successfully... ------------");
             System.out.println("tasks list добавлен и заполнен");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error("-------------- Failed to save tasks list..." + e + "----------------");
             System.out.println(e.getMessage());
         } finally {
@@ -131,11 +132,65 @@ public class Main {
         }
     }
 
+    private void createMembersList() {
+        Transaction tx;
+        Session session = getSession();
+        try {
+            System.out.println("Создание members-листа");
+            tx = session.beginTransaction();
+
+            MembersListEntity membersList = new MembersListEntity();
+            membersList.setPlanTasksList(1);
+            membersList.setRequirements("Все должно быть сделано на уровне mvp: Шоб работало");
+
+            session.save(membersList);
+            tx.commit();
+
+            logger.info("------------- members list save save successfully... ------------");
+            System.out.println("members list создан и добавлен в базу");
+
+        } catch (Exception e) {
+            logger.error("-------------- Failed to save members list..." + e + "----------------");
+            System.out.println(e.getMessage());
+        } finally {
+            session.close();
+        }
+    }
+
+    private void wireMembersListToSpecificClient() {
+        Transaction tx;
+        Session session = getSession();
+        try {
+            System.out.println("Связывание members-листа и клиента");
+            tx = session.beginTransaction();
+
+
+            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 1);
+            MembersListEntity membersList = (MembersListEntity) session.get(MembersListEntity.class, 0);
+
+            specificClient.addMembersListToClient(membersList);
+
+            session.update(specificClient);
+            tx.commit();
+
+            logger.info("------------- members wired with specific client successfully... ------------");
+            System.out.println("client добавлен в members list, таблица m2m пополнилась на одну связь");
+
+        } catch (Exception e) {
+            logger.error("-------------- Failed to wire members list and specific client..." + e + "----------------");
+            System.out.println(e.getMessage());
+        } finally {
+            session.close();
+        }
+    }
+
     public Main() {
-        //recordClient();
-       // recordPlan();
-        //recordPlanTask();
-        recordTasksList();
+//        createClient();
+//        createPlan();
+//        createPlanTask();
+//        createTasksList();
+//        createMembersList();
+//        wireMembersListToSpecificClient();
 
     }
 }
