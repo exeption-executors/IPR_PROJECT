@@ -1,17 +1,37 @@
 package entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "tasks_list", schema = "public", catalog = "ipr")
 public class TasksListEntity {
-    private int id;
-    private boolean taskIsDone;
-    private String taskDescription;
-    private PlanTasksEntity planTasksByPlanTasksId;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
+    private int id;
+
+    @Basic
+    @Column(name = "plan_tasks_id")
+    private int planTaskId;
+
+    @Basic
+    @Column(name = "task_is_done")
+    private boolean taskIsDone;
+
+    @Basic
+    @Column(name = "task_description")
+    private String taskDescription;
+
+    public String getTaskDescription() {
+        return taskDescription;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
     public int getId() {
         return id;
     }
@@ -20,8 +40,6 @@ public class TasksListEntity {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "task_is_done")
     public boolean isTaskIsDone() {
         return taskIsDone;
     }
@@ -30,14 +48,12 @@ public class TasksListEntity {
         this.taskIsDone = taskIsDone;
     }
 
-    @Basic
-    @Column(name = "task_description")
-    public String getTaskDescription() {
-        return taskDescription;
+    public int getPlanTaskId() {
+        return planTaskId;
     }
 
-    public void setTaskDescription(String taskDescription) {
-        this.taskDescription = taskDescription;
+    public void setPlanTaskId(int planTaskId) {
+        this.planTaskId = planTaskId;
     }
 
     @Override
@@ -62,14 +78,4 @@ public class TasksListEntity {
         result = 31 * result + (taskDescription != null ? taskDescription.hashCode() : 0);
         return result;
     }
-
-/*    @ManyToOne
-    @JoinColumn(name = "plan_tasks_id", referencedColumnName = "id", nullable = false)
-    public PlanTasksEntity getPlanTasksByPlanTasksId() {
-        return planTasksByPlanTasksId;
-    }
-
-    public void setPlanTasksByPlanTasksId(PlanTasksEntity planTasksByPlanTasksId) {
-        this.planTasksByPlanTasksId = planTasksByPlanTasksId;
-    }*/
 }

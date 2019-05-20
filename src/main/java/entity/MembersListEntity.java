@@ -16,14 +16,6 @@ public class MembersListEntity {
     @Column(name = "requirements")
     private String requirements;
 
-    @OneToOne(mappedBy = "membersList")
-    @JoinColumn(name = "plan_id")
-    private PlanTasksEntity planTasksId;
-
-    @OneToMany
-    @JoinColumn(name = "id")
-    private List<ClientEntity> members;
-
 
     public int getId() {
         return id;
@@ -40,22 +32,6 @@ public class MembersListEntity {
     public void setRequirements(String requirements) {
         this.requirements = requirements;
     }
-
-    public List<ClientEntity> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<ClientEntity> members) {
-        this.members = members;
-    }
-
-//    public PlanTasksEntity getPlanTasks() {
-//        return planTasks;
-//    }
-//
-//    public void setPlanTasks(PlanTasksEntity planTasks) {
-//        this.planTasks = planTasks;
-//    }
 
     @Override
     public boolean equals(Object o) {
