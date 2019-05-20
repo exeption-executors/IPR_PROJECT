@@ -210,8 +210,8 @@ public class Main {
     }
 
     public Main() {
-//        createClient();
-        createPlan();
+            createClient();
+//        createPlan();
 //        createPlanTask();
 //        createTasksList();
 //        createMembersList();
