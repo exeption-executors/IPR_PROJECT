@@ -157,32 +157,32 @@ public class Main {
         }
     }
 
-//    private void wireMembersListToSpecificClient() {
-//        Transaction tx;
-//        Session session = getSession();
-//        try {
-//            System.out.println("Связывание members-листа и клиента");
-//            tx = session.beginTransaction();
-//
-//
-//            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 0);
-//            MembersListEntity membersList = (MembersListEntity) session.get(MembersListEntity.class, 0);
-//
-//            specificClient.addMembersListToClient(membersList);
-//
-//            session.update(specificClient);
-//            tx.commit();
-//
-//            logger.info("------------- members wired with specific client successfully... ------------");
-//            System.out.println("client добавлен в members list, таблица m2m пополнилась на одну связь");
-//
-//        } catch (Exception e) {
-//            logger.error("-------------- Failed to wire members list and specific client..." + e + "----------------");
-//            System.out.println(e.getMessage());
-//        } finally {
-//            session.close();
-//        }
-//    }
+    private void wireMembersListToSpecificClient() {
+        Transaction tx;
+        Session session = getSession();
+        try {
+            System.out.println("Связывание members-листа и клиента");
+            tx = session.beginTransaction();
+
+
+            ClientEntity specificClient = (ClientEntity) session.get(ClientEntity.class, 0);
+            MembersListEntity membersList = (MembersListEntity) session.get(MembersListEntity.class, 0);
+
+            specificClient.addMembersListToClient(membersList);
+
+            session.update(specificClient);
+            tx.commit();
+
+            logger.info("------------- members wired with specific client successfully... ------------");
+            System.out.println("client добавлен в members list, таблица m2m пополнилась на одну связь");
+
+        } catch (Exception e) {
+            logger.error("-------------- Failed to wire members list and specific client..." + e + "----------------");
+            System.out.println(e.getMessage());
+        } finally {
+            session.close();
+        }
+    }
 
     private void deleteSpecificClientWithCascadeEffect() {
         Transaction tx;
@@ -216,6 +216,6 @@ public class Main {
 //        createTasksList();
 //        createMembersList();
 //        wireMembersListToSpecificClient();
-        deleteSpecificClientWithCascadeEffect();
+
     }
 }
