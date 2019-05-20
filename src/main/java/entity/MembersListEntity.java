@@ -1,4 +1,7 @@
 package entity;
+
+import com.example.jdbc.entity.Client;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,6 +23,7 @@ public class MembersListEntity {
     @OneToMany
     @JoinColumn(name = "id")
     private List<ClientEntity> members;
+
 
     public int getId() {
         return id;

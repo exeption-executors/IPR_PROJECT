@@ -13,19 +13,26 @@ public class PlanTasksEntity {
     @Id
     @Column(name = "id")
     private int id;
+
     @Basic
     @Column(name = "plan_id")
     private int planId;
+
     @Basic
     @Column(name = "plan_tasks_date_end")
     private Date planTasksDateEnd;
+
     @Basic
     @Column(name = "plan_tasks_description")
     private String planTasksDescription;
+
     @Basic
     @Column(name = "priority")
     private String priority;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "plan_tasks_id")
+    private List<TasksListEntity> tasksListEntities;
 
     public int getId() {
         return id;
