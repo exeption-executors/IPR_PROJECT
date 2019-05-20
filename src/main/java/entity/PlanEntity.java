@@ -2,6 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "Plan")
@@ -9,7 +10,7 @@ import java.util.List;
 public class PlanEntity {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -28,7 +29,19 @@ public class PlanEntity {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "plan_id")
-    private List<PlanTasksEntity> planTasksEntities;
+    private List<PlanTasksEntity> planTasksEntities = new ArrayList<>();
+
+    public void addPlanTasksList(PlanTasksEntity planTasksEntity) {
+        planTasksEntities.add(planTasksEntity);
+    }
+
+    public List<PlanTasksEntity> getPlanTasksEntities() {
+        return planTasksEntities;
+    }
+
+    public void setPlanTasksEntities(List<PlanTasksEntity> planTasksEntities) {
+        this.planTasksEntities = planTasksEntities;
+    }
 
     public int getId() {
         return id;

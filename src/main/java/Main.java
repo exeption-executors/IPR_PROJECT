@@ -4,6 +4,9 @@ import org.hibernate.cfg.Configuration;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 public class Main {
     private static final SessionFactory ourSessionFactory;
     private static final Logger logger = LogManager.getLogger(Main.class);
@@ -49,21 +52,82 @@ public class Main {
         Transaction tx;
         Session session = getSession();
         try {
-            System.out.println("Добавление записи клиента");
-            //SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//            System.out.println("Добавление записи клиента");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
 
-            ClientEntity client = new ClientEntity();
-            client.setName("Ez");
-            client.setSurname("Eez");
-            client.setEmail("Eeez@gmail.com");
-            client.setFired(false);
+//            ClientEntity client = new ClientEntity();
+//            client.setName("Ez");
+//            client.setSurname("Eez");
+//            client.setEmail("Eeez@gmail.com");
+//            client.setFired(false);
+////
+//            PlanEntity plan = new PlanEntity();
+//            plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
+//            plan.setPlanDateEnd(new Date(dateFormat.parse("01/04/1999").getTime()));
+//            plan.setClientId(1);
 
-            //client.setVacationDateFrom(new Date(dateFormat.parse("01/02/1999").getTime()));
-            //client.setVacationDateTo(new Date(dateFormat.parse("02/03/1999").getTime()));
+//            PlanEntity plan;
+//            plan =  (PlanEntity) session.get(PlanEntity.class, 3);
+//            System.out.println("--------------------");
+//            System.out.println(plan.getId());
+
+//            TasksListEntity tasksList = new TasksListEntity();
+//            tasksList.setTaskDescription("adfsaf");
+//            tasksList.setTaskIsDone(true);
+//////
+//////
+//             PlanTasksEntity planTasks =  (PlanTasksEntity) session.get(PlanTasksEntity.class, 0);
+//////
+//            tasksList.setPlanTasksByPlanTasksId(planTasks);
+//            session.save(tasksList);
 
 
-            session.save(client);
+//            ClientEntity client =  (ClientEntity) session.get(ClientEntity.class, 0);
+//            System.out.println("--------------------------");
+//            System.out.println(client.getId());
+//            MembersListEntity membersList = (MembersListEntity) session.get(MembersListEntity.class, 0);
+//            client.addMembersListToClient(membersList);
+
+
+
+
+//
+//            PlanTasksEntity planTasksList = new PlanTasksEntity();
+//            planTasksList.setPlanTasksDateEnd(new Date(dateFormat.parse("01/02/1999").getTime()));
+//            planTasksList.setPlanTasksDescription("asdcsvsdv");
+//            planTasksList.setPriority("4");
+//            planTasksList.setPlanId(1);
+
+
+//            plan.addPlanTasksList(planTasksList);
+
+//            System.out.println(plan.getId());
+//            planTasksList.setPlanTasksDescription("adfsdfa");
+//            planTasksList.setPlanTasksDateEnd(new Date(dateFormat.parse("01/04/1999").getTime()));
+//            plan.addPlanTasksList(planTasksList);
+//            session.save(planTasksList);
+
+
+//
+//            MembersListEntity membersList = new MembersListEntity();
+//            membersList.setRequirements("sdfsfdsfs");
+//            membersList.setPlanTasksList(0);
+//
+//            ClientEntity client =  new ClientEntity();
+//
+//            client.setName("Ezsdfsf");
+//            client.setSurname("Eeqwqwdz");
+//            client.setEmail("Eeesdsfz@gmail.com");
+//            client.setFired(false);
+//
+//            client.addMembersListToClient(membersList);
+            ClientEntity client =  (ClientEntity) session.get(ClientEntity.class, 1);
+
+            MembersListEntity membersList = (MembersListEntity) session.get(MembersListEntity.class, 0);
+            client.addMembersListToClient(membersList);
+//
+            session.update(client);
 
             tx.commit();
             logger.info("------------- Customer saved successfully... ------------");

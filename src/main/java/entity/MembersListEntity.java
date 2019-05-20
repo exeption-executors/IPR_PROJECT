@@ -1,6 +1,10 @@
 package entity;
+
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "members_list", schema = "public", catalog = "ipr")
@@ -13,13 +17,29 @@ public class MembersListEntity {
     @Column(name = "requirements")
     private String requirements;
 
-    @OneToOne(mappedBy = "membersList")
-    @JoinColumn(name = "plan_id")
-    private PlanTasksEntity planTasksId;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "members_clients",
+            joinColumns = @JoinColumn(name = "members_list_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id")
+    )
+    private Set<ClientEntity> clients = new HashSet<>();
+
+
+    @Basic
+    @Column(name = "plan_tasks_id")
+    private Integer planTasksList;
 
     @OneToMany
     @JoinColumn(name = "id")
     private List<ClientEntity> members;
+
+    public Integer getPlanTasksList() {
+        return planTasksList;
+    }
+
+    public void setPlanTasksList(Integer planTasksList) {
+        this.planTasksList = planTasksList;
+    }
 
     public int getId() {
         return id;
@@ -45,13 +65,17 @@ public class MembersListEntity {
         this.members = members;
     }
 
-//    public PlanTasksEntity getPlanTasks() {
-//        return planTasks;
-//    }
-//
-//    public void setPlanTasks(PlanTasksEntity planTasks) {
-//        this.planTasks = planTasks;
-//    }
+    public Set<ClientEntity> getClients() {
+        return clients;
+    }
+
+    public void setClients(Set<ClientEntity> clients) {
+        this.clients = clients;
+    }
+
+    public void addClient(ClientEntity client) {
+        this.clients.add(client);
+    }
 
     @Override
     public boolean equals(Object o) {

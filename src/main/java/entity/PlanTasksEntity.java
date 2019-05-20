@@ -7,9 +7,10 @@ import java.util.List;
 @Entity
 @Table(name = "plan_tasks", schema = "public", catalog = "ipr")
 public class PlanTasksEntity {
-    public PlanTasksEntity(){
+    public PlanTasksEntity() {
 
     }
+
     @Id
     @Column(name = "id")
     private int id;
@@ -60,8 +61,16 @@ public class PlanTasksEntity {
         this.priority = priority;
     }
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private MembersListEntity membersList;
+    public int getPlanId() {
+        return planId;
+    }
+
+    public void setPlanId(int planId) {
+        this.planId = planId;
+    }
+
+    ////    @OneToOne(cascade = CascadeType.ALL)
+//    private MembersListEntity membersList;
 
     @Override
     public boolean equals(Object o) {
