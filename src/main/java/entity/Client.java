@@ -8,6 +8,10 @@ import java.util.Set;
 @Entity(name = "Client")
 @Table(name = "client", schema = "public", catalog = "ipr")
 public class Client {
+    public Client() {
+
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

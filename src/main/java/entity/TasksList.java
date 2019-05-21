@@ -5,6 +5,10 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tasks_list", schema = "public", catalog = "ipr")
 public class TasksList {
+    public TasksList() {
+
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")

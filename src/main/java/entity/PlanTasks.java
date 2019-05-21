@@ -7,6 +7,10 @@ import java.util.List;
 @Entity
 @Table(name = "plan_tasks", schema = "public", catalog = "ipr")
 public class PlanTasks {
+    public PlanTasks() {
+
+    }
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
