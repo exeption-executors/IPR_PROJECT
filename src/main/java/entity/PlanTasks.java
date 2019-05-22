@@ -6,8 +6,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "plan_tasks", schema = "public", catalog = "ipr")
-public class PlanTasksEntity {
-    public PlanTasksEntity() {
+public class PlanTasks {
+    public PlanTasks() {
 
     }
 
@@ -28,9 +28,42 @@ public class PlanTasksEntity {
     @Column(name = "priority")
     private String priority;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "plan_tasks_id")
-    private List<TasksListEntity>  tasksListEntities;
+    private List<TasksList>  allIncludedTasksList;
+
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "plan_tasks_id", nullable = false)
+//    private List<MembersList> membersListEntities;
+
+//    public void addMembersListEntity(MembersList membersList) {
+//        this.membersListEntities.add(membersList);
+//    }
+
+    @OneToOne(mappedBy = "planTasks", cascade = CascadeType.ALL)
+    private MembersList membersList;
+
+    public MembersList getMembersList() {
+        return membersList;
+    }
+
+
+    public void setMembersList(MembersList membersList) {
+        if (membersList == null) {
+            if (this.membersList != null) {
+                this.membersList.setPlanTasks(null);
+            }
+        }
+        else {
+            membersList.setPlanTasks(this);
+        }
+        this.membersList = membersList;
+    }
+
+    public void addTasksList(TasksList tasksList) {
+        allIncludedTasksList.add(tasksList);
+    }
+
 
     public int getId() {
         return id;
@@ -71,7 +104,7 @@ public class PlanTasksEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlanTasksEntity that = (PlanTasksEntity) o;
+        PlanTasks that = (PlanTasks) o;
 
         if (id != that.id) return false;
         if (planTasksDateEnd != null ? !planTasksDateEnd.equals(that.planTasksDateEnd) : that.planTasksDateEnd != null)
