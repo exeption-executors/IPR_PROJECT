@@ -29,7 +29,7 @@ public class PlanTasks {
     private String priority;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "plan_tasks_id", nullable = false)
+    @JoinColumn(name = "plan_tasks_id")
     private List<TasksList>  allIncludedTasksList;
 
 //    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
