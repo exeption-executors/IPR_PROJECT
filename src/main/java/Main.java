@@ -16,7 +16,7 @@ public class Main {
             Configuration configuration = new Configuration();
             configuration.configure();
 
-            logger.info("------------   Hibernate Registry builder created ---------------");
+            logger.info("------------ Hibernate Registry builder created ---------------");
 
             ourSessionFactory = configuration.buildSessionFactory();
         } catch (Throwable ex) {
@@ -34,13 +34,13 @@ public class Main {
         System.exit(0);
     }
 
-    private void createClient() {
+    private void saveClient() {
         Transaction tx;
-        Session session = getSession();
-        try {
-            System.out.println("Добавление записи в Client");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        try (Session session = getSession()) {
+            logger.info("------------- attempt to save Client... ------------");
+
             tx = session.beginTransaction();
+
             Client client = new Client();
 
             client.setName("TestName1");
@@ -49,75 +49,70 @@ public class Main {
             client.setFired(false);
 
             session.save(client);
-            logger.info("------------- Client saved successfully... ------------");
 
             tx.commit();
-            System.out.println("Запись в Client добавлена");
-
         } catch (Exception e) {
             logger.error("-------------- Failed to save Client..." + e + "----------------");
             System.out.println(e.getMessage());
-
-        } finally {
-            session.close();
         }
     }
 
-    private void createPlan() {
+    private void savePlan() {
         Transaction tx;
         try (Session session = getSession()) {
-            System.out.println("Добавление записи в Plan");
+            logger.info("------------- attempt to save Plan... ------------");
+
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
+
             Plan plan = new Plan();
-            Client specificClient = session.get(Client.class, 0);
 
             plan.setPlanDateStart(new Date(dateFormat.parse("01/02/1999").getTime()));
             plan.setPlanDateEnd(new Date(dateFormat.parse("02/03/1999").getTime()));
 
+            Client specificClient = session.get(Client.class, 0);
+
             specificClient.addPlanEntity(plan);
-//            session.save(plan);
             session.save(specificClient);
-            logger.info("------------- Plan saved successfully... ------------");
 
             tx.commit();
-            System.out.println("Запись в Plan добавлена");
-
         } catch (Exception e) {
-            logger.error("-------------- Failed to save Plan.." + e + "----------------");
+            logger.error("-------------- Failed to save Plan..." + e + "----------------");
             System.out.println(e.getMessage());
         }
     }
 
-    private void createPlanTask() {
+    private void savePlanTasks() {
         Transaction tx;
         try (Session session = getSession()) {
-            System.out.println("Добавление записи в Plan Task");
+            logger.info("------------- attempt to save Plan Tasks... ------------");
+
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             tx = session.beginTransaction();
+
             PlanTasks planTasks = new PlanTasks();
-            Plan specificPlan = session.get(Plan.class, 0);
 
             planTasks.setPlanTasksDateEnd(new Date(dateFormat.parse("01/02/1999").getTime()));
             planTasks.setPlanTasksDescription("TestDescription1");
             planTasks.setPriority("High");
-            specificPlan.addPlanTasksEntity(planTasks);
-//            session.save(planTasks);
-            session.update(specificPlan);
-            logger.info("------------- Plan Task saved successfully... ------------");
-            tx.commit();
-            System.out.println("Запись в Plan Task добавлена");
 
+            Plan specificPlan = session.get(Plan.class, 0);
+
+            specificPlan.addPlanTasksEntity(planTasks);
+            session.update(specificPlan);
+            tx.commit();
         } catch (Exception e) {
             logger.error("-------------- Failed to save Plan Tasks..." + e + "----------------");
             System.out.println(e.getMessage());
         }
     }
 
+
     private void saveTasksList() {
         Transaction tx;
         try (Session session = getSession()) {
-            logger.info("------------- attempt to Add record to Tasks List... ------------");
+            logger.info("------------- attempt to save Tasks List... ------------");
+
             tx = session.beginTransaction();
 
             TasksList tasksList = new TasksList();
@@ -125,74 +120,35 @@ public class Main {
             tasksList.setTaskDescription("Test Task List Description1");
             tasksList.setTaskIsDone(true);
 
-            session.save(tasksList);
-
-            tx.commit();
-
-        } catch (Exception e) {
-            logger.error("-------------- Failed to save TasksList..." + e + "----------------");
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void wireTasksListToPlanTasks() {
-        Transaction tx;
-        try (Session session = getSession()) {
-            logger.info("------------- attempt to Add record to Tasks List... ------------");
-            tx = session.beginTransaction();
-
             PlanTasks specificPlanTask = session.get(PlanTasks.class, 0);
-            TasksList specificTasksList = session.get(TasksList.class, 0);
 
-            specificPlanTask.addTasksList(specificTasksList);
-
-            session.save(specificPlanTask);
+            specificPlanTask.addTasksList(tasksList);
+            session.update(specificPlanTask);
 
             tx.commit();
-
-
         } catch (Exception e) {
-            logger.error("-------------- Failed to save TasksList..." + e + "----------------");
+            logger.error("-------------- Failed to save Tasks List..." + e + "----------------");
             System.out.println(e.getMessage());
         }
     }
-
 
     private void saveMembersList() {
         Transaction tx;
         try (Session session = getSession()) {
-            logger.info("------------- attempt to Add record to Members List... ------------");
+            logger.info("------------- attempt to save Members List... ------------");
+
             tx = session.beginTransaction();
 
             MembersList membersList = new MembersList();
 
             membersList.setRequirements("Test Members List Requirements ");
 
-            session.save(membersList);
-
-            tx.commit();
-
-        } catch (Exception e) {
-            logger.error("-------------- Failed to save Members list..." + e + "----------------");
-            System.out.println(e.getMessage());
-        }
-    }
-
-    private void wireMembersListToPlanTasks() {
-        Transaction tx;
-        try (Session session = getSession()) {
-            logger.info("------------- attempt to wire Members List and Plan Tasks.. ------------");
-            tx = session.beginTransaction();
-
             PlanTasks specificPlanTask = session.get(PlanTasks.class, 0);
-            MembersList specificMembersList = session.get(MembersList.class, 0);
 
-            specificPlanTask.setMembersList(specificMembersList);
-
+            specificPlanTask.setMembersList(membersList);
             session.update(specificPlanTask);
 
             tx.commit();
-
         } catch (Exception e) {
             logger.error("-------------- Failed to save Members list..." + e + "----------------");
             System.out.println(e.getMessage());
@@ -203,17 +159,16 @@ public class Main {
         Transaction tx;
         try (Session session = getSession()) {
             logger.info("------------- attempt to wire Members List and specific Client... ------------");
+
             tx = session.beginTransaction();
 
             Client specificClient = session.get(Client.class, 0);
             MembersList membersList = session.get(MembersList.class, 0);
 
             specificClient.addMembersListToClient(membersList);
-
             session.update(specificClient);
 
             tx.commit();
-
         } catch (Exception e) {
             logger.error("-------------- Failed to wire members list and specific Client..." + e + "----------------");
             System.out.println(e.getMessage());
@@ -224,6 +179,7 @@ public class Main {
         Transaction tx;
         try (Session session = getSession()) {
             logger.info("------------- attempt to delete a client and cascade delete all related tables... ------------");
+
             tx = session.beginTransaction();
 
             Client specificClient = session.get(Client.class, 0);
@@ -231,7 +187,6 @@ public class Main {
             session.delete(specificClient);
 
             tx.commit();
-
         } catch (Exception e) {
             logger.error("-------------- Failed to delete specific client..." + e + "----------------");
             System.out.println(e.getMessage());
@@ -239,16 +194,11 @@ public class Main {
     }
 
     public Main() {
-        createClient();
-        createPlan();
-        createPlanTask();
-
+        saveClient();
+        savePlan();
+        savePlanTasks();
         saveTasksList();
-        wireTasksListToPlanTasks();
-
         saveMembersList();
-        wireMembersListToPlanTasks();
-
         wireMembersListToSpecificClient();
 //        deleteSpecificClientWithCascadeEffect();
     }

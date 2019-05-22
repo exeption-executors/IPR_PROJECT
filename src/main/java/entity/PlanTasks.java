@@ -29,16 +29,8 @@ public class PlanTasks {
     private String priority;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "plan_tasks_id")
+    @JoinColumn(name = "plan_tasks_id", nullable = false)
     private List<TasksList>  allIncludedTasksList;
-
-//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-//    @JoinColumn(name = "plan_tasks_id", nullable = false)
-//    private List<MembersList> membersListEntities;
-
-//    public void addMembersListEntity(MembersList membersList) {
-//        this.membersListEntities.add(membersList);
-//    }
 
     @OneToOne(mappedBy = "planTasks", cascade = CascadeType.ALL)
     private MembersList membersList;
