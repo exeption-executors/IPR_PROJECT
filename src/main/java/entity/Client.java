@@ -1,8 +1,5 @@
 package entity;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
@@ -10,8 +7,9 @@ import java.util.Set;
 
 @Entity(name = "Client")
 @Table(name = "client", schema = "public", catalog = "ipr")
-public class ClientEntity {
-    public ClientEntity() {
+public class Client {
+    public Client() {
+
     }
 
     @Id
@@ -37,7 +35,11 @@ public class ClientEntity {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "client_id", nullable = false)
-    private List<PlanEntity> planEntities;
+    private List<Plan> planEntities;
+
+    public void addPlanEntity(Plan plan) {
+        this.planEntities.add(plan);
+    }
 
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -45,18 +47,18 @@ public class ClientEntity {
             joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "members_list_id")
     )
-    private Set<MembersListEntity> allIncludesMembersList = new HashSet<>();
+    private Set<MembersList> allIncludedMembersList = new HashSet<>();
 
-    public Set<MembersListEntity> getAllIncludesMembersList() {
-        return allIncludesMembersList;
+    public Set<MembersList> getallIncludedMembersList() {
+        return allIncludedMembersList;
     }
 
-    public void setAllIncludesMembersList(Set<MembersListEntity> allIncludesMembersList) {
-        this.allIncludesMembersList = allIncludesMembersList;
+    public void setallIncludedMembersList(Set<MembersList> allIncludedMembersList) {
+        this.allIncludedMembersList = allIncludedMembersList;
     }
 
-    public void addMembersListToClient(MembersListEntity membersList) {
-        allIncludesMembersList.add(membersList);
+    public void addMembersListToClient(MembersList membersList) {
+        allIncludedMembersList.add(membersList);
     }
 
     public int getId() {
@@ -100,15 +102,12 @@ public class ClientEntity {
     }
 
 
-    public List<PlanEntity> getPlanEntities() {
+    public List<Plan> getPlanEntities() {
         return planEntities;
     }
 
-    public void setPlanEntities(List<PlanEntity> planEntities) {
+    public void setPlanEntities(List<Plan> planEntities) {
         this.planEntities = planEntities;
     }
 
-    public void addPlanEntity(PlanEntity planEntity) {
-        this.planEntities.add(planEntity);
-    }
 }
