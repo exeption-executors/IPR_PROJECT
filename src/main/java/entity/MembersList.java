@@ -2,7 +2,6 @@ package entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,22 +23,11 @@ public class MembersList {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "members_clients",
             joinColumns = @JoinColumn(name = "members_list_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_id")
-    )
-    private Set<Client> clients = new HashSet<>();
+            inverseJoinColumns = @JoinColumn(name = "client_id"))
+    private Set<Client> members = new HashSet<>();
 
-
-    @Basic
-    @Column(name = "plan_tasks_id",insertable = false,updatable = false)
-    private Integer planTasksList;
-
-
-  /*  @OneToMany
-    @JoinColumn(name = "id", nullable = false, insertable = false,updatable = false)
-    private List<Client> members;
-*/
     @OneToOne()
-    @JoinColumn(name="plan_tasks_id")
+    @JoinColumn(name = "plan_tasks_id", nullable = false)
     private PlanTasks planTasks;
 
     public PlanTasks getPlanTasks() {
@@ -50,13 +38,6 @@ public class MembersList {
         this.planTasks = planTasks;
     }
 
-    public Integer getPlanTasksList() {
-        return planTasksList;
-    }
-
-    public void setPlanTasksList(Integer planTasksList) {
-        this.planTasksList = planTasksList;
-    }
 
     public int getId() {
         return id;
@@ -73,28 +54,6 @@ public class MembersList {
     public void setRequirements(String requirements) {
         this.requirements = requirements;
     }
-/*
-
-    public List<Client> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<Client> membersListEntities) {
-        this.members = members;
-    }
-*/
-
-//    public Set<Client> getClients() {
-//        return clients;
-//    }
-//
-//    public void setClients(Set<Client> clients) {
-//        this.clients = clients;
-//    }
-//
-//    public void addClient(Client client) {
-//        this.clients.add(client);
-//    }
 
     @Override
     public boolean equals(Object o) {
