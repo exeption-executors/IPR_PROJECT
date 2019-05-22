@@ -46,11 +46,11 @@ public class Client {
     )
     private Set<MembersList> allIncludedMembersList = new HashSet<>();
 
-    public Set<MembersList> getallIncludedMembersList() {
+    public Set<MembersList> getAllIncludedMembersList() {
         return allIncludedMembersList;
     }
 
-    public void setallIncludedMembersList(Set<MembersList> allIncludedMembersList) {
+    public void setAllIncludedMembersList(Set<MembersList> allIncludedMembersList) {
         this.allIncludedMembersList = allIncludedMembersList;
     }
 
