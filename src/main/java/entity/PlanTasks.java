@@ -30,18 +30,38 @@ public class PlanTasks {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "plan_tasks_id", nullable = false)
-    private List<TasksList>  tasksListEntities;
+    private List<TasksList>  allIncludedTasksList;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "plan_tasks_id", nullable = false)
-    private List<MembersList> membersListEntities;
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "plan_tasks_id", nullable = false)
+//    private List<MembersList> membersListEntities;
 
-    public void addMembersListEntity(MembersList membersList) {
-        this.membersListEntities.add(membersList);
+//    public void addMembersListEntity(MembersList membersList) {
+//        this.membersListEntities.add(membersList);
+//    }
+
+    @OneToOne(mappedBy = "planTasks", cascade = CascadeType.ALL)
+    private MembersList membersList;
+
+    public MembersList getMembersList() {
+        return membersList;
     }
 
-    public void addTasksListEntity(TasksList tasksList) {
-        tasksListEntities.add(tasksList);
+
+    public void setMembersList(MembersList membersList) {
+        if (membersList == null) {
+            if (this.membersList != null) {
+                this.membersList.setPlanTasks(null);
+            }
+        }
+        else {
+            membersList.setPlanTasks(this);
+        }
+        this.membersList = membersList;
+    }
+
+    public void addTasksList(TasksList tasksList) {
+        allIncludedTasksList.add(tasksList);
     }
 
 

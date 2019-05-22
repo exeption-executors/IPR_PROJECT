@@ -103,7 +103,7 @@ public class Main {
             planTasks.setPriority("High");
             specificPlan.addPlanTasksEntity(planTasks);
 //            session.save(planTasks);
-            session.save(specificPlan);
+            session.update(specificPlan);
             logger.info("------------- Plan Task saved successfully... ------------");
             tx.commit();
             System.out.println("Запись в Plan Task добавлена");
@@ -114,23 +114,20 @@ public class Main {
         }
     }
 
-    private void createTasksList() {
+    private void saveTasksList() {
         Transaction tx;
         try (Session session = getSession()) {
-            System.out.println("Добавление записи в Tasks List");
+            logger.info("------------- attempt to Add record to Tasks List... ------------");
             tx = session.beginTransaction();
+
             TasksList tasksList = new TasksList();
-            PlanTasks specificPlanTask = session.get(PlanTasks.class, 0);
 
             tasksList.setTaskDescription("Test Task List Description1");
             tasksList.setTaskIsDone(true);
-            specificPlanTask.addTasksListEntity(tasksList);
-//            session.save(tasksList);
-            session.save(specificPlanTask);
-            logger.info("------------- Tasks List saved successfully... ------------");
+
+            session.save(tasksList);
 
             tx.commit();
-            System.out.println("Запись в Tasks List добавлена");
 
         } catch (Exception e) {
             logger.error("-------------- Failed to save TasksList..." + e + "----------------");
@@ -138,36 +135,74 @@ public class Main {
         }
     }
 
-    private void createMembersList() {
+    private void wireTasksListToPlanTasks() {
         Transaction tx;
-        Session session = getSession();
-        try {
-            System.out.println("Добавление записи в Members List");
+        try (Session session = getSession()) {
+            logger.info("------------- attempt to Add record to Tasks List... ------------");
             tx = session.beginTransaction();
-            MembersList membersList = new MembersList();
-            PlanTasks specificalPlanTask = session.get(PlanTasks.class, 0);
-            membersList.setRequirements("Test Members List Requirements ");
-            specificalPlanTask.addMembersListEntity(membersList);
-//            session.save(membersList);
-            session.save(specificalPlanTask);
-            logger.info("------------- Members List saved successfully... ------------");
+
+            PlanTasks specificPlanTask = session.get(PlanTasks.class, 0);
+            TasksList specificTasksList = session.get(TasksList.class, 0);
+
+            specificPlanTask.addTasksList(specificTasksList);
+
+            session.save(specificPlanTask);
 
             tx.commit();
-            System.out.println("Запись в Members List добавлена");
+
+
+        } catch (Exception e) {
+            logger.error("-------------- Failed to save TasksList..." + e + "----------------");
+            System.out.println(e.getMessage());
+        }
+    }
+
+
+    private void saveMembersList() {
+        Transaction tx;
+        try (Session session = getSession()) {
+            logger.info("------------- attempt to Add record to Members List... ------------");
+            tx = session.beginTransaction();
+
+            MembersList membersList = new MembersList();
+
+            membersList.setRequirements("Test Members List Requirements ");
+
+            session.save(membersList);
+
+            tx.commit();
 
         } catch (Exception e) {
             logger.error("-------------- Failed to save Members list..." + e + "----------------");
             System.out.println(e.getMessage());
-        } finally {
-            session.close();
+        }
+    }
+
+    private void wireMembersListToPlanTasks() {
+        Transaction tx;
+        try (Session session = getSession()) {
+            logger.info("------------- attempt to wire Members List and Plan Tasks.. ------------");
+            tx = session.beginTransaction();
+
+            PlanTasks specificPlanTask = session.get(PlanTasks.class, 0);
+            MembersList specificMembersList = session.get(MembersList.class, 0);
+
+            specificPlanTask.setMembersList(specificMembersList);
+
+            session.update(specificPlanTask);
+
+            tx.commit();
+
+        } catch (Exception e) {
+            logger.error("-------------- Failed to save Members list..." + e + "----------------");
+            System.out.println(e.getMessage());
         }
     }
 
     private void wireMembersListToSpecificClient() {
         Transaction tx;
-        Session session = getSession();
-        try {
-            System.out.println("Связывание members-листа и клиента");
+        try (Session session = getSession()) {
+            logger.info("------------- attempt to wire Members List and specific Client... ------------");
             tx = session.beginTransaction();
 
             Client specificClient = session.get(Client.class, 0);
@@ -176,34 +211,26 @@ public class Main {
             specificClient.addMembersListToClient(membersList);
 
             session.update(specificClient);
+
             tx.commit();
 
-            logger.info("------------- members wired with specific client successfully... ------------");
-            System.out.println("client добавлен в members list, таблица m2m пополнилась на одну связь");
-
         } catch (Exception e) {
-            logger.error("-------------- Failed to wire members list and specific client..." + e + "----------------");
+            logger.error("-------------- Failed to wire members list and specific Client..." + e + "----------------");
             System.out.println(e.getMessage());
-        } finally {
-            session.close();
         }
     }
 
     private void deleteSpecificClientWithCascadeEffect() {
         Transaction tx;
         try (Session session = getSession()) {
-            System.out.println("Удаление клиента и каскадное удаление всех связных таблиц");
+            logger.info("------------- attempt to delete a client and cascade delete all related tables... ------------");
             tx = session.beginTransaction();
-
 
             Client specificClient = session.get(Client.class, 0);
 
             session.delete(specificClient);
 
             tx.commit();
-
-            logger.info("------------- client was removed frpm db with connected entities .. ------------");
-            System.out.println("client был удален со всеми связынми сущностями");
 
         } catch (Exception e) {
             logger.error("-------------- Failed to delete specific client..." + e + "----------------");
@@ -212,12 +239,17 @@ public class Main {
     }
 
     public Main() {
-//        createClient();
-//        createPlan();
-//        createPlanTask();
-//        createTasksList();
-//        createMembersList();
-//        wireMembersListToSpecificClient();
-        deleteSpecificClientWithCascadeEffect();
+        createClient();
+        createPlan();
+        createPlanTask();
+
+        saveTasksList();
+        wireTasksListToPlanTasks();
+
+        saveMembersList();
+        wireMembersListToPlanTasks();
+
+        wireMembersListToSpecificClient();
+//        deleteSpecificClientWithCascadeEffect();
     }
 }

@@ -36,6 +36,17 @@ public class MembersList {
     @JoinColumn(name = "id", nullable = false, insertable = false,updatable = false)
     private List<Client> members;
 
+    @OneToOne()
+    @JoinColumn(name="plan_tasks_id")
+    private PlanTasks planTasks;
+
+    public PlanTasks getPlanTasks() {
+        return planTasks;
+    }
+
+    public void setPlanTasks(PlanTasks planTasks) {
+        this.planTasks = planTasks;
+    }
 
     public Integer getPlanTasksList() {
         return planTasksList;

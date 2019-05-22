@@ -47,18 +47,18 @@ public class Client {
             joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "members_list_id")
     )
-    private Set<MembersList> allIncludesMembersList = new HashSet<>();
+    private Set<MembersList> allIncludedMembersList = new HashSet<>();
 
-    public Set<MembersList> getAllIncludesMembersList() {
-        return allIncludesMembersList;
+    public Set<MembersList> getallIncludedMembersList() {
+        return allIncludedMembersList;
     }
 
-    public void setAllIncludesMembersList(Set<MembersList> allIncludesMembersList) {
-        this.allIncludesMembersList = allIncludesMembersList;
+    public void setallIncludedMembersList(Set<MembersList> allIncludedMembersList) {
+        this.allIncludedMembersList = allIncludedMembersList;
     }
 
     public void addMembersListToClient(MembersList membersList) {
-        allIncludesMembersList.add(membersList);
+        allIncludedMembersList.add(membersList);
     }
 
     public int getId() {
