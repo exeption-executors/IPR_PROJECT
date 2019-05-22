@@ -4,6 +4,7 @@ import org.hibernate.cfg.Configuration;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
+import java.net.CookieManager;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
@@ -209,12 +210,12 @@ public class Main {
     }
 
     public Main() {
-        createClient();
-//        createPlan();
-//        createPlanTask();
-//        createTasksList();
-//        createMembersList();
-//        wireMembersListToSpecificClient();
-       // deleteSpecificClientWithCascadeEffect();
+          createClient();
+          createPlan();
+          createPlanTask();
+          createTasksList();
+          createMembersList();
+          wireMembersListToSpecificClient();
+         // deleteSpecificClientWithCascadeEffect();
     }
 }

@@ -18,12 +18,12 @@ public class MembersListEntity {
     @Column(name = "requirements")
     private String requirements;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "members_clients",
-//            joinColumns = @JoinColumn(name = "members_list_id"),
-//            inverseJoinColumns = @JoinColumn(name = "client_id")
-//    )
-//    private Set<ClientEntity> clients = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "members_clients",
+            joinColumns = @JoinColumn(name = "members_list_id"),
+            inverseJoinColumns = @JoinColumn(name = "client_id")
+    )
+    private Set<ClientEntity> clients = new HashSet<>();
 
 
     @Basic
