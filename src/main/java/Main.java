@@ -146,7 +146,7 @@ public class Main {
 
             specificPlanTask.addTasksList(specificTasksList);
 
-            session.save(specificPlanTask);
+            session.update(specificPlanTask);
 
             tx.commit();
 
