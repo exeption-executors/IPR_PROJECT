@@ -41,7 +41,6 @@ public class Client {
         this.planEntities.add(plan);
     }
 
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "members_clients",
             joinColumns = @JoinColumn(name = "client_id"),
