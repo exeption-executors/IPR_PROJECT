@@ -34,10 +34,10 @@ public class MembersList {
     private Integer planTasksList;
 
 
-    @OneToMany
+  /*  @OneToMany
     @JoinColumn(name = "id", nullable = false, insertable = false,updatable = false)
     private List<Client> members;
-
+*/
     @OneToOne()
     @JoinColumn(name="plan_tasks_id")
     private PlanTasks planTasks;
@@ -73,6 +73,7 @@ public class MembersList {
     public void setRequirements(String requirements) {
         this.requirements = requirements;
     }
+/*
 
     public List<Client> getMembers() {
         return members;
@@ -81,6 +82,7 @@ public class MembersList {
     public void setMembers(List<Client> membersListEntities) {
         this.members = members;
     }
+*/
 
 //    public Set<Client> getClients() {
 //        return clients;

@@ -1,8 +1,8 @@
 package repository;
 
-import entity.TasksListEntity;
+import entity.TasksList;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface TasksListRepository extends JpaRepository<TasksListEntity, Integer> {
+public interface TasksListRepository extends JpaRepository<TasksList, Integer> {
 }
