@@ -7,15 +7,11 @@
     <property name="connection.url">jdbc:postgresql://localhost:5432/ipr</property>
     <property name="connection.driver_class">org.postgresql.Driver</property>
     <property name="org.hibernate.dialect.MySQL5Dialect">true</property>
+    <property name="show_sql">true</property>
     <mapping class="entity.Client"/>
     <mapping class="entity.Plan"/>
     <mapping class="entity.MembersList"/>
     <mapping class="entity.TasksList"/>
     <mapping class="entity.PlanTasks"/>
-    <!-- <property name="connection.username"/> -->
-    <!-- <property name="connection.password"/> -->
-
-    <!-- DB schema will be updated if needed -->
-    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>
