@@ -3,10 +3,13 @@ import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.springframework.beans.factory.annotation.Autowired;
+import service.impl.ClientServiceImpl;
 
-import java.net.CookieManager;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+
+
 
 public class Main {
     private static final SessionFactory ourSessionFactory;
@@ -194,13 +197,22 @@ public class Main {
         }
     }
 
+    private void test() {
+
+        ClientServiceImpl clientService = new ClientServiceImpl();
+        Client client =  clientService.getByName("TestName1");
+        System.out.println(client.getName());
+
+    }
+
     public Main() {
-        saveClient();
-        savePlan();
-        savePlanTasks();
-        saveTasksList();
-        saveMembersList();
-        wireMembersListToSpecificClient();
+//        saveClient();
+//        savePlan();
+//        savePlanTasks();
+//        saveTasksList();
+//        saveMembersList();
+//        wireMembersListToSpecificClient();
 //        deleteSpecificClientWithCascadeEffect();
+        test();
     }
 }
