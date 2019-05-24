@@ -3,6 +3,8 @@ package service.impl;
 import entity.Client;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import repository.ClientRepository;
@@ -12,9 +14,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Repository
 @Transactional
 public class ClientServiceImpl implements ClientService {
+
 
     @Autowired
     private ClientRepository clientRepository;

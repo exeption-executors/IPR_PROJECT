@@ -1,9 +1,12 @@
+import configuration.IprConfiguration;
 import entity.*;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import repository.ClientRepository;
 import service.impl.ClientServiceImpl;
 
 import java.sql.Date;
@@ -34,6 +37,9 @@ public class Main {
     }
 
     public static void main(final String[] args) {
+        ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
+        ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
+//        ClientService clientService = context.getBean(ClientService.class);
         new Main();
         System.exit(0);
     }
