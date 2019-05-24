@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Repository
 @Transactional
 public class ClientServiceImpl implements ClientService {
 
