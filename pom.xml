@@ -11,11 +11,13 @@
     <groupId>com.example</groupId>
     <artifactId>ind-plan</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+
     <name>spring-jdbc</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
         <java.version>11</java.version>
+        <postgres.version>42.2.5</postgres.version>
     </properties>
 
     <dependencies>
@@ -31,7 +33,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <scope>runtime</scope>
+            <version>${postgres.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -73,6 +75,15 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
             <version>2.1.4.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+
+
+
+
     </dependencies>
 
     <build>

@@ -36,7 +36,8 @@ public class Main {
         return ourSessionFactory.openSession();
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws Exception {
+        Class.forName("org.postgresql.Driver");
         ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
         ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
 //        ClientService clientService = context.getBean(ClientService.class);
@@ -212,7 +213,7 @@ public class Main {
     }
 
     public Main() {
-//        saveClient();
+        //saveClient();
 //        savePlan();
 //        savePlanTasks();
 //        saveTasksList();
