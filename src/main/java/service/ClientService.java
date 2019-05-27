@@ -5,7 +5,7 @@ import java.util.List;
 public interface ClientService {
     //Client addClient(Client client);
     //void delete(Integer id);
-    Client getByName(String name);
+    Integer getByName(String name);
     //Client editClient(Client client);
     //List<Client> getAll();
 }

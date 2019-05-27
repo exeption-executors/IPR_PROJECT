@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer> {
     @Query("select id from Client where name = :name")
-    Client findByName(String name);
+    Integer findByName(String name);
 }

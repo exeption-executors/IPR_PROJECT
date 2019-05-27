@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import repository.ClientRepository;
+import service.ClientService;
 import service.impl.ClientServiceImpl;
 
 import java.sql.Date;
@@ -37,10 +38,12 @@ public class Main {
     }
 
     public static void main(final String[] args) throws Exception {
-        Class.forName("org.postgresql.Driver");
-        ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
-        ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
+//        Class.forName("org.postgresql.Driver");
+//        ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
+//        ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
 //        ClientService clientService = context.getBean(ClientService.class);
+//        Integer testClient = clientService.getByName("TestName1");
+//        System.out.println(testClient);
         new Main();
         System.exit(0);
     }
@@ -204,22 +207,22 @@ public class Main {
         }
     }
 
-    private void test() {
+//    private void test() {
+//
+//        ClientServiceImpl clientService = new ClientServiceImpl();
+//        Client client =  clientService.getByName("TestName1");
+//        System.out.println(client.getName());
 
-        ClientServiceImpl clientService = new ClientServiceImpl();
-        Client client =  clientService.getByName("TestName1");
-        System.out.println(client.getName());
-
-    }
+//    }
 
     public Main() {
-        //saveClient();
+//        saveClient();
 //        savePlan();
 //        savePlanTasks();
 //        saveTasksList();
 //        saveMembersList();
 //        wireMembersListToSpecificClient();
 //        deleteSpecificClientWithCascadeEffect();
-        test();
+//        test();
     }
 }
