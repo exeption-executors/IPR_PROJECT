@@ -1,8 +1,12 @@
 package service;
 
+import entity.Client;
+
+import java.util.List;
+
 public interface ClientService {
-    void addClient(String name, String surname, String email, boolean fired);
-    Integer getIdByName(String name);
+//    Client addClient(Client client);
+    List<Integer> getIdByName(String name);
     //void delete(Integer id);
     //Client editClient(Client client);
     //List<Client> getAll();

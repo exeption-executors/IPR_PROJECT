@@ -12,7 +12,8 @@ import service.impl.ClientServiceImpl;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
-
+import java.util.List;
+import java.util.stream.Stream;
 
 
 public class Main {
@@ -39,18 +40,24 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         Class.forName("org.postgresql.Driver");
-        ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
-        ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
-        ClientService clientService = context.getBean(ClientService.class);
-//        Integer testClient = clientService.getIdByName("TestName333");
-//        System.out.println(testClient);
-        ClientServiceImpl newclient = new ClientServiceImpl();
-        newclient.addClient("testname", "testsurname","testemail@mail.ru", false);
         new Main();
         System.exit(0);
+        //        ClientServiceImpl newclient = new ClientServiceImpl();
+//        newclient.addClient("testname", "testsurname","testemail@mail.ru", false);
+    }
+private static  ClientService  setContext() {
+    ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
+    ClientService clientService = context.getBean(ClientService.class);
+    return context.getBean(ClientService.class);
+
+}
+private static void getIdByName(ClientService clientService, String name){
+    List<Integer> testClient = clientService.getIdByName(name);
+//    System.out.println(Stream.as);
+    testClient.forEach(System.out::println);
     }
 
-    private void saveClient() {
+    private void saveClient(String name, String surname, String email, boolean fired) {
         Transaction tx;
         try (Session session = getSession()) {
             logger.info("------------- attempt to save Client... ------------");
@@ -59,10 +66,10 @@ public class Main {
 
             Client client = new Client();
 
-            client.setName("TestName333");
-            client.setSurname("TestSurname1");
-            client.setEmail("TestMail1@gmail.com");
-            client.setFired(false);
+            client.setName(name);
+            client.setSurname(surname);
+            client.setEmail(email);
+            client.setFired(fired);
 
             session.save(client);
 
@@ -218,7 +225,37 @@ public class Main {
 //    }
 
     public Main() {
-//        saveClient();
+//        saveClient("Mark", "Bryzgalov", "mark@raiffeisen.ru", false);
+//        saveClient("Andrey", "Lev", "Andrey@raiffeisen.ru", false);
+//        saveClient("Evgeny", "Davidov", "Evgen@raiffeisen.ru", false);
+        getIdByName(setContext(), "Andrey");
+
+
+
+
+
+//       ----- тест добавления пользователя--------
+//        setContext();
+//        Transaction tx;
+//        try(Session session = getSession()) {
+//            logger.info("------добавляем клиента-----");
+//            tx = session.beginTransaction();
+//            Client client = new Client();
+//            client.setName("Mark");
+//            client.setSurname("Bryzgalov");
+//            client.setEmail("Mark@mail.ru");
+//            client.setFired(false);
+//            Client newClient = setContext().addClient(client);
+//            session.save(newClient);
+//            tx.commit();
+//        }catch (Exception e) {
+//            logger.error("Ошибка добавления нового клиента");
+//        }
+
+
+
+
+//        ------------------------------
 //        savePlan();
 //        savePlanTasks();
 //        saveTasksList();

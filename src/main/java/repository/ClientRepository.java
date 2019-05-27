@@ -9,15 +9,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Integer> {
         @Query("select id from Client where name = :name")
-        Integer findIdByName(String name);
+        List<Integer> findIdByName(String name);
 
-    @Modifying
+   /* @Modifying
     @Query(value = "insert into Client (name, surname, email, fired) VALUES (:name, :surname, :email, :fired)", nativeQuery = true)
     @Transactional
-    Client createClient (Client client);
+    Client createClient (Client client);*/
 
 
 }

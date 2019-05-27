@@ -1,11 +1,13 @@
 package service.impl;
 
+import entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.ClientRepository;
 import service.ClientService;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -14,13 +16,14 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
 
 
-    @Override
-    public void addClient(String name, String surname, String email, boolean fired) {
-//        return clientRepository.createClient(client);
-    }
+/*    @Override
+    public Client addClient(Client client) {
+        Client savedClient = clientRepository.save(client);
+        return savedClient;
+    }*/
 
     @Override
-    public Integer getIdByName(String name) {
+    public List<Integer> getIdByName(String name) {
         return clientRepository.findIdByName(name);
     }
 
