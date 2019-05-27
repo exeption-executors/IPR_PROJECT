@@ -1,11 +1,18 @@
+import configuration.IprConfiguration;
 import entity.*;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import repository.ClientRepository;
+import service.impl.ClientServiceImpl;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+
+
 
 public class Main {
     private static final SessionFactory ourSessionFactory;
@@ -29,7 +36,11 @@ public class Main {
         return ourSessionFactory.openSession();
     }
 
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws Exception {
+        Class.forName("org.postgresql.Driver");
+        ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
+        ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
+//        ClientService clientService = context.getBean(ClientService.class);
         new Main();
         System.exit(0);
     }
@@ -193,13 +204,22 @@ public class Main {
         }
     }
 
+    private void test() {
+
+        ClientServiceImpl clientService = new ClientServiceImpl();
+        Client client =  clientService.getByName("TestName1");
+        System.out.println(client.getName());
+
+    }
+
     public Main() {
-        saveClient();
-        savePlan();
-        savePlanTasks();
-        saveTasksList();
-        saveMembersList();
-        wireMembersListToSpecificClient();
+        //saveClient();
+//        savePlan();
+//        savePlanTasks();
+//        saveTasksList();
+//        saveMembersList();
+//        wireMembersListToSpecificClient();
 //        deleteSpecificClientWithCascadeEffect();
+        test();
     }
 }

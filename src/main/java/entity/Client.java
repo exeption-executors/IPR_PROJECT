@@ -1,9 +1,7 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "Client")
 @Table(name = "client", schema = "public", catalog = "ipr")
@@ -48,11 +46,11 @@ public class Client {
     )
     private Set<MembersList> allIncludedMembersList = new HashSet<>();
 
-    public Set<MembersList> getallIncludedMembersList() {
+    public Set<MembersList> getAllIncludedMembersList() {
         return allIncludedMembersList;
     }
 
-    public void setallIncludedMembersList(Set<MembersList> allIncludedMembersList) {
+    public void setAllIncludedMembersList(Set<MembersList> allIncludedMembersList) {
         this.allIncludedMembersList = allIncludedMembersList;
     }
 
@@ -64,7 +62,7 @@ public class Client {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
