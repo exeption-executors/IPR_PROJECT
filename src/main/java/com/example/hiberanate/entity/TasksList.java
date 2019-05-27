@@ -1,4 +1,4 @@
-package entity;
+package com.example.hiberanate.entity;
 
 import javax.persistence.*;
 

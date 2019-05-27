@@ -1,4 +1,4 @@
-package entity;
+package com.example.hiberanate.entity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -33,7 +33,7 @@ public class Client {
     @Column(name = "fired")
     private boolean fired;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "client_id", nullable = false)
     private List<Plan> planEntities;
 

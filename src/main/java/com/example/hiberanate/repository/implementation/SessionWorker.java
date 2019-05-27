@@ -1,4 +1,4 @@
-package repository.implementation;
+package com.example.hiberanate.repository.implementation;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -17,7 +17,7 @@ public class SessionWorker {
         return currentSession;
     }
 
-    public Session openCurrentSessionwithTransaction() {
+    public Session openCurrentSessionWithTransaction() {
         currentSession = getSessionFactory().openSession();
         currentTransaction = currentSession.beginTransaction();
         return currentSession;
@@ -27,7 +27,7 @@ public class SessionWorker {
         currentSession.close();
     }
 
-    public void closeCurrentSessionwithTransaction() {
+    public void closeCurrentSessionWithTransaction() {
         currentTransaction.commit();
         currentSession.close();
     }

@@ -1,9 +1,9 @@
-import entity.*;
+import com.example.hiberanate.entity.*;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import service.ClientService;
+import com.example.hiberanate.service.ClientService;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -194,11 +194,6 @@ public class Main {
         }
     }
 
-    private void test() {
-        ClientService clientService = new ClientService();
-        clientService.delete(0);
-    }
-
     public Main() {
 //        saveClient();
 //        savePlan();
@@ -206,7 +201,6 @@ public class Main {
 //        saveTasksList();
 //        saveMembersList();
 //        wireMembersListToSpecificClient();
-//        deleteSpecificClientWithCascadeEffect();
-        test();
+        deleteSpecificClientWithCascadeEffect();
     }
 }
