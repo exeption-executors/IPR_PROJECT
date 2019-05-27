@@ -38,8 +38,8 @@ public class ClientServiceImpl implements ClientService {
     }*/
 
     @Override
-    public Integer getByName(String name) {
-        return clientRepository.findByName(name);
+    public Integer getIdByName(String name) {
+        return clientRepository.findIdByName(name);
     }
 
     /*@Override

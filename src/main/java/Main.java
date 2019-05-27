@@ -42,8 +42,8 @@ public class Main {
         ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
         ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
         ClientService clientService = context.getBean(ClientService.class);
-        Integer testClient = clientService.getByName("TestName333");
-        System.out.println(testClient);
+//        Integer testClient = clientService.getIdByName("TestName333");
+//        System.out.println(testClient);
         new Main();
         System.exit(0);
     }
