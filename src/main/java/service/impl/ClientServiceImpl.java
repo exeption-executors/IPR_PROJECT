@@ -16,15 +16,9 @@ import java.util.List;
 @Service
 @Transactional
 public class ClientServiceImpl implements ClientService {
-
-
     @Autowired
     private ClientRepository clientRepository;
 
-  /*  @Override
-    public List<Client> getAll() {
-        return clientRepository.findAll();
-    }
 
     @Override
     public Client addClient(Client client) {
@@ -33,14 +27,22 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client editClient(Client client) {
-        return clientRepository.saveAndFlush(client);
-    }*/
-
-    @Override
     public Integer getIdByName(String name) {
         return clientRepository.findIdByName(name);
     }
+
+   /* @Override
+    public List<Client> getAll() {
+        return clientRepository.findAll();
+    }
+
+
+    @Override
+    public Client editClient(Client client) {
+        return clientRepository.saveAndFlush(client);
+    }
+*/
+
 
     /*@Override
     public void delete(Integer id) {
