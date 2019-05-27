@@ -38,12 +38,12 @@ public class Main {
     }
 
     public static void main(final String[] args) throws Exception {
-//        Class.forName("org.postgresql.Driver");
-//        ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
-//        ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
-//        ClientService clientService = context.getBean(ClientService.class);
-//        Integer testClient = clientService.getByName("TestName1");
-//        System.out.println(testClient);
+        Class.forName("org.postgresql.Driver");
+        ApplicationContext context = new AnnotationConfigApplicationContext(IprConfiguration.class);
+        ClientRepository clientRepository = (ClientRepository)context.getBean("clientRepository");
+        ClientService clientService = context.getBean(ClientService.class);
+        Integer testClient = clientService.getByName("TestName333");
+        System.out.println(testClient);
         new Main();
         System.exit(0);
     }
@@ -57,7 +57,7 @@ public class Main {
 
             Client client = new Client();
 
-            client.setName("TestName1");
+            client.setName("TestName333");
             client.setSurname("TestSurname1");
             client.setEmail("TestMail1@gmail.com");
             client.setFired(false);
