@@ -44,6 +44,8 @@ public class Main {
         ClientService clientService = context.getBean(ClientService.class);
 //        Integer testClient = clientService.getIdByName("TestName333");
 //        System.out.println(testClient);
+        ClientServiceImpl newclient = new ClientServiceImpl();
+        newclient.addClient("testname", "testsurname","testemail@mail.ru", false);
         new Main();
         System.exit(0);
     }

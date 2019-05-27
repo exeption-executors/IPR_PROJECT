@@ -1,17 +1,11 @@
 package service.impl;
 
-import entity.Client;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import repository.ClientRepository;
 import service.ClientService;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @Transactional
@@ -21,9 +15,8 @@ public class ClientServiceImpl implements ClientService {
 
 
     @Override
-    public Client addClient(Client client) {
-        Client savedClient = clientRepository.saveAndFlush(client);
-        return savedClient;
+    public void addClient(String name, String surname, String email, boolean fired) {
+//        return clientRepository.createClient(client);
     }
 
     @Override
