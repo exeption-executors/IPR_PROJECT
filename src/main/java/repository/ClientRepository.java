@@ -17,7 +17,7 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     @Modifying
     @Query(value = "insert into Client (name, surname, email, fired) VALUES (:name, :surname, :email, :fired)", nativeQuery = true)
     @Transactional
-    Client createClient (Client client);
+    Client createClient (String name, String surname, String email, boolean fired);
 
 
 }
