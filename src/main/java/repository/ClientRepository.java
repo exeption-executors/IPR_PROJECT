@@ -10,14 +10,5 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Integer> {
-        @Query("select id from Client where name = :name")
-        Integer findIdByName(String name);
-
-    @Modifying
-    @Query(value = "insert into Client (name, surname, email, fired) VALUES (:name, :surname, :email, :fired)", nativeQuery = true)
-    @Transactional
-    Client createClient (String name, String surname, String email, boolean fired);
-
-
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }

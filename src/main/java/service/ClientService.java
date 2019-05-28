@@ -1,8 +1,11 @@
 package service;
 
+
+import entity.Client;
+
 public interface ClientService {
-    void addClient(String name, String surname, String email, boolean fired);
-    Integer getIdByName(String name);
+    Client addClient(Client client);
+    //Integer getIdByName(String name);
     //void delete(Integer id);
     //Client editClient(Client client);
     //List<Client> getAll();
