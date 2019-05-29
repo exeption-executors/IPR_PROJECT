@@ -31,13 +31,16 @@ public class ClientServiceTest {
     ClientService clientService;
 
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void createPojoToDB() {
         clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", false);
 
-        Client clientFromDB = clientService.findByEmail("marik33409@mairu");
+        Client clientFromDB = clientService.findByEmail("marik33409@mail.ru");
 
-        System.out.println(clientFromDB.getEmail());
+        System.out.println("Данные добавленного клиента: " + " " +
+                clientFromDB.getName() + " " + clientFromDB.getSurname() + " " +
+                clientFromDB.getEmail());
         assertEquals("Mark", clientFromDB.getName());
     }
+    //если ожидается NPE - @Test(expected = NullPointerException.class)
 }
