@@ -16,24 +16,36 @@ import java.util.Optional;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
-
-    @Query("select c from Client c where c.name = :name")
-    Client findByName(@Param("name") String name);
+    @Modifying
+    @Transactional
+    @Query(value = "insert into Client (name, surname, email, fired) " +
+            "values (:name, :surname, :email, :fired)", nativeQuery = true)
+    void insertClient(@Param("name") String name, @Param("surname") String surname,
+                      @Param("email") String email, @Param("fired") boolean fired);
 
     @Modifying
     @Transactional
-    @Query(value = "insert into Client (name, surname, email, fired) values (:name, :surname, :email, :fired)", nativeQuery = true)
-    void insertClient(@Param("name") String name, @Param("surname") String surname, @Param("email") String email, @Param("fired") boolean fired);
-
-    @Modifying
-    @Transactional
-    @Query("delete from Client u where u.email = :email")
+    @Query("delete from Client e where e.email = :email")
     void deleteClientByEmail(@Param("email") String email);
 
     @Modifying
     @Transactional
-    @Query("delete from Client u where u.id = :id")
+    @Query("delete from Client i where i.id = :id")
     void deleteClientById(@Param("id") Long id);
 
 
+    @Query("select e from Client e where e.email= :email")
+    Client findByEmail(@Param("email") String email);
+
+
+    @Query("select n from Client n where n.name = :name")
+    Client findByName(@Param("name") String name);
+
+    @Modifying
+    @Transactional
+    @Query("update Client set name = :name, surname = :surname, email = :email," +
+            " fired = :fired where id = :id")
+    void updateClient(@Param("name") String name, @Param("surname") String surname,
+                      @Param("email") String email, @Param("fired") boolean fired,
+                      @Param("id") Long id);
 }
