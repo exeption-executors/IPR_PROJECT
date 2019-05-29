@@ -28,16 +28,14 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.deleteClientByEmail(email);
     }
 
-
     @Override
-    public Client addClient(Client client) {
-        Client savedClient = clientRepository.save(client);
-        return savedClient;
+    public List<Client> getAll() {
+        return clientRepository.findAll();
     }
 
     @Override
-    public void delete(int id) {
-
+    public void deleteClientById(Long id) {
+        clientRepository.deleteClientById(id);
     }
 
     @Override
@@ -50,10 +48,6 @@ public class ClientServiceImpl implements ClientService {
         return null;
     }
 
-    @Override
-    public List<Client> getAll() {
-        return clientRepository.findAll();
-    }
 
 
 }
