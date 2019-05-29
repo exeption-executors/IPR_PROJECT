@@ -1,9 +1,7 @@
 package entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity(name = "Client")
 @Table(name = "client", schema = "public", catalog = "ipr")
@@ -15,7 +13,7 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @Basic
     @Column(name = "name")
@@ -48,11 +46,11 @@ public class Client {
     )
     private Set<MembersList> allIncludedMembersList = new HashSet<>();
 
-    public Set<MembersList> getallIncludedMembersList() {
+    public Set<MembersList> getAllIncludedMembersList() {
         return allIncludedMembersList;
     }
 
-    public void setallIncludedMembersList(Set<MembersList> allIncludedMembersList) {
+    public void setAllIncludedMembersList(Set<MembersList> allIncludedMembersList) {
         this.allIncludedMembersList = allIncludedMembersList;
     }
 
@@ -60,11 +58,11 @@ public class Client {
         allIncludedMembersList.add(membersList);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
