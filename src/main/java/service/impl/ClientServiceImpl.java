@@ -52,7 +52,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<Client> getAll() {
-        return null;
+        return clientRepository.findAll();
     }
 
 

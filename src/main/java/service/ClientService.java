@@ -8,7 +8,6 @@ public interface ClientService {
     Client findByName(String name);
     void insertClient(String name, String surnmame, String email, boolean fired);
     void  deleteClientByEmail (String email);
-
     List<Client> getAll();
 
 

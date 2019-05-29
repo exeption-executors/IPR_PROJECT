@@ -31,6 +31,7 @@ public class Application {
 //        System.out.println("ID Клиента: "+ client.getId() +" Почта клиента: " + client.getEmail());
 //        clientService.deleteClientByEmail("Andrey@mail.r");
         List<Client> clients = clientService.getAll();
+        System.out.println("А вот и клиенты" + clients);
 
 
     }

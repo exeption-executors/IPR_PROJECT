@@ -30,10 +30,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     @Query("delete from Client u where u.email = :email")
     void deleteClientByEmail(@Param("email") String email);
 
-    @Modifying
-    @Transactional
-    @Query(value = "select all from Client all ")
-    List<Client> getAll();
 
 
 }
