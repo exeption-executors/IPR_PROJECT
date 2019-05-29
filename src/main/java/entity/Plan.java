@@ -14,7 +14,7 @@ public class Plan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Basic
     @Column(name = "plan_date_start")
@@ -41,11 +41,11 @@ public class Plan {
         this.planTasksEntities = planTasksEntities;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -65,27 +65,4 @@ public class Plan {
         this.planDateEnd = planDateEnd;
     }
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Plan that = (Plan) o;
-
-        if (id != that.id) return false;
-        if (planDateStart != null ? !planDateStart.equals(that.planDateStart) : that.planDateStart != null)
-            return false;
-        if (planDateEnd != null ? !planDateEnd.equals(that.planDateEnd) : that.planDateEnd != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (planDateStart != null ? planDateStart.hashCode() : 0);
-        result = 31 * result + (planDateEnd != null ? planDateEnd.hashCode() : 0);
-        return result;
-    }
 }
