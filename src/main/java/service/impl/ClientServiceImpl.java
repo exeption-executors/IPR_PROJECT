@@ -6,43 +6,48 @@ import org.springframework.stereotype.Service;
 import repository.ClientRepository;
 import service.ClientService;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
 public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-
-/*    @Override
-    public Client addClient(Client client) {
-        Client savedClient = clientRepository.save(client);
-        return savedClient;
-    }*/
-
     @Override
-    public List<Integer> getIdByName(String name) {
-        return clientRepository.findIdByName(name);
+    public void insertClient(String name, String surnmame, String email, boolean fired) {
+        clientRepository.insertClient(name, surnmame, email, fired);
     }
 
-   /* @Override
+    @Override
+    public Client findByName(String name){
+        return clientRepository.findByName(name);
+
+    }
+    @Override
+    public void deleteClientByEmail(String email) {
+        clientRepository.deleteClientByEmail(email);
+    }
+
+    @Override
     public List<Client> getAll() {
         return clientRepository.findAll();
     }
 
+    @Override
+    public void deleteClientById(Long id) {
+        clientRepository.deleteClientById(id);
+    }
+
+    @Override
+    public Client getByName(String name) {
+        return clientRepository.findByName(name);
+    }
 
     @Override
     public Client editClient(Client client) {
-        return clientRepository.saveAndFlush(client);
+        return null;
     }
-*/
 
 
-    /*@Override
-    public void delete(Integer id) {
-        clientRepository.deleteById(id);
 
-    }*/
 }
