@@ -29,13 +29,11 @@ public class Application {
 //        clientService.insertClient("Evgeny", "Davidov", "evgen@mail.ru",false);
 //        Client client = clientService.findByName("Andrey");
 //        System.out.println("ID Клиента: "+ client.getId() +" Почта клиента: " + client.getEmail());
-//        clientService.deleteClientByEmail("Andrey@mail.r");
-
+//        clientService.deleteClientByEmail("Andrey@mail.ru");
 //        List<Client> clients = clientService.getAll();
 //        for (int i = 0; i < clients.size(); i++) {
 //            System.out.println(clients.get(i).getName()+ " " + clients.get(i).getSurname() + " " + clients.get(i).getEmail());
 //        }
-
 //        clientService.deleteClientById((long) 0);
 
 

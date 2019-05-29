@@ -9,9 +9,7 @@ public interface ClientService {
     void insertClient(String name, String surnmame, String email, boolean fired);
     void  deleteClientByEmail (String email);
     List<Client> getAll();
-
     void deleteClientById(Long id);
-
     Client getByName(String name);
     Client editClient(Client client);
 }
