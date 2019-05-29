@@ -19,18 +19,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findByName(String name){
-        return clientRepository.findByName(name);
-
-    }
-    @Override
     public void deleteClientByEmail(String email) {
         clientRepository.deleteClientByEmail(email);
-    }
-
-    @Override
-    public List<Client> getAll() {
-        return clientRepository.findAll();
     }
 
     @Override
@@ -39,15 +29,22 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client getByName(String name) {
+    public Client findByEmail(String email) {
+        return clientRepository.findByEmail(email);
+    }
+
+    @Override
+    public Client findByName(String name){
         return clientRepository.findByName(name);
     }
 
     @Override
-    public Client editClient(Client client) {
-        return null;
+    public List<Client> getAll() {
+        return clientRepository.findAll();
     }
 
-
-
+    @Override
+    public void updateClient(String name, String surname, String email, boolean fired, Long id) {
+        clientRepository.updateClient(name, surname, email, fired, id);
+    }
 }
