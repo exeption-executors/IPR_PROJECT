@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface ClientRepository extends JpaRepository<Client, Integer> {
+public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query("select c from Client c where c.name = :name")
     Client findByName(@Param("name") String name);
@@ -30,6 +30,10 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
     @Query("delete from Client u where u.email = :email")
     void deleteClientByEmail(@Param("email") String email);
 
+    @Modifying
+    @Transactional
+    @Query("delete from Client u where u.id = :id")
+    void deleteClientById(@Param("id") Long id);
 
 
 }

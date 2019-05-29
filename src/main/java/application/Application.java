@@ -24,14 +24,21 @@ public class Application {
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Application.class, args);
         ClientService clientService = context.getBean(ClientService.class);
-//        clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", false);
+        clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", false);
 //        clientService.insertClient("Andrey", "Levkin", "Andrey@mail.r", false);
 //        clientService.insertClient("Evgeny", "Davidov", "evgen@mail.ru",false);
+
 //        Client client = clientService.findByName("Andrey");
-//        System.out.println("ID Клиента: "+ client.getId() +" Почта клиента: " + client.getEmail());
+//        System.out.println("ID Клиента: "+ client.getId() +" Почта клиента: " + client.getEmail());\
+
 //        clientService.deleteClientByEmail("Andrey@mail.r");
-        List<Client> clients = clientService.getAll();
-        System.out.println("А вот и клиенты" + clients);
+
+//        List<Client> clients = clientService.getAll();
+//        for (int i = 0; i < clients.size(); i++) {
+//            System.out.println(clients.get(i).getName()+ " " + clients.get(i).getSurname() + " " + clients.get(i).getEmail());
+//        }
+
+//        clientService.deleteClientById((long) 0);
 
 
     }
