@@ -18,7 +18,7 @@ import service.ClientService;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 
 @RunWith(SpringRunner.class)
@@ -55,5 +55,21 @@ public class ClientServiceTest {
         System.out.println("Количество добавленных клиетов: " + clients.size());
         assertEquals(clients.size(),3);
     }
-    //если ожидается NPE - @Test(expected = NullPointerException.class)
+
+    @Test
+    public void deleteClientByEmail() {
+        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
+
+        Client addedClient = clientService.findByEmail("marik33409@mail.ru");
+
+        System.out.println("Добавлен клиент с email: " + addedClient.getEmail());
+
+        clientService.deleteClientByEmail("marik33409@mail.ru");
+
+        System.out.println("Удален клиент с email: " + addedClient.getEmail());
+
+        Client deletedClient = clientService.findByEmail("marik33409@mail.ru");
+
+        assertNull(deletedClient);
+    }
 }
