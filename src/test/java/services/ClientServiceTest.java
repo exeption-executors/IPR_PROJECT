@@ -16,6 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import repository.ClientRepository;
 import service.ClientService;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -32,7 +34,7 @@ public class ClientServiceTest {
 
 
     @Test
-    public void createPojoToDB() {
+    public void saveClient() {
         clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", false);
 
         Client clientFromDB = clientService.findByEmail("marik33409@mail.ru");
@@ -41,6 +43,17 @@ public class ClientServiceTest {
                 clientFromDB.getName() + " " + clientFromDB.getSurname() + " " +
                 clientFromDB.getEmail());
         assertEquals("Mark", clientFromDB.getName());
+    }
+
+    @Test
+    public  void saveTreeClient(){
+        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
+        clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com", false);
+        clientService.insertClient("Evreny", "Davidov", "evgen@yand ex.ru", false);
+
+        List<Client> clients = clientService.getAll();
+        System.out.println("Количество добавленных клиетов: " + clients.size());
+        assertEquals(clients.size(),3);
     }
     //если ожидается NPE - @Test(expected = NullPointerException.class)
 }
