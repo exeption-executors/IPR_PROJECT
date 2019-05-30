@@ -34,7 +34,7 @@ public class ClientServiceTest {
 
 
     @Test
-    public void saveClient() {
+    public void insertClientIntoDB() {
         clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", false);
 
         Client clientFromDB = clientService.findByEmail("marik33409@mail.ru");
@@ -46,7 +46,7 @@ public class ClientServiceTest {
     }
 
     @Test
-    public  void saveTreeClient(){
+    public  void getAllClientsFromDB(){
         clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
         clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com", false);
         clientService.insertClient("Evreny", "Davidov", "evgen@yand ex.ru", false);
@@ -57,7 +57,7 @@ public class ClientServiceTest {
     }
 
     @Test
-    public void deleteClientByEmail() {
+    public void deleteClientFromDBByEmail() {
         clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
 
         Client addedClient = clientService.findByEmail("marik33409@mail.ru");
@@ -71,5 +71,16 @@ public class ClientServiceTest {
         Client deletedClient = clientService.findByEmail("marik33409@mail.ru");
 
         assertNull(deletedClient);
+    }
+
+    @Test
+    public  void findClintByName() {
+        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
+
+        Client addedClient = clientService.findByName("Mark");
+
+        System.out.println("Найден клиент с именем: " + addedClient.getName());
+
+        assertEquals("Mark", addedClient.getName());
     }
 }
