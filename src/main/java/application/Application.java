@@ -61,8 +61,7 @@ public class Application {
         /** EditClientInformation function **/
 //        clientService.updateClient("Andrew", "Levkin",
 //                "andrew@mail.ru", false, (long)2);
-
-        /**----------- Operation with PlanService ---------**/
+/**----------- Operation with PlanService ---------**/
 
         PlanService planService = context.getBean(PlanService.class);
 
