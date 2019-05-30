@@ -88,7 +88,7 @@ public class ClientServiceTest {
 
         System.out.println("Данные добавленного клиента: " + " " +
                 clientFromDB.getName() + " " + clientFromDB.getSurname() + " " +
-                clientFromDB.getEmail());
+                clientFromDB.getEmail() + " " + clientFromDB.isFired());
 
         clientService.updateClient("Andrew", "Lion", "lionking@mail.ru", true, 1l);
 
@@ -96,10 +96,11 @@ public class ClientServiceTest {
 
         System.out.println("Обновленные данные клиента: " + " " +
                 updatedClient.getName() + " " + updatedClient.getSurname() + " " +
-                updatedClient.getEmail());
+                updatedClient.getEmail() + " " + updatedClient.isFired());
 
         assertEquals("Andrew", updatedClient.getName());
         assertEquals("Lion", updatedClient.getSurname());
         assertEquals("lionking@mail.ru", updatedClient.getEmail());
+        assertEquals(true, updatedClient.isFired());
     }
 }
