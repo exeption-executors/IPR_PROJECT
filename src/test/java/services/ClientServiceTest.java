@@ -49,7 +49,7 @@ public class ClientServiceTest {
     public  void getAllClientsFromDB(){
         clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
         clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com", false);
-        clientService.insertClient("Evreny", "Davidov", "evgen@yand ex.ru", false);
+        clientService.insertClient("Evgeny", "Davidov", "evgen@yandex.ru", false);
 
         List<Client> clients = clientService.getAll();
         System.out.println("Количество добавленных клиетов: " + clients.size());
@@ -74,13 +74,15 @@ public class ClientServiceTest {
     }
 
     @Test
-    public  void findClintByName() {
+    public  void findClintByEmail() {
+        clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com", false);
         clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
+        clientService.insertClient("Evgeny", "Davidov", "evgen@yandex.ru", false);
 
-        Client addedClient = clientService.findByName("Mark");
+        Client addedClient = clientService.findByEmail("marik33409@mail.ru");
 
-        System.out.println("Найден клиент с именем: " + addedClient.getName());
+        System.out.println("Найден клиент с email: " + addedClient.getEmail());
 
-        assertEquals("Mark", addedClient.getName());
+        assertEquals("marik33409@mail.ru", addedClient.getEmail());
     }
 }
