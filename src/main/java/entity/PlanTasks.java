@@ -14,7 +14,7 @@ public class PlanTasks {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Basic
     @Column(name = "plan_tasks_date_end")
@@ -57,11 +57,11 @@ public class PlanTasks {
     }
 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -88,33 +88,6 @@ public class PlanTasks {
 
     public void setPriority(String priority) {
         this.priority = priority;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        PlanTasks that = (PlanTasks) o;
-
-        if (id != that.id) return false;
-        if (planTasksDateEnd != null ? !planTasksDateEnd.equals(that.planTasksDateEnd) : that.planTasksDateEnd != null)
-            return false;
-        if (planTasksDescription != null ? !planTasksDescription.equals(that.planTasksDescription) : that.planTasksDescription != null)
-            return false;
-        if (priority != null ? !priority.equals(that.priority) : that.priority != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (planTasksDateEnd != null ? planTasksDateEnd.hashCode() : 0);
-        result = 31 * result + (planTasksDescription != null ? planTasksDescription.hashCode() : 0);
-        result = 31 * result + (priority != null ? priority.hashCode() : 0);
-        return result;
     }
 
 }
