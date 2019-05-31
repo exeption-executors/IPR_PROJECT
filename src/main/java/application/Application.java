@@ -79,5 +79,27 @@ public class Application {
 //        Date dateStart = dateFormat.parse("11/11/1111");
 //        Date dateEnd = dateFormat.parse("22/22/2222");
 //        planService.updatePlan(new java.sql.Date(dateStart.getTime()),new java.sql.Date(dateEnd.getTime()),5l);
+
+        /** CreatePlanTask function **/
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        Date datePlanTaskEnd = dateFormat.parse("15/15/1515");
+//        planService.createPlanTask(8L, new java.sql.Date(datePlanTaskEnd.getTime()), "Cover code by test", "High as f*ck");
+
+        /** DeletePlanTasksById function **/
+//        planService.deletePlanTaskById(0l);
+
+        /** EditPlanTaskInformation function **/
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        Date datePlanTaskEnd = dateFormat.parse("15/15/1515");
+//        planService.updatePlanTask(new java.sql.Date(datePlanTaskEnd.getTime()), "TOMMY WHY THO", "Now I am High as F*CK", 1l);
+
+        /** CreateTaskList function **/
+//        planService.createTaskList(2l,true, "Рассмешить Марка");
+
+        /** DeleteTaskListById **/
+//        planService.deleteTaskList(0l);
+
+        /** EditTaskList function **/
+//        planService.updateTaskList(false, "Заствить Марка работать", 1l);
     }
 }
