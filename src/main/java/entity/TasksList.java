@@ -12,7 +12,7 @@ public class TasksList {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Basic
     @Column(name = "task_is_done")
@@ -31,11 +31,11 @@ public class TasksList {
         this.taskDescription = taskDescription;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -47,26 +47,4 @@ public class TasksList {
         this.taskIsDone = taskIsDone;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        TasksList that = (TasksList) o;
-
-        if (id != that.id) return false;
-        if (taskIsDone != that.taskIsDone) return false;
-        if (taskDescription != null ? !taskDescription.equals(that.taskDescription) : that.taskDescription != null)
-            return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (taskIsDone ? 1 : 0);
-        result = 31 * result + (taskDescription != null ? taskDescription.hashCode() : 0);
-        return result;
-    }
 }

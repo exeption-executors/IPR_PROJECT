@@ -90,8 +90,17 @@ public class Application {
 //        planService.deletePlanTaskById(0l);
 
         /** EditPlanTaskInformation function **/
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date datePlanTaskEnd = dateFormat.parse("15/15/1515");
-        planService.updatePlanTask(new java.sql.Date(datePlanTaskEnd.getTime()), "TOMMY WHY THO", "Now I am High as F*CK", 1l);
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        Date datePlanTaskEnd = dateFormat.parse("15/15/1515");
+//        planService.updatePlanTask(new java.sql.Date(datePlanTaskEnd.getTime()), "TOMMY WHY THO", "Now I am High as F*CK", 1l);
+
+        /** CreateTaskList function **/
+//        planService.createTaskList(2l,true, "Рассмешить Марка");
+
+        /** DeleteTaskListById **/
+//        planService.deleteTaskList(0l);
+
+        /** EditTaskList function **/
+//        planService.updateTaskList(false, "Заствить Марка работать", 1l);
     }
 }
