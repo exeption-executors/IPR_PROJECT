@@ -14,8 +14,8 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public void insertClient(String name, String surnmame, String email, boolean fired) {
-        clientRepository.insertClient(name, surnmame, email, fired);
+    public void insertClient(String name, String surname, String email, boolean fired) {
+        clientRepository.insertClient(name, surname, email, fired);
     }
 
     @Override
