@@ -19,10 +19,6 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-//    @PostMapping
-//    public String addList(@RequestBody MyClient myClient){
-//        clientService.insertClient();
-//    }
 
     @GetMapping("/list")
     public List<Client> list(){
@@ -36,5 +32,6 @@ public class ClientController {
     public void createPost(@RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
         System.out.println(client.getName());
+        System.out.println(client.getSurname());
     }
 }

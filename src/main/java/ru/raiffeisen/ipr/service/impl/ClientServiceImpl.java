@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.service.impl;
 
+import org.springframework.transaction.annotation.Transactional;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
