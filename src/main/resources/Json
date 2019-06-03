@@ -1,0 +1,6 @@
+{
+  name:"Andrew",
+  surname:"Levkin",
+  email: "andrew@gmail.com",
+  fired: false
+}
