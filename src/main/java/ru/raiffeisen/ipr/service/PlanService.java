@@ -1,6 +1,4 @@
-package service;
-
-import entity.Plan;
+package ru.raiffeisen.ipr.service;
 
 import java.sql.Date;
 

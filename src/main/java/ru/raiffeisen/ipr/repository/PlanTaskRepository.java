@@ -1,6 +1,6 @@
-package repository;
+package ru.raiffeisen.ipr.repository;
 
-import entity.PlanTasks;
+import ru.raiffeisen.ipr.entity.PlanTasks;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

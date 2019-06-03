@@ -1,10 +1,10 @@
-package service.impl;
+package ru.raiffeisen.ipr.service.impl;
 
-import entity.Client;
+import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.ClientRepository;
-import service.ClientService;
+import ru.raiffeisen.ipr.repository.ClientRepository;
+import ru.raiffeisen.ipr.service.ClientService;
 
 import java.util.List;
 

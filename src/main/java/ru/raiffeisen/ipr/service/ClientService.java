@@ -1,6 +1,6 @@
-package service;
+package ru.raiffeisen.ipr.service;
 
-import entity.Client;
+import ru.raiffeisen.ipr.entity.Client;
 
 import java.util.List;
 

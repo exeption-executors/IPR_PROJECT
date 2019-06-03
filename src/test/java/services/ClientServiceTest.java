@@ -1,7 +1,7 @@
 package services;
 
-import application.Application;
-import entity.Client;
+import ru.raiffeisen.ipr.Application;
+import ru.raiffeisen.ipr.entity.Client;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
-import service.ClientService;
+import ru.raiffeisen.ipr.service.ClientService;
 
 import java.util.List;
 
@@ -19,8 +19,8 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-@ComponentScan(basePackages = {"main.java.service"})
-@EnableJpaRepositories(basePackages = {"main.java.repository"})
+@ComponentScan(basePackages = {"main.java.ru.raiffeisen.ipr.service"})
+@EnableJpaRepositories(basePackages = {"main.java.ru.raiffeisen.ipr.repository"})
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 @EntityScan
 public class ClientServiceTest {
