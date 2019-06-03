@@ -1,11 +1,11 @@
-package service.impl;
+package ru.raiffeisen.ipr.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.PlanRepository;
-import repository.PlanTaskRepository;
-import repository.TasksListRepository;
-import service.PlanService;
+import ru.raiffeisen.ipr.repository.PlanRepository;
+import ru.raiffeisen.ipr.repository.PlanTaskRepository;
+import ru.raiffeisen.ipr.repository.TasksListRepository;
+import ru.raiffeisen.ipr.service.PlanService;
 
 import java.sql.Date;
 

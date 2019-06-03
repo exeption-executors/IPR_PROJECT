@@ -1,4 +1,4 @@
-package entity;
+package ru.raiffeisen.ipr.entity;
 
 import javax.persistence.*;
 import java.util.*;
