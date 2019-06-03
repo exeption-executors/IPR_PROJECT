@@ -4,6 +4,7 @@ public class ClientDTO {
     private String name;
     private String surname;
     private String email;
+    private boolean fired;
     private String password;
 
     public ClientDTO() {
@@ -39,5 +40,13 @@ public class ClientDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isFired() {
+        return fired;
+    }
+
+    public void setFired(boolean fired) {
+        this.fired = fired;
     }
 }

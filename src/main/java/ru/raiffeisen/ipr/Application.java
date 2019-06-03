@@ -21,8 +21,8 @@ import java.text.ParseException;
 import java.util.List;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = {"ru.raiffeisen.ipr.repository"})
-@EntityScan(basePackages = {"ru.raiffeisen.ipr.entity"})
+@EnableJpaRepositories()
+@EntityScan()
 //@ComponentScan(basePackages = "ru.raiffeisen.ipr")
 public class Application {
     public static void main(String[] args)throws ParseException {
