@@ -28,6 +28,10 @@ public class Client {
     private String email;
 
     @Basic
+    @Column(name = "password")
+    private String password;
+
+    @Basic
     @Column(name = "fired")
     private boolean fired;
 
