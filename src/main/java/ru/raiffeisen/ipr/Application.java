@@ -35,9 +35,9 @@ public class Application {
         ClientService clientService = context.getBean(ClientService.class);
 
         /** CreateClient function **/
-        clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", "passss", false);
-        clientService.insertClient("Andrey", "Levkin", "Andrey@mail.ru", "anrewpass", false);
-        clientService.insertClient("Evgeny", "Davidov", "evgen@mail.ru","evgenpass",false);
+//        clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", "passss", false);
+//        clientService.insertClient("Andrey", "Levkin", "Andrey@mail.ru", "anrewpass", false);
+//        clientService.insertClient("Evgeny", "Davidov", "evgen@mail.ru","evgenpass",false);
 
         /** FindClientByName function **/
 //        Client client = clientService.findByName("Andrey");
@@ -53,7 +53,7 @@ public class Application {
 //        }
 
         /** DeleteClientById function **/
-//        clientService.deleteClientById(4l);
+//        clientService.deleteClientById(1l);
 
         /** FindClientByEmail function **/
 //        Client client = clientService.findByEmail("marik33409@mail.ru");
@@ -61,7 +61,7 @@ public class Application {
 
         /** EditClientInformation function **/
 //        clientService.updateClient("Andrew", "Levkin",
-//                "andrew@mail.ru", false, (3l);
+//                "andrew@mail.ru", "newpass",false, (3l));
 /**----------- Operation with PlanService ---------**/
 
         PlanService planService = context.getBean(PlanService.class);
