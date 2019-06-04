@@ -23,10 +23,6 @@ public class ClientController {
         this.clientService = clientService;
     }
 
-//    @PostMapping
-//    public String addList(@RequestBody MyClient myClient){
-//        clientService.insertClient();
-//    }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -42,8 +38,17 @@ public class ClientController {
     @ResponseBody
     public void createClient(@RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
-        clientService.insertClient(client.getName(), client.getSurname(), client.getEmail(),false);
+        clientService.insertClient(client.getName(), client.getSurname(), client.getEmail(),"sfsesef", false);
         System.out.println(client.getName());
+        System.out.println(client.getSurname());
+    }
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public void createPost2(@RequestBody ClientDTO clientDTO) {
+        Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
+        System.out.println(client.getName());
+        System.out.println(client.getSurname());
     }
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)

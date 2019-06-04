@@ -29,7 +29,7 @@ public class ClientServiceTest {
 
     @Test
     public void insertClientIntoDB() {
-        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
+        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru","qwery", false);
 
         Client clientFromDB = clientService.findByEmail("marik33409@mail.ru");
 
@@ -41,9 +41,9 @@ public class ClientServiceTest {
 
     @Test
     public void getAllClientsFromDB() {
-        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
-        clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com", false);
-        clientService.insertClient("Evgeny", "Davidov", "evgen@yandex.ru", false);
+        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru","markpass", false);
+        clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com","anrewpass", false);
+        clientService.insertClient("Evgeny", "Davidov", "evgen@yandex.ru","evgenpass", false);
 
         List<Client> clients = clientService.getAll();
         System.out.println("Количество добавленных клиетов: " + clients.size());
@@ -52,7 +52,7 @@ public class ClientServiceTest {
 
     @Test
     public void deleteClientFromDBByEmail() {
-        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
+        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", "markqwertpass", false);
 
         Client addedClient = clientService.findByEmail("marik33409@mail.ru");
 
@@ -69,9 +69,9 @@ public class ClientServiceTest {
 
     @Test
     public void findClintByEmail() {
-        clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com", false);
-        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", false);
-        clientService.insertClient("Evgeny", "Davidov", "evgen@yandex.ru", false);
+        clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com", "andrewlion", false);
+        clientService.insertClient("Mark", "Bryzgalov", "marik33409@mail.ru", "markmark", false);
+        clientService.insertClient("Evgeny", "Davidov", "evgen@yandex.ru", "evgendavidov", false);
 
         Client addedClient = clientService.findByEmail("marik33409@mail.ru");
 
@@ -82,7 +82,7 @@ public class ClientServiceTest {
 
     @Test
     public void updateClient() {
-        clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com", false);
+        clientService.insertClient("Andrey", "Levkin", "andrey@gmail.com","passandrew", false);
 
         Client clientFromDB = clientService.findByEmail("andrey@gmail.com");
 
@@ -90,7 +90,7 @@ public class ClientServiceTest {
                 clientFromDB.getName() + " " + clientFromDB.getSurname() + " " +
                 clientFromDB.getEmail() + " " + clientFromDB.isFired());
 
-        clientService.updateClient("Andrew", "Lion", "lionking@mail.ru", true, 1l);
+        clientService.updateClient("Andrew", "Lion", "lionking@mail.ru", "newpass", true, 1l);
 
         Client updatedClient = clientService.findByEmail("lionking@mail.ru");
 

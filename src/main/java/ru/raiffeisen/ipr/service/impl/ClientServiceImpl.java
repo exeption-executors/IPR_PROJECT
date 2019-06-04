@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.service.impl;
 
+import org.springframework.transaction.annotation.Transactional;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,8 +15,8 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public void insertClient(String name, String surname, String email, boolean fired) {
-        clientRepository.insertClient(name, surname, email, fired);
+    public void insertClient(String name, String surname, String email, String password, boolean fired) {
+        clientRepository.insertClient(name, surname, email, password, fired);
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void updateClient(String name, String surname, String email, boolean fired, Long id) {
-        clientRepository.updateClient(name, surname, email, fired, id);
+    public void updateClient(String name, String surname, String email, String password, boolean fired, Long id) {
+        clientRepository.updateClient(name, surname, email, password, fired, id);
     }
 }
