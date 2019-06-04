@@ -6,9 +6,6 @@ import java.util.*;
 @Entity(name = "Client")
 @Table(name = "client", schema = "public", catalog = "ipr")
 public class Client {
-    public Client() {
-
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

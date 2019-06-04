@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS client (
     fired BOOLEAN NOT NULL DEFAULT (FALSE),
     CONSTRAINT client CHECK (TRIM(name) != '' AND
                              TRIM(surname) != '' AND
-                             TRIM(email) != '')
+                             TRIM(email) != '' AND
+                             TRIM(password) != '')
 );
 
 CREATE TABLE  IF NOT EXISTS plan (

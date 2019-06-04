@@ -12,10 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 public interface ClientRepository extends JpaRepository<Client, Long> {
     @Modifying
     @Transactional
-    @Query(value = "insert into Client (name, surname, email, fired) " +
-            "values (:name, :surname, :email, :fired)", nativeQuery = true)
+    @Query(value = "insert into Client (name, surname, email, password, fired) " +
+            "values (:name, :surname, :email, :password, :fired)", nativeQuery = true)
     void insertClient(@Param("name") String name, @Param("surname") String surname,
-                      @Param("email") String email, @Param("fired") boolean fired);
+                      @Param("email") String email, @Param("password") String password,
+                      @Param("fired") boolean fired);
 
     @Modifying
     @Transactional
@@ -37,9 +38,9 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Modifying
     @Transactional
-    @Query("update Client set name = :name, surname = :surname, email = :email," +
-            " fired = :fired where id = :id")
+    @Query("update Client set name = :name, surname = :surname, email = :email, password = :password, " +
+            "fired = :fired where id = :id")
     void updateClient(@Param("name") String name, @Param("surname") String surname,
-                      @Param("email") String email, @Param("fired") boolean fired,
-                      @Param("id") Long id);
+                      @Param("email") String email, @Param("password") String password,
+                      @Param("fired") boolean fired, @Param("id") Long id);
 }
