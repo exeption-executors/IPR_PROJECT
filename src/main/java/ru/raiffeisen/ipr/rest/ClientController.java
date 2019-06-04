@@ -13,7 +13,7 @@ import ru.raiffeisen.ipr.service.impl.ClientServiceImpl;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/clients")
+@RequestMapping("/clients")
 public class ClientController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class ClientController {
     @ResponseBody
     public void createClient(@RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
-        clientService.insertClient(client.getName(), client.getSurname(), client.getEmail(),false);
+        clientService.insertClient(client.getName(), client.getSurname(), client.getEmail(),"sfsesef", false);
         System.out.println(client.getName());
         System.out.println(client.getSurname());
     }
