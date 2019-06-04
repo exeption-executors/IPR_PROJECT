@@ -45,4 +45,12 @@ public class ClientController {
         clientService.insertClient(client.getName(), client.getSurname(), client.getEmail(),false);
         System.out.println(client.getName());
     }
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteClient(@RequestBody Client client){
+        ClientDTO clientDTO = ClientMapper.fromClientEntityToClientDTO(client);
+        clientService.deleteClientByEmail(clientDTO.getEmail());
+    }
+
 }
