@@ -28,13 +28,15 @@ public class ClientController {
 //        clientService.insertClient();
 //    }
 
-    @GetMapping("/list")
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
     public List<Client> list(){
         return clientService.getAll();
     }
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
