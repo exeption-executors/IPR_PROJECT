@@ -18,6 +18,8 @@ import ru.raiffeisen.ipr.service.PlanService;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -51,7 +53,7 @@ public class Application {
 //        }
 
         /** DeleteClientById function **/
-//        clientService.deleteClientById((long) 1);
+//        clientService.deleteClientById(1l);
 
         /** FindClientByEmail function **/
 //        Client client = clientService.findByEmail("marik33409@mail.ru");
@@ -59,7 +61,7 @@ public class Application {
 
         /** EditClientInformation function **/
 //        clientService.updateClient("Andrew", "Levkin",
-//                "andrew@mail.ru", false, (long)2);
+//                "andrew@mail.ru", false, (3l);
 /**----------- Operation with PlanService ---------**/
 
         PlanService planService = context.getBean(PlanService.class);
@@ -68,38 +70,38 @@ public class Application {
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //        Date dateStart = dateFormat.parse("17/07/1989");
 //        Date dateEnd = dateFormat.parse("20/03/2020");
-//        planService.createPlan(5L, new java.sql.Date(dateStart.getTime()), new java.sql.Date(dateEnd.getTime()));
+//        planService.createPlan(4l, new java.sql.Date(dateStart.getTime()), new java.sql.Date(dateEnd.getTime()));
 
         /** DeletePlanById function **/
-/*        planService.deletePlanById((long)2);*/
+//        planService.deletePlanById(1l);
 
         /** EditPlanInformation function **/
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //        Date dateStart = dateFormat.parse("11/11/1111");
 //        Date dateEnd = dateFormat.parse("22/22/2222");
-//        planService.updatePlan(new java.sql.Date(dateStart.getTime()),new java.sql.Date(dateEnd.getTime()),5l);
+//        planService.updatePlan(new java.sql.Date(dateStart.getTime()),new java.sql.Date(dateEnd.getTime()),4l);
 
         /** CreatePlanTask function **/
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //        Date datePlanTaskEnd = dateFormat.parse("15/15/1515");
-//        planService.createPlanTask(8L, new java.sql.Date(datePlanTaskEnd.getTime()), "Cover code by test", "High as f*ck");
+//        planService.createPlanTask(4l, new java.sql.Date(datePlanTaskEnd.getTime()), "Cover code by test", "High");
 
         /** DeletePlanTasksById function **/
-//        planService.deletePlanTaskById(0l);
+//        planService.deletePlanTaskById(2l);
 
         /** EditPlanTaskInformation function **/
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //        Date datePlanTaskEnd = dateFormat.parse("15/15/1515");
-//        planService.updatePlanTask(new java.sql.Date(datePlanTaskEnd.getTime()), "TOMMY WHY THO", "Now I am High as F*CK", 1l);
+//        planService.updatePlanTask(new java.sql.Date(datePlanTaskEnd.getTime()), "Refactoring", "Low", 3l);
 
         /** CreateTaskList function **/
-//        planService.createTaskList(2l,true, "Рассмешить Марка");
+//        planService.createTaskList(3l,true, "Рассмешить Марка");
 
         /** DeleteTaskListById **/
-//        planService.deleteTaskList(0l);
+//        planService.deleteTaskList(1l);
 
         /** EditTaskList function **/
-//        planService.updateTaskList(false, "Заствить Марка работать", 1l);
+//        planService.updateTaskList(false, "Заствить Марка работать", 2l);
 
         /** TestTestTest **/
 
