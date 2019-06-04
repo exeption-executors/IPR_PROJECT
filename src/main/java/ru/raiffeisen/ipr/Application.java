@@ -53,7 +53,7 @@ public class Application {
 //        }
 
         /** DeleteClientById function **/
-//        clientService.deleteClientById(1l);
+//        clientService.deleteClientById(4l);
 
         /** FindClientByEmail function **/
 //        Client client = clientService.findByEmail("marik33409@mail.ru");
@@ -104,6 +104,5 @@ public class Application {
 //        planService.updateTaskList(false, "Заствить Марка работать", 2l);
 
         /** TestTestTest **/
-
     }
 }

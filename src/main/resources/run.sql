@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS client (
     name VARCHAR(32) NOT NULL,
     surname VARCHAR(32) NOT NULL,
     email VARCHAR(50) NOT NULL,
+    password VARCHAR(16) NOT NULL,
     fired BOOLEAN NOT NULL DEFAULT (FALSE),
     CONSTRAINT client CHECK (TRIM(name) != '' AND
                              TRIM(surname) != '' AND
