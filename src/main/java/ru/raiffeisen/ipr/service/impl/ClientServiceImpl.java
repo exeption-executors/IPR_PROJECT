@@ -15,18 +15,13 @@ public class ClientServiceImpl implements ClientService {
     private ClientRepository clientRepository;
 
     @Override
-    public void insertClient(String name, String surname, String email, String password, boolean fired) {
-        clientRepository.insertClient(name, surname, email, password, fired);
-    }
-
-    @Override
     public void deleteClientByEmail(String email) {
         clientRepository.deleteClientByEmail(email);
     }
 
     @Override
     public void deleteClientById(Long id) {
-        clientRepository.deleteClientById(id);
+        clientRepository.deleteById(id);
     }
 
     @Override
@@ -45,7 +40,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client saveClient(Client client) {
+        return clientRepository.saveAndFlush(client);
+    }
+
+    @Override
     public void updateClient(String name, String surname, String email, String password, boolean fired, Long id) {
         clientRepository.updateClient(name, surname, email, password, fired, id);
     }
+
 }

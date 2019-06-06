@@ -5,7 +5,7 @@ import ru.raiffeisen.ipr.entity.Client;
 import java.util.List;
 
 public interface ClientService {
-    void insertClient(String name, String surname, String email, String password, boolean fired);
+    Client saveClient(Client client);
     void deleteClientByEmail (String email);
     void deleteClientById(Long id);
     Client findByEmail(String email);

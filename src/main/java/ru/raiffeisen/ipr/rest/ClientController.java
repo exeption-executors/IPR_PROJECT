@@ -38,24 +38,17 @@ public class ClientController {
     @ResponseBody
     public void createClient(@RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
-        clientService.insertClient(client.getName(), client.getSurname(), client.getEmail(),"sfsesef", false);
+        clientService.saveClient(client);
         System.out.println(client.getName());
         System.out.println(client.getSurname());
     }
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
-    public void createPost2(@RequestBody ClientDTO clientDTO) {
-        Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
-        System.out.println(client.getName());
-        System.out.println(client.getSurname());
-    }
+
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteClient(@RequestBody Client client){
         ClientDTO clientDTO = ClientMapper.fromClientEntityToClientDTO(client);
-        clientService.deleteClientByEmail(clientDTO.getEmail());
+        clientService.deleteClientById(clientDTO.getId());
     }
 
 }
