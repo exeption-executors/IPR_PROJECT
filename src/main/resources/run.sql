@@ -1,4 +1,4 @@
--- DROP TABLE client, plan, tasks_list, members_list, plan_tasks, members_clients;
+DROP TABLE client, plan, tasks_list, members_list, plan_tasks, members_clients;
 
 CREATE TABLE IF NOT EXISTS client (
     id BIGSERIAL PRIMARY KEY NOT NULL,

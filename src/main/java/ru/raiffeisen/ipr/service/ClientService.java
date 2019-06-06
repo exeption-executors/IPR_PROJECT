@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.service;
 
+import ru.raiffeisen.ipr.dto.ClientDTO;
 import ru.raiffeisen.ipr.entity.Client;
 
 import java.util.List;
