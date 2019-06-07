@@ -18,24 +18,27 @@ import java.util.List;
 public class PlanController {
 
     private PlanService planService;
+    private ClientService clientService;
 
-/*    public PlanController(PlanService planService){
+    public PlanController(PlanService planService, ClientService clientService){
         this.planService = planService;
+        this.clientService = clientService;
     }
 
-    @RequestMapping(value = "/deletelist", method = RequestMethod.DELETE)
+/*    @RequestMapping(value = "/deletelist", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     @ResponseBody
     public void deletePlan(@RequestBody PlanDTO planDTO) {
         Plan plan = PlanMapper.fromPlanDTOToPlanEntity(planDTO);
         System.out.println("Удален");
-    }
-
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    }*/
+    @CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    @ResponseBody
     public void createPlan(@RequestBody PlanDTO planDTO) {
         Plan plan = PlanMapper.fromPlanDTOToPlanEntity(planDTO);
-        System.out.println(plan.getId());
-    }*/
+        Client client = clientService.findByEmail("первоемыло");
+        client.addPlanEntity(plan);
+        clientService.saveClient(client);
+    }
 }
