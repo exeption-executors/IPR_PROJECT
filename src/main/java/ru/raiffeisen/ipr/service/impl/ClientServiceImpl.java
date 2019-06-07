@@ -21,7 +21,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void deleteClientByEmail(String email) {
-        clientRepository.deleteClientByEmail(email);
+        clientRepository.delete(clientRepository.findByEmail(email));
     }
 
     @Override

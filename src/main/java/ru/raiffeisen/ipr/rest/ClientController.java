@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import ru.raiffeisen.ipr.dto.ClientDTO;
+import ru.raiffeisen.ipr.dto.ClientDeleteByEmailDTO;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
@@ -47,8 +48,8 @@ public class ClientController {
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteClient(@RequestBody Client client){
-        ClientDTO clientDTO = ClientMapper.fromClientEntityToClientDTO(client);
-        clientService.deleteClientById(clientDTO.getId());
+        ClientDeleteByEmailDTO clientDeleteByEmailDTO1 = ClientMapper.deleteByEmailDTO(client);
+        clientService.deleteClientByEmail(clientDeleteByEmailDTO1.getEmail());
     }
 
     @CrossOrigin(origins = "*")
@@ -60,5 +61,4 @@ public class ClientController {
         Client client1 = ClientMapper.fromClientDTOToClientEntity(clientDTO1);
         clientService.saveClient(client1);
     }
-
 }

@@ -27,6 +27,7 @@ public class Application {
         ClientService clientService = context.getBean(ClientService.class);
 
         /** CreateClient function **/
+//        clientService.deleteClientByEmail("123@mail.ru");
 //        clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", "passss", false);
 //        clientService.insertClient("Andrey", "Levkin", "Andrey@mail.ru", "anrewpass", false);
 //        clientService.insertClient("Evgeny", "Davidov", "evgen@mail.ru","evgenpass",false);
