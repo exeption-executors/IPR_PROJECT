@@ -1,5 +1,7 @@
 package ru.raiffeisen.ipr.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -37,6 +39,7 @@ public class Client {
     @Column(name = "fired")
     private boolean fired;
 
+    @Fetch(FetchMode.JOIN)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "client_id", nullable = false)
     private List<Plan> planEntities;
@@ -45,6 +48,7 @@ public class Client {
         this.planEntities.add(plan);
     }
 
+    @Fetch(FetchMode.JOIN)
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "members_clients",
             joinColumns = @JoinColumn(name = "client_id"),

@@ -10,11 +10,11 @@ public class PlanDTO {
     @JsonFormat(pattern = "yyyy/MM/dd")
     // Allows dd/MM/yyyy date to be passed into GET request in JSON
     @DateTimeFormat(pattern = "yyyy/MM/dd")
-    private Date plan_date_start;
+    private Date planDateStart;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date plan_date_end;
+    private Date planDateEnd;
 
     public PlanDTO() {}
 
@@ -26,19 +26,19 @@ public class PlanDTO {
         this.client_id = client_id;
     }
 
-    public Date getPlan_date_start() {
-        return plan_date_start;
+    public Date getPlanDateStart() {
+        return planDateStart;
     }
 
-    public void setPlan_date_start(Date plan_date_start) {
-        this.plan_date_start = plan_date_start;
+    public void setPlanDateStart(Date planDateStart) {
+        this.planDateStart = planDateStart;
     }
 
-    public Date getPlan_date_end() {
-        return plan_date_end;
+    public Date getPlanDateEnd() {
+        return planDateEnd;
     }
 
-    public void setPlan_date_end(Date plan_date_end) {
-        this.plan_date_end = plan_date_end;
+    public void setPlanDateEnd(Date planDateEnd) {
+        this.planDateEnd = planDateEnd;
     }
 }

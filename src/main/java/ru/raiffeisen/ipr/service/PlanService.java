@@ -1,11 +1,11 @@
 package ru.raiffeisen.ipr.service;
 
+import ru.raiffeisen.ipr.entity.Plan;
+
 import java.sql.Date;
 
 public interface PlanService {
-    void createPlan(Long client_id, Date plan_date_start, Date plan_date_end);
-    void deletePlanById(Long id);
-    void updatePlan(Date plan_date_start, Date plan_date_end, Long id);
+    Plan savePlan (Plan plan);
     void createPlanTask(Long plan_id, Date plan_tasks_date_end, String plan_tasks_description, String priority);
     void deletePlanTaskById(Long id);
     void updatePlanTask(Date plan_tasks_date_end, String plan_tasks_description, String priority, Long id);

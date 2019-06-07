@@ -1,5 +1,8 @@
 package ru.raiffeisen.ipr.entity;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
@@ -28,6 +31,7 @@ public class PlanTasks {
     @Column(name = "priority")
     private String priority;
 
+    @Fetch(FetchMode.JOIN)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "plan_tasks_id", nullable = false)
     private List<TasksList>  allIncludedTasksList;

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import ru.raiffeisen.ipr.dto.ClientDTO;
 import ru.raiffeisen.ipr.dto.ClientDeleteByEmailDTO;
+import ru.raiffeisen.ipr.dto.ShowAllClientDTO;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
@@ -27,10 +28,11 @@ public class ClientController {
 
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(value = "/list",  method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<Client> list(){
-        return clientService.getAll();
+    public List<ShowAllClientDTO> list(){
+        List showAllClientDTO = clientService.getAll();
+        return showAllClientDTO;
     }
 
 

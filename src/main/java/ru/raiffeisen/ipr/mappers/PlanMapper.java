@@ -7,6 +7,7 @@ import ru.raiffeisen.ipr.entity.Plan;
 public class PlanMapper {
     public  static ModelMapper modelMapper = new ModelMapper();
 
+
     public static Plan fromPlanDTOToPlanEntity(PlanDTO planDTO) {
         return  modelMapper.map(planDTO, Plan.class);
     }

@@ -61,13 +61,4 @@ public class ClientDTO {
         this.fired = fired;
     }
 
-    public static ClientDTO from(Client client) {
-        ClientDTO clientDTO =  new ClientDTO();
-        clientDTO.setName(client.getName());
-        clientDTO.setSurname(client.getSurname());
-        clientDTO.setPassword(client.getPassword());
-        clientDTO.setId(client.getId());
-        clientDTO.setEmail(client.getEmail());
-        return clientDTO;
-    }
 }
