@@ -19,7 +19,7 @@ public class PlanController {
 
     private PlanService planService;
 
-    public PlanController(PlanService planService){
+/*    public PlanController(PlanService planService){
         this.planService = planService;
     }
 
@@ -37,5 +37,5 @@ public class PlanController {
     public void createPlan(@RequestBody PlanDTO planDTO) {
         Plan plan = PlanMapper.fromPlanDTOToPlanEntity(planDTO);
         System.out.println(plan.getId());
-    }
+    }*/
 }
