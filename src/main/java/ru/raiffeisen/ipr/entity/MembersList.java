@@ -14,7 +14,7 @@ public class MembersList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @Basic
     @Column(name = "requirements")
@@ -38,12 +38,11 @@ public class MembersList {
         this.planTasks = planTasks;
     }
 
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,25 +52,5 @@ public class MembersList {
 
     public void setRequirements(String requirements) {
         this.requirements = requirements;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        MembersList that = (MembersList) o;
-
-        if (id != that.id) return false;
-        if (requirements != null ? !requirements.equals(that.requirements) : that.requirements != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (requirements != null ? requirements.hashCode() : 0);
-        return result;
     }
 }
