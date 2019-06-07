@@ -2,6 +2,7 @@ package ru.raiffeisen.ipr.mappers;
 
 import org.modelmapper.ModelMapper;
 import ru.raiffeisen.ipr.dto.ClientDTO;
+import ru.raiffeisen.ipr.dto.ClientDeleteByEmailDTO;
 import ru.raiffeisen.ipr.entity.Client;
 
 public class ClientMapper {
@@ -13,5 +14,9 @@ public class ClientMapper {
 
     public static ClientDTO fromClientEntityToClientDTO(Client client) {
         return modelMapper.map(client, ClientDTO.class);
+    }
+
+    public  static  ClientDeleteByEmailDTO deleteByEmailDTO(Client client) {
+        return modelMapper.map(client, ClientDeleteByEmailDTO.class);
     }
 }

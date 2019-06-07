@@ -1,6 +1,9 @@
 package ru.raiffeisen.ipr.dto;
 
+import ru.raiffeisen.ipr.entity.Client;
+
 public class ClientDTO {
+    private Long id;
     private String name;
     private String surname;
     private String email;
@@ -8,6 +11,14 @@ public class ClientDTO {
     private String password;
 
     public ClientDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -48,5 +59,15 @@ public class ClientDTO {
 
     public void setFired(boolean fired) {
         this.fired = fired;
+    }
+
+    public static ClientDTO from(Client client) {
+        ClientDTO clientDTO =  new ClientDTO();
+        clientDTO.setName(client.getName());
+        clientDTO.setSurname(client.getSurname());
+        clientDTO.setPassword(client.getPassword());
+        clientDTO.setId(client.getId());
+        clientDTO.setEmail(client.getEmail());
+        return clientDTO;
     }
 }

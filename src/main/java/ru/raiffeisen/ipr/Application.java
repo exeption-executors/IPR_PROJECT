@@ -27,6 +27,7 @@ public class Application {
         ClientService clientService = context.getBean(ClientService.class);
 
         /** CreateClient function **/
+//        clientService.deleteClientByEmail("123@mail.ru");
 //        clientService.insertClient("Mark", "Bryzgalov","marik33409@mail.ru", "passss", false);
 //        clientService.insertClient("Andrey", "Levkin", "Andrey@mail.ru", "anrewpass", false);
 //        clientService.insertClient("Evgeny", "Davidov", "evgen@mail.ru","evgenpass",false);
@@ -62,7 +63,7 @@ public class Application {
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 //        Date dateStart = dateFormat.parse("17/07/1989");
 //        Date dateEnd = dateFormat.parse("20/03/2020");
-//        planService.createPlan(4l, new java.sql.Date(dateStart.getTime()), new java.sql.Date(dateEnd.getTime()));
+//        planService.createPlan(1l, new java.sql.Date(dateStart.getTime()), new java.sql.Date(dateEnd.getTime()));
 
         /** DeletePlanById function **/
         //        planService.deletePlanById(1l);

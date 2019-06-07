@@ -1,5 +1,7 @@
 package ru.raiffeisen.ipr.entity;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -102,6 +104,13 @@ public class Client {
         this.fired = fired;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public List<Plan> getPlanEntities() {
         return planEntities;
