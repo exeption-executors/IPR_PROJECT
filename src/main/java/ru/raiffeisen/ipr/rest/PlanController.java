@@ -28,23 +28,6 @@ public class PlanController {
         this.grandService = grandService;
     }
 
-/*    @RequestMapping(value = "/deletelist", method = RequestMethod.DELETE)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    @ResponseBody
-    public void deletePlan(@RequestBody PlanDTO planDTO) {
-        Plan plan = PlanMapper.fromPlanDTOToPlanEntity(planDTO);
-        System.out.println("Удален");
-    }*/
-/*    @CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createPlan(@RequestBody PlanDTO planDTO) {
-        Plan plan = PlanMapper.fromPlanDTOToPlanEntity(planDTO);
-        Client client = clientService.findByEmail("первоемыло");
-        client.addPlanEntity(plan);
-        clientService.saveClient(client);
-    }*/
-
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
