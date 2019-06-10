@@ -94,4 +94,11 @@ public class PlanTasks {
         this.priority = priority;
     }
 
+    public List<TasksList> getAllIncludedTasksList() {
+        return allIncludedTasksList;
+    }
+
+    public void setAllIncludedTasksList(List<TasksList> allIncludedTasksList) {
+        this.allIncludedTasksList = allIncludedTasksList;
+    }
 }
