@@ -2,10 +2,10 @@ package ru.raiffeisen.ipr.rest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.raiffeisen.ipr.dto.ClientDTO;
-import ru.raiffeisen.ipr.dto.PlanDTO;
+import ru.raiffeisen.ipr.dto.*;
 import ru.raiffeisen.ipr.entity.Client;
 import ru.raiffeisen.ipr.entity.Plan;
+import ru.raiffeisen.ipr.entity.PlanTasks;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.mappers.PlanMapper;
 import ru.raiffeisen.ipr.service.ClientService;
@@ -32,12 +32,32 @@ public class PlanController {
         Plan plan = PlanMapper.fromPlanDTOToPlanEntity(planDTO);
         System.out.println("Удален");
     }*/
-    @CrossOrigin(origins = "*")
+/*    @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void createPlan(@RequestBody PlanDTO planDTO) {
         Plan plan = PlanMapper.fromPlanDTOToPlanEntity(planDTO);
         Client client = clientService.findByEmail("первоемыло");
+        client.addPlanEntity(plan);
+        clientService.saveClient(client);
+    }*/
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.DELETE)
+    @ResponseStatus(HttpStatus.OK)
+    public void deletePlan(@RequestBody DeletePlanByIdDTO plan) {
+        System.out.println(plan.getId());
+        planService.deletePlanById(plan.getId());
+    }
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createFullPlan(@RequestBody CreatePlanDTO createPlanDTO) {
+        Plan plan = PlanMapper.createFullPlan(createPlanDTO);
+        Client client = clientService.findByEmail("первоемыло");
+        List<PlanTasks> planTasks = PlanMapper.createPlanTasks(createPlanDTO.getPlanTasksDTOS());
+        plan.setPlanTasksEntities(planTasks);
         client.addPlanEntity(plan);
         clientService.saveClient(client);
     }
