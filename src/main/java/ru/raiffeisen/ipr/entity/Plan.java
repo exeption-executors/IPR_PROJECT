@@ -32,7 +32,6 @@ public class Plan {
     @JoinColumn(name = "plan_id", nullable = false)
     private List<PlanTasks> planTasksEntities;
 
-
     public void addPlanTasksEntity(PlanTasks planTasks) {
         planTasksEntities.add(planTasks);
     }
@@ -69,4 +68,7 @@ public class Plan {
         this.planDateEnd = planDateEnd;
     }
 
+    public void addPlanTasksList(List<PlanTasks> planTasksList) {
+        planTasksEntities.addAll(planTasksList);
+    }
 }

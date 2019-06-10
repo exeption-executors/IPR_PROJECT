@@ -6,6 +6,7 @@ import java.sql.Date;
 
 public interface PlanService {
     Plan savePlan (Plan plan);
+    void deletePlanById(Long id);
     void createPlanTask(Long plan_id, Date plan_tasks_date_end, String plan_tasks_description, String priority);
     void deletePlanTaskById(Long id);
     void updatePlanTask(Date plan_tasks_date_end, String plan_tasks_description, String priority, Long id);

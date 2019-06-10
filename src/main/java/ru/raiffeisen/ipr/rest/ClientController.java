@@ -50,8 +50,8 @@ public class ClientController {
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void deleteClient(@RequestBody Client client){
-        ClientDeleteByEmailDTO clientDeleteByEmailDTO1 = ClientMapper.deleteByEmailDTO(client);
-        clientService.deleteClientByEmail(clientDeleteByEmailDTO1.getEmail());
+        ClientDeleteByEmailDTO clientDeleteByEmailDTO = ClientMapper.deleteByEmailDTO(client);
+        clientService.deleteClientByEmail(clientDeleteByEmailDTO.getEmail());
     }
 
     @CrossOrigin(origins = "*")

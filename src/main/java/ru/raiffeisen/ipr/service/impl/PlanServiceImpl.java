@@ -54,4 +54,9 @@ public class PlanServiceImpl implements PlanService {
     public void updateTaskList(boolean task_is_done, String task_description, Long id) {
         tasksListRepository.updateTaskList(task_is_done, task_description, id);
     }
+
+    @Override
+    public void deletePlanById(Long id) {
+        planRepository.deleteById(id);
+    }
 }
