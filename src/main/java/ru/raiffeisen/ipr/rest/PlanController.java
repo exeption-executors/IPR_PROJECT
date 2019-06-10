@@ -9,6 +9,7 @@ import ru.raiffeisen.ipr.entity.PlanTasks;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.mappers.PlanMapper;
 import ru.raiffeisen.ipr.service.ClientService;
+import ru.raiffeisen.ipr.service.GrandService;
 import ru.raiffeisen.ipr.service.PlanService;
 
 import java.util.List;
@@ -19,10 +20,12 @@ public class PlanController {
 
     private PlanService planService;
     private ClientService clientService;
+    private GrandService grandService;
 
-    public PlanController(PlanService planService, ClientService clientService){
+    public PlanController(PlanService planService, ClientService clientService, GrandService grandService){
         this.planService = planService;
         this.clientService = clientService;
+        this.grandService = grandService;
     }
 
 /*    @RequestMapping(value = "/deletelist", method = RequestMethod.DELETE)
@@ -54,11 +57,6 @@ public class PlanController {
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void createFullPlan(@RequestBody CreatePlanDTO createPlanDTO) {
-        Plan plan = PlanMapper.createFullPlan(createPlanDTO);
-        Client client = clientService.findByEmail("первоемыло");
-        List<PlanTasks> planTasks = PlanMapper.createPlanTasks(createPlanDTO.getPlanTasksDTOS());
-        plan.setPlanTasksEntities(planTasks);
-        client.addPlanEntity(plan);
-        clientService.saveClient(client);
+       grandService.createFullPlan(createPlanDTO, clientService);
     }
 }
