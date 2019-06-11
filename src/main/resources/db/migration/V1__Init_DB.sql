@@ -18,18 +18,18 @@ CREATE TABLE  IF NOT EXISTS plan (
      plan_date_end DATE NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS plan_tasks (
+CREATE TABLE IF NOT EXISTS section (
      id BIGSERIAL PRIMARY KEY NOT NULL,
      plan_id BIGSERIAL NOT NULL references plan(id) ON DELETE CASCADE,
-     plan_tasks_date_end DATE NOT NULL,
-     plan_tasks_description VARCHAR(512) NOT NULL,
+     section_date_end DATE NOT NULL,
+     section_description VARCHAR(512) NOT NULL,
      priority VARCHAR(32) NOT NULL,
-     CONSTRAINT plan_tasks CHECK ((TRIM(priority) != '') AND TRIM(plan_tasks_description) != '')
+     CONSTRAINT section CHECK ((TRIM(priority) != '') AND TRIM(section_description) != '')
 );
 
 CREATE TABLE IF NOT EXISTS tasks_list (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    plan_tasks_id BIGSERIAL  NOT NULL references plan_tasks(id) ON DELETE CASCADE,
+    section_id BIGSERIAL  NOT NULL references section(id) ON DELETE CASCADE,
     task_is_done BOOLEAN NOT NULL DEFAULT (FALSE),
     task_description VARCHAR(512) NOT NULL,
     CONSTRAINT tasks_list CHECK (TRIM(task_description) != '')
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS tasks_list (
 
 CREATE TABLE IF NOT EXISTS members_list(
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    plan_tasks_id BIGSERIAL UNIQUE references plan_tasks(id) ON DELETE CASCADE,
+    section_id BIGSERIAL UNIQUE references section(id) ON DELETE CASCADE,
     requirements VARCHAR(512) NOT NULL,
     CONSTRAINT members_list CHECK (TRIM(requirements) != '')
 );

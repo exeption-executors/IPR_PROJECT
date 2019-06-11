@@ -30,18 +30,18 @@ public class Plan {
     @Fetch(FetchMode.JOIN)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "plan_id", nullable = false)
-    private List<PlanTasks> planTasksEntities;
+    private List<Section> sectionEntities;
 
-    public void addPlanTasksEntity(PlanTasks planTasks) {
-        planTasksEntities.add(planTasks);
+    public void addSectionEntity(Section section) {
+        sectionEntities.add(section);
     }
 
-    public List<PlanTasks> getPlanTasksEntities() {
-        return planTasksEntities;
+    public List<Section> getSectionEntities() {
+        return sectionEntities;
     }
 
-    public void setPlanTasksEntities(List<PlanTasks> planTasksEntities) {
-        this.planTasksEntities = planTasksEntities;
+    public void setSectionEntities(List<Section> sectionEntities) {
+        this.sectionEntities = sectionEntities;
     }
 
     public Long getId() {
@@ -68,7 +68,7 @@ public class Plan {
         this.planDateEnd = planDateEnd;
     }
 
-    public void addPlanTasksList(List<PlanTasks> planTasksList) {
-        planTasksEntities.addAll(planTasksList);
+    public void addSectionList(List<Section> sectionList) {
+        sectionEntities.addAll(sectionList);
     }
 }

@@ -8,9 +8,9 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "plan_tasks", schema = "public", catalog = "ipr")
-public class PlanTasks {
-    public PlanTasks() {
+@Table(name = "section", schema = "public", catalog = "ipr")
+public class Section {
+    public Section() {
 
     }
 
@@ -20,12 +20,12 @@ public class PlanTasks {
     private Long id;
 
     @Basic
-    @Column(name = "plan_tasks_date_end")
-    private Date planTasksDateEnd;
+    @Column(name = "section_date_end")
+    private Date sectionDateEnd;
 
     @Basic
-    @Column(name = "plan_tasks_description")
-    private String planTasksDescription;
+    @Column(name = "section_description")
+    private String sectionDescription;
 
     @Basic
     @Column(name = "priority")
@@ -33,10 +33,10 @@ public class PlanTasks {
 
     @Fetch(FetchMode.JOIN)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "plan_tasks_id", nullable = false)
+    @JoinColumn(name = "section_id", nullable = false)
     private List<TasksList>  allIncludedTasksList;
 
-    @OneToOne(mappedBy = "planTasks", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "section", cascade = CascadeType.ALL)
     private MembersList membersList;
 
     public MembersList getMembersList() {
@@ -47,11 +47,11 @@ public class PlanTasks {
     public void setMembersList(MembersList membersList) {
         if (membersList == null) {
             if (this.membersList != null) {
-                this.membersList.setPlanTasks(null);
+                this.membersList.setSection(null);
             }
         }
         else {
-            membersList.setPlanTasks(this);
+            membersList.setSection(this);
         }
         this.membersList = membersList;
     }
@@ -70,20 +70,20 @@ public class PlanTasks {
     }
 
 
-    public Date getPlanTasksDateEnd() {
-        return planTasksDateEnd;
+    public Date getSectionDateEnd() {
+        return sectionDateEnd;
     }
 
-    public void setPlanTasksDateEnd(Date planTasksDateEnd) {
-        this.planTasksDateEnd = planTasksDateEnd;
+    public void setSectionDateEnd(Date sectionDateEnd) {
+        this.sectionDateEnd = sectionDateEnd;
     }
 
-    public String getPlanTasksDescription() {
-        return planTasksDescription;
+    public String getSectionDescription() {
+        return sectionDescription;
     }
 
-    public void setPlanTasksDescription(String planTasksDescription) {
-        this.planTasksDescription = planTasksDescription;
+    public void setSectionDescription(String sectionDescription) {
+        this.sectionDescription = sectionDescription;
     }
 
     public String getPriority() {

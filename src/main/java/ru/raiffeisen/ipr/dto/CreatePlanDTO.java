@@ -15,7 +15,7 @@ public class CreatePlanDTO {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date planDateEnd;
 
-    private List<CreatePlanTasksDTO> planTasksDTOS;
+    private List<CreateSectionDTO> sectionDTOS;
 
     public CreatePlanDTO() {
     }
@@ -36,12 +36,12 @@ public class CreatePlanDTO {
         this.planDateEnd = planDateEnd;
     }
 
-    public List<CreatePlanTasksDTO> getPlanTasksDTOS() {
-        return planTasksDTOS;
+    public List<CreateSectionDTO> getSectionDTOS() {
+        return sectionDTOS;
     }
 
-    public void setPlanTasksDTOS(List<CreatePlanTasksDTO> planTasksDTOS) {
-        this.planTasksDTOS = planTasksDTOS;
+    public void setSectionDTOS(List<CreateSectionDTO> sectionDTOS) {
+        this.sectionDTOS = sectionDTOS;
     }
 
 }

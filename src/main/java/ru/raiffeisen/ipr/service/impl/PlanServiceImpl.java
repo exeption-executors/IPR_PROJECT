@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.raiffeisen.ipr.entity.Plan;
 import ru.raiffeisen.ipr.repository.PlanRepository;
-import ru.raiffeisen.ipr.repository.PlanTaskRepository;
+import ru.raiffeisen.ipr.repository.SectionRepository;
 import ru.raiffeisen.ipr.repository.TasksListRepository;
 import ru.raiffeisen.ipr.service.PlanService;
 
@@ -21,28 +21,28 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Autowired
-    private PlanTaskRepository planTaskRepository;
+    private SectionRepository sectionRepository;
     @Override
-    public void createPlanTask(Long plan_id, Date plan_tasks_date_end, String plan_tasks_description, String priority) {
-        planTaskRepository.createPlanTask(plan_id, plan_tasks_date_end, plan_tasks_description, priority);
+    public void createSection(Long plan_id, Date section_date_end, String section_description, String priority) {
+        sectionRepository.createSection(plan_id, section_date_end, section_description, priority);
     }
 
     @Override
-    public void deletePlanTaskById(Long id) {
-        planTaskRepository.deletePlanTaskById(id);
+    public void deleteSectionById(Long id) {
+        sectionRepository.deleteSectionById(id);
     }
 
     @Override
-    public void updatePlanTask(Date plan_tasks_date_end, String plan_tasks_description, String priority, Long id) {
-        planTaskRepository.updatePlanTask(plan_tasks_date_end, plan_tasks_description, priority, id);
+    public void updateSection(Date section_date_end, String section_description, String priority, Long id) {
+        sectionRepository.updateSection(section_date_end, section_description, priority, id);
     }
 
     @Autowired
     private TasksListRepository tasksListRepository;
 
     @Override
-    public void createTaskList(Long plan_tasks_id, boolean task_is_done, String task_description) {
-        tasksListRepository.createTaskList(plan_tasks_id, task_is_done, task_description);
+    public void createTaskList(Long section_id, boolean task_is_done, String task_description) {
+        tasksListRepository.createTaskList(section_id, task_is_done, task_description);
     }
 
     @Override

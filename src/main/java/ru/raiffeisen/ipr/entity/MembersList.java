@@ -27,15 +27,15 @@ public class MembersList {
     private Set<Client> members = new HashSet<>();
 
     @OneToOne()
-    @JoinColumn(name = "plan_tasks_id", nullable = false)
-    private PlanTasks planTasks;
+    @JoinColumn(name = "section_id", nullable = false)
+    private Section section;
 
-    public PlanTasks getPlanTasks() {
-        return planTasks;
+    public Section getSection() {
+        return section;
     }
 
-    public void setPlanTasks(PlanTasks planTasks) {
-        this.planTasks = planTasks;
+    public void setSection(Section section) {
+        this.section = section;
     }
 
     public Long getId() {

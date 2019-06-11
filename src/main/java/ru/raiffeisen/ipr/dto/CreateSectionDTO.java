@@ -7,24 +7,24 @@ import ru.raiffeisen.ipr.entity.TasksList;
 import java.sql.Date;
 import java.util.List;
 
-public class CreatePlanTasksDTO {
+public class CreateSectionDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private Date planTasksDateEnd;
+    private Date sectionDateEnd;
     private String priority;
-    private String planTasksDescription;
+    private String sectionDescription;
 
     private List<TasksListDTO> allIncludedTasksList;
 
-    public CreatePlanTasksDTO() {}
+    public CreateSectionDTO() {}
 
 
-    public String getPlanTasksDescription() {
-        return planTasksDescription;
+    public String getSectionDescription() {
+        return sectionDescription;
     }
 
-    public void setPlanTasksDescription(String planTasksDescription) {
-        this.planTasksDescription = planTasksDescription;
+    public void setSectionDescription(String sectionDescription) {
+        this.sectionDescription = sectionDescription;
     }
 
     public List<TasksListDTO> getAllIncludedTasksList() {
@@ -35,12 +35,12 @@ public class CreatePlanTasksDTO {
         this.allIncludedTasksList = allIncludedTasksList;
     }
 
-    public Date getPlanTasksDateEnd() {
-        return planTasksDateEnd;
+    public Date getSectionDateEnd() {
+        return sectionDateEnd;
     }
 
-    public void setPlanTasksDateEnd(Date planTasksDateEnd) {
-        this.planTasksDateEnd = planTasksDateEnd;
+    public void setSectionDateEnd(Date sectionDateEnd) {
+        this.sectionDateEnd = sectionDateEnd;
     }
 
     public String getPriority() {
