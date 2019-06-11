@@ -53,7 +53,7 @@ public class ClientDTO {
         this.password = password;
     }
 
-    public boolean isFired() {
+    public boolean getFired() {
         return fired;
     }
 

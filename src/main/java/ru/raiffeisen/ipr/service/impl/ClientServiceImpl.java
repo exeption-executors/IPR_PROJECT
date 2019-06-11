@@ -35,7 +35,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findByName(String name){
+    public Client findByName(String name) {
         return clientRepository.findByName(name);
     }
 
@@ -55,4 +55,11 @@ public class ClientServiceImpl implements ClientService {
         clientRepository.updateClient(name, surname, email, password, fired, id);
     }
 
+    public ClientRepository getClientRepository() {
+        return clientRepository;
+    }
+
+    public void setClientRepository(ClientRepository clientRepository) {
+        this.clientRepository = clientRepository;
+    }
 }

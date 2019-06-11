@@ -11,7 +11,6 @@ import java.util.*;
 @Table(name = "client", schema = "public", catalog = "ipr")
 public class Client {
     public Client() {
-
     }
 
     @Id
@@ -100,7 +99,7 @@ public class Client {
         this.email = email;
     }
 
-    public boolean isFired() {
+    public boolean getFired() {
         return fired;
     }
 
