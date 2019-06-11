@@ -16,6 +16,11 @@ public class PlanServiceImpl implements PlanService {
     private PlanRepository planRepository;
 
     @Override
+    public void deletePlanById(Long id) {
+        planRepository.deleteById(id);
+    }
+
+    @Override
     public Plan savePlan(Plan plan) {
         return planRepository.saveAndFlush(plan);
     }
@@ -53,10 +58,5 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public void updatePoint(boolean point_is_done, String point_description, Long id) {
         pointRepository.updatePoint(point_is_done, point_description, id);
-    }
-
-    @Override
-    public void deletePlanById(Long id) {
-        planRepository.deleteById(id);
     }
 }
