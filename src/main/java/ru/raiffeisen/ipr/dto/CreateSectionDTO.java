@@ -2,7 +2,7 @@ package ru.raiffeisen.ipr.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
-import ru.raiffeisen.ipr.entity.TasksList;
+import ru.raiffeisen.ipr.entity.Point;
 
 import java.sql.Date;
 import java.util.List;
@@ -14,7 +14,7 @@ public class CreateSectionDTO {
     private String priority;
     private String sectionDescription;
 
-    private List<TasksListDTO> allIncludedTasksList;
+    private List<PointDTO> allIncludedPoint;
 
     public CreateSectionDTO() {}
 
@@ -27,12 +27,12 @@ public class CreateSectionDTO {
         this.sectionDescription = sectionDescription;
     }
 
-    public List<TasksListDTO> getAllIncludedTasksList() {
-        return allIncludedTasksList;
+    public List<PointDTO> getAllIncludedPoint() {
+        return allIncludedPoint;
     }
 
-    public void setAllIncludedTasksList(List<TasksListDTO> allIncludedTasksList) {
-        this.allIncludedTasksList = allIncludedTasksList;
+    public void setAllIncludedPoint(List<PointDTO> allIncludedPoint) {
+        this.allIncludedPoint = allIncludedPoint;
     }
 
     public Date getSectionDateEnd() {

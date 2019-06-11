@@ -1,4 +1,4 @@
-DROP TABLE client, plan, tasks_list, members_list, section, members_clients;
+DROP TABLE client, plan, point, members_list, section, members_clients;
 
 CREATE TABLE IF NOT EXISTS client (
     id BIGSERIAL PRIMARY KEY NOT NULL,
@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS section (
      CONSTRAINT section CHECK ((TRIM(priority) != '') AND TRIM(section_description) != '')
 );
 
-CREATE TABLE IF NOT EXISTS tasks_list (
+CREATE TABLE IF NOT EXISTS point (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     section_id BIGSERIAL  NOT NULL references section(id) ON DELETE CASCADE,
-    task_is_done BOOLEAN NOT NULL DEFAULT (FALSE),
-    task_description VARCHAR(512) NOT NULL,
-    CONSTRAINT tasks_list CHECK (TRIM(task_description) != '')
+    point_is_done BOOLEAN NOT NULL DEFAULT (FALSE),
+    point_description VARCHAR(512) NOT NULL,
+    CONSTRAINT point CHECK (TRIM(point_description) != '')
 );
 
 CREATE TABLE IF NOT EXISTS members_list(

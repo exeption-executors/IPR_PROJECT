@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.raiffeisen.ipr.entity.Plan;
 import ru.raiffeisen.ipr.repository.PlanRepository;
 import ru.raiffeisen.ipr.repository.SectionRepository;
-import ru.raiffeisen.ipr.repository.TasksListRepository;
+import ru.raiffeisen.ipr.repository.PointRepository;
 import ru.raiffeisen.ipr.service.PlanService;
 
 import java.sql.Date;
@@ -38,21 +38,21 @@ public class PlanServiceImpl implements PlanService {
     }
 
     @Autowired
-    private TasksListRepository tasksListRepository;
+    private PointRepository pointRepository;
 
     @Override
-    public void createTaskList(Long section_id, boolean task_is_done, String task_description) {
-        tasksListRepository.createTaskList(section_id, task_is_done, task_description);
+    public void createPoint(Long section_id, boolean point_is_done, String point_description) {
+        pointRepository.createPoint(section_id, point_is_done, point_description);
     }
 
     @Override
-    public void deleteTaskList(Long id) {
-        tasksListRepository.deleteTaskListById(id);
+    public void deletePoint(Long id) {
+        pointRepository.deletePointById(id);
     }
 
     @Override
-    public void updateTaskList(boolean task_is_done, String task_description, Long id) {
-        tasksListRepository.updateTaskList(task_is_done, task_description, id);
+    public void updatePoint(boolean point_is_done, String point_description, Long id) {
+        pointRepository.updatePoint(point_is_done, point_description, id);
     }
 
     @Override

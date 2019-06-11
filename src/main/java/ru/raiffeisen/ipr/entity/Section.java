@@ -34,7 +34,7 @@ public class Section {
     @Fetch(FetchMode.JOIN)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "section_id", nullable = false)
-    private List<TasksList>  allIncludedTasksList;
+    private List<Point>  allIncludedPoint;
 
     @OneToOne(mappedBy = "section", cascade = CascadeType.ALL)
     private MembersList membersList;
@@ -56,8 +56,8 @@ public class Section {
         this.membersList = membersList;
     }
 
-    public void addTasksList(TasksList tasksList) {
-        allIncludedTasksList.add(tasksList);
+    public void addPoint(Point point) {
+        allIncludedPoint.add(point);
     }
 
 
@@ -94,11 +94,11 @@ public class Section {
         this.priority = priority;
     }
 
-    public List<TasksList> getAllIncludedTasksList() {
-        return allIncludedTasksList;
+    public List<Point> getAllIncludedPoint() {
+        return allIncludedPoint;
     }
 
-    public void setAllIncludedTasksList(List<TasksList> allIncludedTasksList) {
-        this.allIncludedTasksList = allIncludedTasksList;
+    public void setAllIncludedPoint(List<Point> allIncludedPoint) {
+        this.allIncludedPoint = allIncludedPoint;
     }
 }

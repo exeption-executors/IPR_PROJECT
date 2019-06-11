@@ -87,14 +87,14 @@ public class Application {
 //        Date dateSectionEnd = dateFormat.parse("15/15/1515");
 //        planService.updateSection(new java.sql.Date(dateSectionEnd.getTime()), "Refactoring", "Low", 3l);
 
-        /** CreateTaskList function **/
-//        planService.createTaskList(3l,true, "Рассмешить Марка");
+        /** CreatePoint function **/
+//        planService.createPoint(3l,true, "Рассмешить Марка");
 
-        /** DeleteTaskListById **/
-//        planService.deleteTaskList(1l);
+        /** DeletePointById **/
+//        planService.deletePoint(1l);
 
-        /** EditTaskList function **/
-//        planService.updateTaskList(false, "Заствить Марка работать", 2l);
+        /** EditPoint function **/
+//        planService.updatePoint(false, "Заствить Марка работать", 2l);
 
         /** TestTestTest **/
     }
