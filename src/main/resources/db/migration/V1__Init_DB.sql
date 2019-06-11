@@ -35,15 +35,15 @@ CREATE TABLE IF NOT EXISTS point (
     CONSTRAINT point CHECK (TRIM(point_description) != '')
 );
 
-CREATE TABLE IF NOT EXISTS members_list(
+CREATE TABLE IF NOT EXISTS partner(
     id BIGSERIAL PRIMARY KEY NOT NULL,
     section_id BIGSERIAL UNIQUE references section(id) ON DELETE CASCADE,
     requirements VARCHAR(512) NOT NULL,
-    CONSTRAINT members_list CHECK (TRIM(requirements) != '')
+    CONSTRAINT partner CHECK (TRIM(requirements) != '')
 );
 
-CREATE TABLE IF NOT EXISTS members_clients(
+CREATE TABLE IF NOT EXISTS support(
     id BIGSERIAL PRIMARY KEY NOT NULL,
     client_id BIGSERIAL NOT NULL UNIQUE references client(id) ON DELETE CASCADE,
-    members_list_id BIGSERIAL NOT NULL UNIQUE references members_list(id) ON DELETE CASCADE
+    partner_id BIGSERIAL NOT NULL UNIQUE references partner(id) ON DELETE CASCADE
 );

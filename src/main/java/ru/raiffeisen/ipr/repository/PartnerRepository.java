@@ -1,4 +1,7 @@
 package ru.raiffeisen.ipr.repository;
 
-public interface PartnerRepository {
+import ru.raiffeisen.ipr.entity.Partner;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PartnerRepository extends JpaRepository<Partner, Integer> {
 }

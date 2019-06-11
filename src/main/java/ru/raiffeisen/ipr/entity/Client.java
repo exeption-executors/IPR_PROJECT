@@ -50,22 +50,22 @@ public class Client {
 
     @Fetch(FetchMode.JOIN)
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "members_clients",
+    @JoinTable(name = "support",
             joinColumns = @JoinColumn(name = "client_id"),
-            inverseJoinColumns = @JoinColumn(name = "members_list_id")
+            inverseJoinColumns = @JoinColumn(name = "partner_id")
     )
-    private Set<MembersList> allIncludedMembersList = new HashSet<>();
+    private Set<Partner> allIncludedPartner = new HashSet<>();
 
-    public Set<MembersList> getAllIncludedMembersList() {
-        return allIncludedMembersList;
+    public Set<Partner> getAllIncludedPartner() {
+        return allIncludedPartner;
     }
 
-    public void setAllIncludedMembersList(Set<MembersList> allIncludedMembersList) {
-        this.allIncludedMembersList = allIncludedMembersList;
+    public void setAllIncludedPartner(Set<Partner> allIncludedPartner) {
+        this.allIncludedPartner = allIncludedPartner;
     }
 
-    public void addMembersListToClient(MembersList membersList) {
-        allIncludedMembersList.add(membersList);
+    public void addPartnerToClient(Partner partner) {
+        allIncludedPartner.add(partner);
     }
 
     public Long getId() {

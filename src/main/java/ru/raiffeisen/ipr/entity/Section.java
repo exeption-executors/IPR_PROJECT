@@ -37,23 +37,23 @@ public class Section {
     private List<Point>  allIncludedPoint;
 
     @OneToOne(mappedBy = "section", cascade = CascadeType.ALL)
-    private MembersList membersList;
+    private Partner partner;
 
-    public MembersList getMembersList() {
-        return membersList;
+    public Partner getPartner() {
+        return partner;
     }
 
 
-    public void setMembersList(MembersList membersList) {
-        if (membersList == null) {
-            if (this.membersList != null) {
-                this.membersList.setSection(null);
+    public void setPartner(Partner partner) {
+        if (partner == null) {
+            if (this.partner != null) {
+                this.partner.setSection(null);
             }
         }
         else {
-            membersList.setSection(this);
+            partner.setSection(this);
         }
-        this.membersList = membersList;
+        this.partner = partner;
     }
 
     public void addPoint(Point point) {
