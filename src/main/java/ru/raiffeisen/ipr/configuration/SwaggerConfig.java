@@ -22,7 +22,6 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("ru.raiffeisen.ipr.rest"))
-                .paths(regex("/clients.*"))
                 .build()
                 .apiInfo(metaData());
     }

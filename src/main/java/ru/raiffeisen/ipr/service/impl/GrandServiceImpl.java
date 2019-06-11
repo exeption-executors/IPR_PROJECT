@@ -16,7 +16,7 @@ public class GrandServiceImpl implements GrandService {
     @Override
     public void createFullPlan(CreatePlanDTO createPlanDTO, ClientService clientService) {
         Plan plan = PlanMapper.createFullPlan(createPlanDTO);
-        Client client = clientService.findByEmail("первоемыло");
+        Client client = clientService.findByEmail("Andrewlev@gmail.com");
         List<PlanTasks> planTasks = PlanMapper.createPlanTasks(createPlanDTO.getPlanTasksDTOS());
         plan.setPlanTasksEntities(planTasks);
         client.addPlanEntity(plan);
