@@ -74,27 +74,27 @@ public class Application {
 //        Date dateEnd = dateFormat.parse("22/22/2222");
 //        planService.updatePlan(new java.sql.Date(dateStart.getTime()),new java.sql.Date(dateEnd.getTime()),4l);
 
-        /** CreatePlanTask function **/
+        /** CreateSection function **/
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//        Date datePlanTaskEnd = dateFormat.parse("15/15/1515");
-//        planService.createPlanTask(4l, new java.sql.Date(datePlanTaskEnd.getTime()), "Cover code by test", "High");
+//        Date dateSectionEnd = dateFormat.parse("15/15/1515");
+//        planService.createSection(4l, new java.sql.Date(dateSectionEnd.getTime()), "Cover code by test", "High");
 
-        /** DeletePlanTasksById function **/
-//        planService.deletePlanTaskById(2l);
+        /** DeleteSectionById function **/
+//        planService.deleteSectionById(2l);
 
-        /** EditPlanTaskInformation function **/
+        /** EditSectionInformation function **/
 //        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//        Date datePlanTaskEnd = dateFormat.parse("15/15/1515");
-//        planService.updatePlanTask(new java.sql.Date(datePlanTaskEnd.getTime()), "Refactoring", "Low", 3l);
+//        Date dateSectionEnd = dateFormat.parse("15/15/1515");
+//        planService.updateSection(new java.sql.Date(dateSectionEnd.getTime()), "Refactoring", "Low", 3l);
 
-        /** CreateTaskList function **/
-//        planService.createTaskList(3l,true, "Рассмешить Марка");
+        /** CreatePoint function **/
+//        planService.createPoint(3l,true, "Рассмешить Марка");
 
-        /** DeleteTaskListById **/
-//        planService.deleteTaskList(1l);
+        /** DeletePointById **/
+//        planService.deletePoint(1l);
 
-        /** EditTaskList function **/
-//        planService.updateTaskList(false, "Заствить Марка работать", 2l);
+        /** EditPoint function **/
+//        planService.updatePoint(false, "Заствить Марка работать", 2l);
 
         /** TestTestTest **/
     }

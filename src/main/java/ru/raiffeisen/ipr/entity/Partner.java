@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "members_list", schema = "public", catalog = "ipr")
-public class MembersList {
-    public MembersList() {
+@Table(name = "partner", schema = "public", catalog = "ipr")
+public class Partner {
+    public Partner() {
 
     }
 
@@ -21,21 +21,21 @@ public class MembersList {
     private String requirements;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "members_clients",
-            joinColumns = @JoinColumn(name = "members_list_id"),
+    @JoinTable(name = "support",
+            joinColumns = @JoinColumn(name = "partner_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id"))
-    private Set<Client> members = new HashSet<>();
+    private Set<Client> support = new HashSet<>();
 
     @OneToOne()
-    @JoinColumn(name = "plan_tasks_id", nullable = false)
-    private PlanTasks planTasks;
+    @JoinColumn(name = "section_id", nullable = false)
+    private Section section;
 
-    public PlanTasks getPlanTasks() {
-        return planTasks;
+    public Section getSection() {
+        return section;
     }
 
-    public void setPlanTasks(PlanTasks planTasks) {
-        this.planTasks = planTasks;
+    public void setSection(Section section) {
+        this.section = section;
     }
 
     public Long getId() {

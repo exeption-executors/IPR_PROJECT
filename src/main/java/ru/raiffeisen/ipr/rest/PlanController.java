@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.dto.*;
 import ru.raiffeisen.ipr.entity.Client;
 import ru.raiffeisen.ipr.entity.Plan;
-import ru.raiffeisen.ipr.entity.PlanTasks;
+import ru.raiffeisen.ipr.entity.Section;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.mappers.PlanMapper;
 import ru.raiffeisen.ipr.service.ClientService;

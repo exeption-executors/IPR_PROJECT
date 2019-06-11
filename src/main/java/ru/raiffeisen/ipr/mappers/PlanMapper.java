@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import ru.raiffeisen.ipr.dto.*;
 import ru.raiffeisen.ipr.entity.Client;
 import ru.raiffeisen.ipr.entity.Plan;
-import ru.raiffeisen.ipr.entity.PlanTasks;
+import ru.raiffeisen.ipr.entity.Section;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +25,12 @@ public class PlanMapper {
         return modelMapper.map(createPlanDTO, Plan.class);
     }
 
-    public static List<PlanTasks> createPlanTasks(List<CreatePlanTasksDTO> createPlanTasksDTOS){
-        List<PlanTasks> planTasksList = new ArrayList<>();
-        for(CreatePlanTasksDTO createPlanTasksDTO: createPlanTasksDTOS) {
-            PlanTasks planTasks = modelMapper.map(createPlanTasksDTO, PlanTasks.class);
-            planTasksList.add(planTasks);
+    public static List<Section> createSection(List<CreateSectionDTO> createSectionDTOS){
+        List<Section> sectionList = new ArrayList<>();
+        for(CreateSectionDTO createSectionDTO: createSectionDTOS) {
+            Section section = modelMapper.map(createSectionDTO, Section.class);
+            sectionList.add(section);
         }
-        return planTasksList;
+        return sectionList;
     }
 }

@@ -1,5 +1,3 @@
-DROP TABLE client, plan, point, partner, section, support;
-
 CREATE TABLE IF NOT EXISTS client (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(32) NOT NULL,
