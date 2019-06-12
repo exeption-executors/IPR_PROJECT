@@ -7,9 +7,9 @@ import java.sql.Date;
 
 public class PlanDTO {
     private Long client_id;
-    @JsonFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     // Allows dd/MM/yyyy date to be passed into GET request in JSON
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date planDateStart;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
