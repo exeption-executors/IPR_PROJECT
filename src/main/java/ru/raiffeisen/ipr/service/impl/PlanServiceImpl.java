@@ -9,6 +9,7 @@ import ru.raiffeisen.ipr.repository.PointRepository;
 import ru.raiffeisen.ipr.service.PlanService;
 
 import java.sql.Date;
+import java.util.Optional;
 
 @Service
 public class PlanServiceImpl implements PlanService {
@@ -27,10 +28,7 @@ public class PlanServiceImpl implements PlanService {
 
     @Autowired
     private SectionRepository sectionRepository;
-    @Override
-    public void createSection(Long plan_id, Date section_date_end, String section_description, String priority) {
-        sectionRepository.createSection(plan_id, section_date_end, section_description, priority);
-    }
+
 
     @Override
     public void deleteSectionById(Long id) {
@@ -58,5 +56,10 @@ public class PlanServiceImpl implements PlanService {
     @Override
     public void updatePoint(boolean point_is_done, String point_description, Long id) {
         pointRepository.updatePoint(point_is_done, point_description, id);
+    }
+
+    @Override
+    public Optional<Plan> findById(Long id) {
+       return planRepository.findById(id);
     }
 }

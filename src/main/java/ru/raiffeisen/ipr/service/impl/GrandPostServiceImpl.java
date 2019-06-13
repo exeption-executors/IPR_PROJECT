@@ -2,12 +2,15 @@ package ru.raiffeisen.ipr.service.impl;
 
 import org.springframework.stereotype.Service;
 import ru.raiffeisen.ipr.dto.CreatePlanDTO;
+import ru.raiffeisen.ipr.dto.PostSectionDTO;
 import ru.raiffeisen.ipr.entity.Client;
 import ru.raiffeisen.ipr.entity.Plan;
 import ru.raiffeisen.ipr.entity.Section;
 import ru.raiffeisen.ipr.mappers.PlanMapper;
+import ru.raiffeisen.ipr.mappers.SectionMapper;
 import ru.raiffeisen.ipr.service.ClientService;
 import ru.raiffeisen.ipr.service.GrandPostService;
+import ru.raiffeisen.ipr.service.PlanService;
 
 import java.util.List;
 
@@ -22,4 +25,5 @@ public class GrandPostServiceImpl implements GrandPostService {
         client.addPlanEntity(plan);
         clientService.saveClient(client);
     }
+
 }
