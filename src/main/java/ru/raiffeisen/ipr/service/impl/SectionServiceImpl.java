@@ -27,7 +27,7 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public void deleteSectionById(Long id) {
-        sectionRepository.deleteSectionById(id);
+        sectionRepository.deleteById(id);
     }
 
     @Override
@@ -41,5 +41,15 @@ public class SectionServiceImpl implements SectionService {
     @Override
     public void updateSectionById(Date section_date_end, String section_description, String priority, Long id) {
         sectionRepository.updateSection(section_date_end, section_description, priority, id);
+    }
+
+    @Override
+    public Optional<Section> findById(Long id) {
+        return sectionRepository.findById(id);
+    }
+
+    @Override
+    public Section saveSection(Section section) {
+        return sectionRepository.saveAndFlush(section);
     }
 }

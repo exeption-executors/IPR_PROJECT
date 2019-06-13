@@ -22,6 +22,7 @@ public class PlanController {
         this.grandPostService = grandPostService;
     }
 
+    /**------ADD ALL FIELDS OF PLAN------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,6 +30,7 @@ public class PlanController {
        grandPostService.createFullPlan(createPlanDTO, clientService);
     }
 
+    /**------DELETE PLAN FUNCTION------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
@@ -36,4 +38,14 @@ public class PlanController {
         PlanDeleteDTO planDeleteDTO = PlanMapper.deletePlanByIdDTO(plan);
         planService.deletePlanById(plan.getId());
     }
+    /**-----UPDATE PLAN FUNCTION------**/
+    @CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void updatePlan(@RequestBody UpdatePlanDTO updatePlanDTO) {
+        Plan planForUpdate = PlanMapper.updatePlan(updatePlanDTO);
+        planService.savePlan(planForUpdate);
+    }
+
+
 }

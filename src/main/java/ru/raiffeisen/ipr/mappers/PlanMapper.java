@@ -24,6 +24,10 @@ public class PlanMapper {
         return modelMapper.map(createPlanDTO, Plan.class);
     }
 
+    public static Plan updatePlan(UpdatePlanDTO updatePlanDTO) {
+        return modelMapper.map(updatePlanDTO, Plan.class);
+    }
+
     public static List<Section> createSection(List<CreateSectionDTO> createSectionDTOS){
         List<Section> sectionList = new ArrayList<>();
         for(CreateSectionDTO createSectionDTO: createSectionDTOS) {

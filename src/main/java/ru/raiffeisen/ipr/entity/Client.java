@@ -40,7 +40,7 @@ public class Client {
     private boolean fired;
 
     @Fetch(FetchMode.JOIN)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "client_id", nullable = false)
     private List<Plan> planEntities;
 

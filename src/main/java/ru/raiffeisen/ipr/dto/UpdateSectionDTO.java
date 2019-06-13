@@ -7,8 +7,9 @@ import javax.persistence.Id;
 import java.sql.Date;
 
 public class UpdateSectionDTO {
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date sectionDateEnd;
     private String sectionDescription;
     private String priority;

@@ -6,9 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.sql.Date;
 import java.util.List;
 
-public class CreatePlanDTO {
+public class UpdatePlanDTO {
 
-    private Long client_id;
+    private Long id;
 
     @JsonFormat(pattern = "yyyy/MM/dd")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
@@ -18,17 +18,10 @@ public class CreatePlanDTO {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date planDateEnd;
 
-    private List<CreateSectionDTO> sectionDTO;
+    private List<CreateSectionDTO> sectionEntities;
 
-    public CreatePlanDTO() {
-    }
 
-    public Long getClient_id() {
-        return client_id;
-    }
-
-    public void setClient_id(Long client_id) {
-        this.client_id = client_id;
+    public UpdatePlanDTO() {
     }
 
     public Date getPlanDateStart() {
@@ -47,12 +40,19 @@ public class CreatePlanDTO {
         this.planDateEnd = planDateEnd;
     }
 
-    public List<CreateSectionDTO> getSectionDTO() {
-        return sectionDTO;
+    public Long getId() {
+        return id;
     }
 
-    public void setSectionDTO(List<CreateSectionDTO> sectionDTO) {
-        this.sectionDTO = sectionDTO;
+    public void setId(Long id) {
+        this.id = id;
     }
 
+    public List<CreateSectionDTO> getSectionEntities() {
+        return sectionEntities;
+    }
+
+    public void setSectionEntities(List<CreateSectionDTO> sectionEntities) {
+        this.sectionEntities = sectionEntities;
+    }
 }

@@ -16,12 +16,4 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     Client findByEmail(String email);
 
     Client findByName(String name);
-
-    @Modifying
-    @Transactional
-    @Query("update Client set name = :name, surname = :surname, email = :email, password = :password, " +
-            "fired = :fired where id = :id")
-    void updateClient(@Param("name") String name, @Param("surname") String surname,
-                      @Param("email") String email, @Param("password") String password,
-                      @Param("fired") boolean fired, @Param("id") Long id);
 }

@@ -1,13 +1,24 @@
 package ru.raiffeisen.ipr.dto;
 
-public class ClientDTO {
+import ru.raiffeisen.ipr.entity.Client;
+
+public class ClientUpdateDTO {
+    private Long id;
     private String name;
     private String surname;
     private String email;
     private boolean fired;
     private String password;
 
-    public ClientDTO() {
+    public ClientUpdateDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

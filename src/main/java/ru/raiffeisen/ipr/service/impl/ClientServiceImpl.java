@@ -20,11 +20,6 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void deleteClientById(Long id) {
-        clientRepository.deleteById(id);
-    }
-
-    @Override
     public Optional<Client> findById(Long id) {
        return clientRepository.findById(id);
     }
@@ -35,24 +30,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public Client findByName(String name){
-        return clientRepository.findByName(name);
-    }
-
-    @Override
     public List<Client> getAll() {
-//        return clientRepository.findAll().stream().map(ClientDTO::from).collect(Collectors.toList());
         return clientRepository.findAll();
     }
 
     @Override
     public Client saveClient(Client client) {
         return clientRepository.saveAndFlush(client);
-    }
-
-    @Override
-    public void updateClient(String name, String surname, String email, String password, boolean fired, Long id) {
-        clientRepository.updateClient(name, surname, email, password, fired, id);
     }
 
 }

@@ -2,16 +2,14 @@ package ru.raiffeisen.ipr.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import ru.raiffeisen.ipr.dto.ClientDTO;
+import ru.raiffeisen.ipr.dto.ClientUpdateDTO;
 import ru.raiffeisen.ipr.dto.ClientDeleteByEmailDTO;
 import ru.raiffeisen.ipr.dto.ShowAllClientDTO;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.service.ClientService;
-import ru.raiffeisen.ipr.service.impl.ClientServiceImpl;
 
 import java.util.List;
 
@@ -35,7 +33,7 @@ public class ClientController {
         return showAllClientDTO;
     }
 
-
+/**------ADD NEW CLIENT OPERATION-------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -44,6 +42,7 @@ public class ClientController {
         clientService.saveClient(client);
     }
 
+/**------DELETE CLIENT BY EMAIL-------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
@@ -51,14 +50,12 @@ public class ClientController {
         ClientDeleteByEmailDTO clientDeleteByEmailDTO = ClientMapper.deleteByEmailDTO(client);
         clientService.deleteClientByEmail(clientDeleteByEmailDTO.getEmail());
     }
-
+/**------UPDATE CLIENT BY ID------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.CREATED)
-    public void updateClient(@RequestBody Client client) {
-        ClientDTO clientDTO1 = ClientMapper.fromClientEntityToClientDTO(client);
-        clientService.findByEmail(clientDTO1.getEmail());
-        Client client1 = ClientMapper.fromClientDTOToClientEntity(clientDTO1);
-        clientService.saveClient(client1);
+    public void updateClient(@RequestBody ClientUpdateDTO clientUpdateDTO) {
+        Client clientForSave = ClientMapper.fromClientUpdateDTOToClientEntity(clientUpdateDTO);
+        clientService.saveClient(clientForSave);
     }
 }
