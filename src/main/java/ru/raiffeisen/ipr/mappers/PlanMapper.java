@@ -2,7 +2,6 @@ package ru.raiffeisen.ipr.mappers;
 
 import org.modelmapper.ModelMapper;
 import ru.raiffeisen.ipr.dto.*;
-import ru.raiffeisen.ipr.entity.Client;
 import ru.raiffeisen.ipr.entity.Plan;
 import ru.raiffeisen.ipr.entity.Section;
 
@@ -17,8 +16,8 @@ public class PlanMapper {
         return  modelMapper.map(planDTO, Plan.class);
     }
 
-    public  static DeletePlanByIdDTO deletePlanByIdDTO(Plan plan) {
-        return modelMapper.map(plan, DeletePlanByIdDTO.class);
+    public  static PlanDeleteDTO deletePlanByIdDTO(Plan plan) {
+        return modelMapper.map(plan, PlanDeleteDTO.class);
     }
 
     public static Plan createFullPlan(CreatePlanDTO createPlanDTO) {

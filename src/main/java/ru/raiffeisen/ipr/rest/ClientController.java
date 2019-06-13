@@ -42,8 +42,6 @@ public class ClientController {
     public void createClient(@RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
         clientService.saveClient(client);
-        System.out.println(client.getName());
-        System.out.println(client.getSurname());
     }
 
     @CrossOrigin(origins = "*")

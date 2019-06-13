@@ -8,8 +8,8 @@ import java.sql.Date;
 import java.util.List;
 
 public class CreateSectionDTO {
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date sectionDateEnd;
     private String priority;
     private String sectionDescription;
