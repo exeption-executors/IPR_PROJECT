@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.raiffeisen.ipr.dto.CreatePlanDTO;
 import ru.raiffeisen.ipr.dto.PostSectionDTO;
@@ -16,11 +17,12 @@ import java.util.List;
 
 @Service
 public class GrandPostServiceImpl implements GrandPostService {
+
     @Override
     public void createFullPlan(CreatePlanDTO createPlanDTO, ClientService clientService) {
         Plan plan = PlanMapper.createFullPlan(createPlanDTO);
-        Client client = clientService.findByEmail("Andrewlev@gmail.com");
-        List<Section> section = PlanMapper.createSection(createPlanDTO.getSectionDTOS());
+        Client client = clientService.findById(createPlanDTO.getClient_id()).orElseThrow(RuntimeException::new);
+        List<Section> section = PlanMapper.createSection(createPlanDTO.getSectionDTO());
         plan.setSectionEntities(section);
         client.addPlanEntity(plan);
         clientService.saveClient(client);
