@@ -10,17 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public interface PointRepository extends JpaRepository<Point, Long> {
-    @Modifying
-    @Transactional
-    @Query(value = "insert into point (section_id, point_is_done, point_description) " +
-            "values (:section_id, :point_is_done, :point_description)", nativeQuery = true)
-    void createPoint(@Param("section_id") Long section_id, @Param("point_is_done") boolean point_is_done,
-                     @Param("point_description") String point_description);
-
-    @Modifying
-    @Transactional
-    @Query("delete from Point i where i.id = :id")
-    void deletePointById(@Param("id") Long id);
 
     @Modifying
     @Transactional

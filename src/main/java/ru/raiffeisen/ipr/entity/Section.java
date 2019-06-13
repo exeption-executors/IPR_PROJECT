@@ -34,32 +34,14 @@ public class Section {
     @Fetch(FetchMode.JOIN)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "section_id", nullable = false)
-    private List<Point>  allIncludedPoint;
+    private List<Point>  points;
 
     @OneToOne(mappedBy = "section", cascade = CascadeType.ALL)
     private Partner partner;
 
-    public Partner getPartner() {
-        return partner;
+    public void addPointEntity(Point point) {
+        points.add(point);
     }
-
-
-    public void setPartner(Partner partner) {
-        if (partner == null) {
-            if (this.partner != null) {
-                this.partner.setSection(null);
-            }
-        }
-        else {
-            partner.setSection(this);
-        }
-        this.partner = partner;
-    }
-
-    public void addPoint(Point point) {
-        allIncludedPoint.add(point);
-    }
-
 
     public Long getId() {
         return id;
@@ -68,7 +50,6 @@ public class Section {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Date getSectionDateEnd() {
         return sectionDateEnd;
@@ -94,11 +75,19 @@ public class Section {
         this.priority = priority;
     }
 
-    public List<Point> getAllIncludedPoint() {
-        return allIncludedPoint;
+    public List<Point> getPoints() {
+        return points;
     }
 
-    public void setAllIncludedPoint(List<Point> allIncludedPoint) {
-        this.allIncludedPoint = allIncludedPoint;
+    public void setPoints(List<Point> pointEntities) {
+        this.points = pointEntities;
+    }
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
     }
 }
