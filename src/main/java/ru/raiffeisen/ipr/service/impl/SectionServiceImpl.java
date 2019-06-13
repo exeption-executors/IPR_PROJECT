@@ -17,6 +17,8 @@ import java.awt.*;
 import java.sql.Date;
 import java.util.Optional;
 
+import java.sql.Date;
+
 @Service
 public class SectionServiceImpl implements SectionService {
 
@@ -34,5 +36,10 @@ public class SectionServiceImpl implements SectionService {
         Plan plan = planService.findById(postSectionDTO.getPlan_id()).orElseThrow(RuntimeException::new);
         plan.addSectionEntity(section);
         planService.savePlan(plan);
+    }
+
+    @Override
+    public void updateSectionById(Date section_date_end, String section_description, String priority, Long id) {
+        sectionRepository.updateSection(section_date_end, section_description, priority, id);
     }
 }

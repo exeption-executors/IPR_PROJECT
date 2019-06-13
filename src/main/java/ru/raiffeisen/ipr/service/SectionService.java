@@ -1,5 +1,7 @@
 package ru.raiffeisen.ipr.service;
 
+import java.sql.Date;
+
 import ru.raiffeisen.ipr.dto.PostSectionDTO;
 import ru.raiffeisen.ipr.entity.Section;
 
@@ -8,7 +10,6 @@ import java.util.Optional;
 
 public interface SectionService {
     void deleteSectionById(Long id);
-//    Section postSection(Section section);
-
+    void updateSectionById(Date section_date_end, String section_description, String priority, Long id);
     void postSection(PostSectionDTO postSectionDTO, PlanService planService);
 }
