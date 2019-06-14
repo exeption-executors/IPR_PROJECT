@@ -22,6 +22,7 @@ public class SectionController {
     @Autowired
     private PlanService planService;
 
+    /**----DELETE SECTION FUNCTION----**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
@@ -29,6 +30,7 @@ public class SectionController {
         sectionService.deleteSectionById(deleteSectionByIdDTO.getId());
     }
 
+    /**----CREATE SECTION FUNCTION----**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
@@ -36,6 +38,7 @@ public class SectionController {
         sectionService.postSection(postSectionDTO,planService);
     }
 
+    /**-----UPDATE SECTION FUNCTION----**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)

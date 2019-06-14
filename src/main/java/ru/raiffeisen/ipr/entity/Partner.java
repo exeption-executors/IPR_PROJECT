@@ -53,4 +53,16 @@ public class Partner {
     public void setRequirements(String requirements) {
         this.requirements = requirements;
     }
+
+    public Set<Client> getSupport() {
+        return support;
+    }
+
+    public void setSupport(Set<Client> support) {
+        this.support = support;
+    }
+
+    public void addSupport(Client client) {
+        support.add(client);
+    }
 }

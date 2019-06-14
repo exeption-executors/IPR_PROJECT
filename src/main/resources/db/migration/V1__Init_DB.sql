@@ -44,6 +44,6 @@ CREATE TABLE IF NOT EXISTS partner(
 
 CREATE TABLE IF NOT EXISTS support(
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    client_id BIGSERIAL NOT NULL UNIQUE references client(id) ON DELETE CASCADE,
-    partner_id BIGSERIAL NOT NULL UNIQUE references partner(id) ON DELETE CASCADE
+    client_id BIGSERIAL NOT NULL references client(id) ON DELETE CASCADE,
+    partner_id BIGSERIAL NOT NULL references partner(id) ON DELETE CASCADE
 );
