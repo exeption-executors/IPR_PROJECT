@@ -20,11 +20,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    public ClientController(ClientService clientService){
-        this.clientService = clientService;
-    }
-
-
+/**------SHOW ALL CLIENT OPERATION-------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -46,10 +42,10 @@ public class ClientController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteClient(@RequestBody Client client){
-        ClientDeleteByEmailDTO clientDeleteByEmailDTO = ClientMapper.deleteByEmailDTO(client);
+    public void deleteClient(@RequestBody ClientDeleteByEmailDTO clientDeleteByEmailDTO){
         clientService.deleteClientByEmail(clientDeleteByEmailDTO.getEmail());
     }
+
 /**------UPDATE CLIENT BY ID------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)

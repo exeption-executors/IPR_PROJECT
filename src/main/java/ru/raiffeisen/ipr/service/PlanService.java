@@ -1,8 +1,6 @@
 package ru.raiffeisen.ipr.service;
 
 import ru.raiffeisen.ipr.entity.Plan;
-
-import java.sql.Date;
 import java.util.Optional;
 
 public interface PlanService {

@@ -5,7 +5,6 @@ import java.sql.Date;
 import ru.raiffeisen.ipr.dto.PostSectionDTO;
 import ru.raiffeisen.ipr.entity.Section;
 
-import java.sql.Date;
 import java.util.Optional;
 
 public interface SectionService {

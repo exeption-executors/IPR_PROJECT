@@ -33,18 +33,16 @@ public class PointController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deletePoint(@RequestBody Point point){
-        DeletePointDTO deletePointDTO = PointMapper.deletePointDTO(point);
-        pointService.deletePointById(point.getId());
+    public void deletePoint(@RequestBody DeletePointDTO deletePointDTO){
+        pointService.deletePointById(deletePointDTO.getId());
     }
 
     /**-----UPDATE POINT FUNCTION----**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void updatePlan(@RequestBody Point point) {
-        UpdatePointDTO updatePointDTO = PointMapper.updatePointDTO(point);
+    public void updatePoint(@RequestBody UpdatePointDTO updatePointDTO) {
+        Point point = PointMapper.updatePointDTO(updatePointDTO);
         pointService.updatePointById(point.getPointIsDone(), point.getPointDescription(), point.getId());
-
     }
 }
