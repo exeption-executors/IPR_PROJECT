@@ -14,10 +14,6 @@ public class PointMapper {
         return  modelMapper.map(createPointDTO, Point.class);
     }
 
-    public static DeletePointDTO deletePointDTO(Point point){
-        return modelMapper.map(point, DeletePointDTO.class);
-    }
-
     public static UpdatePointDTO updatePointDTO(Point point){
         return modelMapper.map(point, UpdatePointDTO.class);
     }
