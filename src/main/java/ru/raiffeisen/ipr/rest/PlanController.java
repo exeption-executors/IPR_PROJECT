@@ -13,6 +13,7 @@ import ru.raiffeisen.ipr.service.PlanService;
 @RestController
 @RequestMapping("/plans")
 public class PlanController {
+
     @Autowired
     private PlanService planService;
 

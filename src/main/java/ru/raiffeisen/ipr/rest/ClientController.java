@@ -20,11 +20,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    public ClientController(ClientService clientService){
-        this.clientService = clientService;
-    }
-
-
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
