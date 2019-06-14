@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.sql.Date;
 
 public class PlanDTO {
+
     private Long client_id;
 
     @JsonFormat(pattern = "yyyy/MM/dd")

@@ -34,10 +34,10 @@ public class PlanController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deletePlan(@RequestBody Plan plan) {
-        PlanDeleteDTO planDeleteDTO = PlanMapper.deletePlanByIdDTO(plan);
-        planService.deletePlanById(plan.getId());
+    public void deletePlan(@RequestBody PlanDeleteDTO planDeleteDTO) {
+        planService.deletePlanById(planDeleteDTO.getId());
     }
+
     /**-----UPDATE PLAN FUNCTION------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)

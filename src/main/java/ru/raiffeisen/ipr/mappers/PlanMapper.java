@@ -11,15 +11,6 @@ import java.util.List;
 public class PlanMapper {
     public  static ModelMapper modelMapper = new ModelMapper();
 
-
-    public static Plan fromPlanDTOToPlanEntity(PlanDTO planDTO) {
-        return  modelMapper.map(planDTO, Plan.class);
-    }
-
-    public  static PlanDeleteDTO deletePlanByIdDTO(Plan plan) {
-        return modelMapper.map(plan, PlanDeleteDTO.class);
-    }
-
     public static Plan createFullPlan(CreatePlanDTO createPlanDTO) {
         return modelMapper.map(createPlanDTO, Plan.class);
     }
