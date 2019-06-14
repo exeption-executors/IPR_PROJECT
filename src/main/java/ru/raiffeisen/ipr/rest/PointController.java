@@ -42,7 +42,7 @@ public class PointController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
-    public void updatePlan(@RequestBody Point point) {
+    public void updatePoint(@RequestBody Point point) {
         UpdatePointDTO updatePointDTO = PointMapper.updatePointDTO(point);
         pointService.updatePointById(point.getPointIsDone(), point.getPointDescription(), point.getId());
 
