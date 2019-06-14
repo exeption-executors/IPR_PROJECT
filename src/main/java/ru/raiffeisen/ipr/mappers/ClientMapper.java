@@ -18,10 +18,4 @@ public class ClientMapper {
         return modelMapper.map(clientDTO, Client.class);
     }
 
-    public  static  ClientDeleteByEmailDTO deleteByEmailDTO(Client client) {
-        return modelMapper.map(client, ClientDeleteByEmailDTO.class);
-    }
-    public static ShowAllClientDTO showAllClientDTO(Client client) {
-        return modelMapper.map(client, ShowAllClientDTO.class);
-    }
 }

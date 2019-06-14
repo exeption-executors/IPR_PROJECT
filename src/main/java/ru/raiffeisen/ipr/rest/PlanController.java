@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.dto.*;
@@ -12,15 +13,15 @@ import ru.raiffeisen.ipr.service.PlanService;
 @RestController
 @RequestMapping("/plans")
 public class PlanController {
-    private PlanService planService;
-    private ClientService clientService;
-    private GrandPostService grandPostService;
 
-    public PlanController(PlanService planService, ClientService clientService, GrandPostService grandPostService){
-        this.planService = planService;
-        this.clientService = clientService;
-        this.grandPostService = grandPostService;
-    }
+    @Autowired
+    private PlanService planService;
+
+    @Autowired
+    private ClientService clientService;
+
+    @Autowired
+    private GrandPostService grandPostService;
 
     /**------ADD ALL FIELDS OF PLAN------**/
     @CrossOrigin(origins = "*")
@@ -34,10 +35,10 @@ public class PlanController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deletePlan(@RequestBody Plan plan) {
-        PlanDeleteDTO planDeleteDTO = PlanMapper.deletePlanByIdDTO(plan);
-        planService.deletePlanById(plan.getId());
+    public void deletePlan(@RequestBody PlanDeleteDTO planDeleteDTO) {
+        planService.deletePlanById(planDeleteDTO.getId());
     }
+
     /**-----UPDATE PLAN FUNCTION------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)
@@ -46,6 +47,4 @@ public class PlanController {
         Plan planForUpdate = PlanMapper.updatePlan(updatePlanDTO);
         planService.savePlan(planForUpdate);
     }
-
-
 }

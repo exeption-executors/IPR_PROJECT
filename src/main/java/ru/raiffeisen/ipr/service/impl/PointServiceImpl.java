@@ -22,7 +22,6 @@ public class PointServiceImpl implements PointService {
         Section section = sectionService.findById(createPointDTO.getSection_id()).orElseThrow(RuntimeException::new);
         section.addPointEntity(point);
         sectionService.saveSection(section);
-
     }
 
     @Override
