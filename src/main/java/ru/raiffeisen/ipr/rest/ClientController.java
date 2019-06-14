@@ -20,6 +20,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+/**------SHOW ALL CLIENT OPERATION-------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
@@ -44,6 +45,7 @@ public class ClientController {
     public void deleteClient(@RequestBody ClientDeleteByEmailDTO clientDeleteByEmailDTO){
         clientService.deleteClientByEmail(clientDeleteByEmailDTO.getEmail());
     }
+
 /**------UPDATE CLIENT BY ID------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)
