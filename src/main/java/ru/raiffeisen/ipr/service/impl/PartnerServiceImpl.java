@@ -31,17 +31,21 @@ public class PartnerServiceImpl implements PartnerService {
     public void postPartner(CreatePartnerDTO createPartnerDTO, SectionService sectionService) {
         Partner partner = PartnerMapper.fromPartnerDTOToPartnerEntity(createPartnerDTO);
 
-        Section section = sectionService.findById(createPartnerDTO.getSection()).orElseThrow(RuntimeException::new);
+        Section section = sectionService.findById(createPartnerDTO.getSection_id()).orElseThrow(RuntimeException::new);
 
         partner.setSection(section);
 
-        Client client1 = clientRepository.findById(4l).orElseThrow(RuntimeException::new);
-        Client client2 = clientRepository.findById(2l).orElseThrow(RuntimeException::new);
-        Client client3 = clientRepository.findById(1l).orElseThrow(RuntimeException::new);
+        Client clientOwner = clientRepository.findById(createPartnerDTO.getClient_id()).orElseThrow(RuntimeException::new);
+        Client client1 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail1());
+        Client client2 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail2());
+        Client client3 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail3());
+        Client client4 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail4());
+        Client client5 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail5());
 
-        partner.setSupport(new HashSet<>(List.of(client2, client3)));
 
-        client1.addPartnerToClient(partner);
-        clientRepository.save(client1);
+        partner.setSupport(new HashSet<>(List.of(client1, client2, client3,client4,client5)));
+
+        clientOwner.addPartnerToClient(partner);
+        clientRepository.save(clientOwner);
     }
 }
