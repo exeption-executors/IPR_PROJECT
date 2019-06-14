@@ -42,7 +42,6 @@ public class PartnerServiceImpl implements PartnerService {
         Client client4 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail4());
         Client client5 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail5());
 
-
         partner.setSupport(new HashSet<>(List.of(client1, client2, client3,client4,client5)));
 
         clientOwner.addPartnerToClient(partner);
