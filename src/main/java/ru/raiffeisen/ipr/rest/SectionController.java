@@ -4,20 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.dto.*;
-import ru.raiffeisen.ipr.dto.ClientDeleteByEmailDTO;
 import ru.raiffeisen.ipr.dto.DeleteSectionByIdDTO;
 import ru.raiffeisen.ipr.dto.UpdateSectionDTO;
-import ru.raiffeisen.ipr.entity.Client;
-import ru.raiffeisen.ipr.entity.Plan;
 import ru.raiffeisen.ipr.entity.Section;
-import ru.raiffeisen.ipr.mappers.ClientMapper;
-import ru.raiffeisen.ipr.mappers.PlanMapper;
 import ru.raiffeisen.ipr.mappers.SectionMapper;
-import ru.raiffeisen.ipr.service.ClientService;
 import ru.raiffeisen.ipr.service.PlanService;
 import ru.raiffeisen.ipr.service.SectionService;
 
-import java.io.PipedOutputStream;
 
 @RestController
 @RequestMapping("/section")
@@ -42,7 +35,6 @@ public class SectionController {
     public void createClient(@RequestBody PostSectionDTO postSectionDTO) {
         sectionService.postSection(postSectionDTO,planService);
     }
-
 
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)
