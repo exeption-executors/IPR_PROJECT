@@ -41,8 +41,7 @@ public class ClientController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteClient(@RequestBody Client client){
-        ClientDeleteByEmailDTO clientDeleteByEmailDTO = ClientMapper.deleteByEmailDTO(client);
+    public void deleteClient(@RequestBody ClientDeleteByEmailDTO clientDeleteByEmailDTO){
         clientService.deleteClientByEmail(clientDeleteByEmailDTO.getEmail());
     }
 /**------UPDATE CLIENT BY ID------**/
