@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.rest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.dto.*;
@@ -12,15 +13,14 @@ import ru.raiffeisen.ipr.service.PlanService;
 @RestController
 @RequestMapping("/plans")
 public class PlanController {
+    @Autowired
     private PlanService planService;
-    private ClientService clientService;
-    private GrandPostService grandPostService;
 
-    public PlanController(PlanService planService, ClientService clientService, GrandPostService grandPostService){
-        this.planService = planService;
-        this.clientService = clientService;
-        this.grandPostService = grandPostService;
-    }
+    @Autowired
+    private ClientService clientService;
+
+    @Autowired
+    private GrandPostService grandPostService;
 
     /**------ADD ALL FIELDS OF PLAN------**/
     @CrossOrigin(origins = "*")
@@ -46,6 +46,4 @@ public class PlanController {
         Plan planForUpdate = PlanMapper.updatePlan(updatePlanDTO);
         planService.savePlan(planForUpdate);
     }
-
-
 }
