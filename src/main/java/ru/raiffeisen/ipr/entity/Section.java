@@ -36,7 +36,7 @@ public class Section {
     @JoinColumn(name = "section_id", nullable = false)
     private List<Point>  points;
 
-    @OneToOne(mappedBy = "section", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "section", cascade = CascadeType.MERGE)
     private Partner partner;
 
     public void addPointEntity(Point point) {

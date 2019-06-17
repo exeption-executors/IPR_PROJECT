@@ -1,5 +1,7 @@
 package ru.raiffeisen.ipr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,8 +21,8 @@ public class Partner {
     @Basic
     @Column(name = "requirements")
     private String requirements;
-
-    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "support",
             joinColumns = @JoinColumn(name = "partner_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id"))
