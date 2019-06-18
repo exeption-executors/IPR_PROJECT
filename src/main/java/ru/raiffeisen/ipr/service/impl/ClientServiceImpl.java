@@ -40,4 +40,7 @@ public class ClientServiceImpl implements ClientService {
         return clientRepository.saveAndFlush(client);
     }
 
+    @Override
+    public List<Client> findOurClient() {return  clientRepository.findOurClient();}
+
 }

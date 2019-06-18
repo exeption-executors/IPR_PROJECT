@@ -5,12 +5,13 @@ import org.springframework.http.HttpStatus;
 import ru.raiffeisen.ipr.dto.ClientDTO;
 import ru.raiffeisen.ipr.dto.ClientUpdateDTO;
 import ru.raiffeisen.ipr.dto.ClientDeleteByEmailDTO;
-import ru.raiffeisen.ipr.dto.ShowAllClientDTO;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.service.ClientService;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -20,13 +21,18 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-/**------SHOW ALL CLIENT OPERATION-------**/
+/**------SHOW ALL CLIENT OPERATION-------
+ * @return**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<ShowAllClientDTO> list(){
-        List showAllClientDTO = clientService.getAll();
-        return showAllClientDTO;
+    public List<Serializable> getOurClient(ClientDTO clientDTO) {
+        return Arrays.asList(
+                clientDTO.getName(),
+                clientDTO.getSurname(),
+                clientDTO.getPassword(),
+                clientDTO.getSurname(),
+                clientDTO.isFired());
     }
 
 /**------ADD NEW CLIENT OPERATION-------**/

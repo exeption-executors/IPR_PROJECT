@@ -50,7 +50,6 @@ public class Client {
         this.planEntities.add(plan);
     }
 
-    @JsonIgnore
     @Fetch(FetchMode.JOIN)
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "support",

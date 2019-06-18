@@ -11,4 +11,5 @@ public interface ClientService {
     Optional<Client> findById(Long id);
     void deleteClientByEmail (String email);
     Client findByEmail(String email);
+    List<Client> findOurClient();
 }

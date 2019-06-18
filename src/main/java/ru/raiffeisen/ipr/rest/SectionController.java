@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.rest;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +35,12 @@ public class SectionController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public void createClient(@RequestBody PostSectionDTO postSectionDTO) {
-        sectionService.postSection(postSectionDTO,planService);
+    @ResponseBody
+    public SectionReturnDTO createSection(@RequestBody PostSectionDTO postSectionDTO) {
+        Section sectionAfterSave = sectionService.postSection(postSectionDTO,planService);
+
+        System.out.println(sectionAfterSave);
+        return SectionMapper.fromSectionEntityToSectionDTO(sectionAfterSave);
     }
 
     /**-----UPDATE SECTION FUNCTION----**/

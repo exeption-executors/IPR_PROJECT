@@ -1,6 +1,7 @@
 package ru.raiffeisen.ipr.mappers;
 
 import org.modelmapper.ModelMapper;
+import ru.raiffeisen.ipr.dto.SectionReturnDTO;
 import ru.raiffeisen.ipr.dto.UpdateSectionDTO;
 import ru.raiffeisen.ipr.dto.PostSectionDTO;
 import ru.raiffeisen.ipr.entity.Section;
@@ -14,5 +15,9 @@ public class SectionMapper {
 
     public static Section updateSectionDTO(UpdateSectionDTO updateSectionDTO){
         return modelMapper.map(updateSectionDTO, Section.class);
+    }
+
+    public static SectionReturnDTO fromSectionEntityToSectionDTO(Section section) {
+        return modelMapper.map(section, SectionReturnDTO.class);
     }
 }
