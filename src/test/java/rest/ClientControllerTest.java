@@ -1,50 +1,54 @@
 package rest;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import context.RestContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.test.context.TestContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultActions;
 import ru.raiffeisen.ipr.Application;
-import ru.raiffeisen.ipr.dto.ClientDTO;
 import ru.raiffeisen.ipr.entity.Client;
-import ru.raiffeisen.ipr.mappers.ClientMapper;
-import ru.raiffeisen.ipr.repository.ClientRepository;
-import ru.raiffeisen.ipr.rest.ClientController;
 import ru.raiffeisen.ipr.service.ClientService;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.util.Objects;
+
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes = Application.class)
-@WebMvcTest(ClientController.class)
+@SpringBootTest(classes = RestContext.class)
+@AutoConfigureMockMvc
 public class ClientControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    private ClientDTO clientDTO;
-
-    @MockBean
-    private ClientService clientService;
-
+    @Autowired
+    ClientService clientService;
 
     @Test
-    public void whenValidInput_thenReturns200() throws Exception {
-        Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
-        clientService.saveClient(client);
+    public void shouldReturnDefaultMessage() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        MvcResult mvcResult = this.mockMvc.perform(get("/clients")).andExpect(status().isOk()).andReturn();
+        MockHttpServletResponse response = mvcResult.getResponse();
 
-        mockMvc.perform(post("/clients")
-                .contentType("application/json")
-                .param("asd","asd","asdasd","Asdasas"))
-                .andExpect(status().isOk());
+        String clientJsonString = response.getContentAsString().substring(1, response.getContentAsString().length() - 1);
+        Client client = mapper.readValue(clientJsonString, Client.class);
+        assertEquals("Andrew", client.getName());
+        assertEquals("Levkin", client.getSurname());
+        assertEquals("Andrewlev@gmail.com", client.getEmail());
+        assertEquals("1820", client.getPassword());
+        assertFalse(client.isFired());
     }
 }

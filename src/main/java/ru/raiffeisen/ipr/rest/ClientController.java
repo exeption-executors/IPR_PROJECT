@@ -31,8 +31,7 @@ public class ClientController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<ShowAllClientDTO> list(){
-        List showAllClientDTO = clientService.getAll();
-        return showAllClientDTO;
+        return (List) clientService.getAll();
     }
 
 

@@ -123,5 +123,4 @@ public class Client {
     public void setPlanEntities(List<Plan> planEntities) {
         this.planEntities = planEntities;
     }
-
 }
