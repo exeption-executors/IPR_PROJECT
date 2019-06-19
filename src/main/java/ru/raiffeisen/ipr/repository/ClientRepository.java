@@ -12,6 +12,8 @@ import java.util.List;
 
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
+//    @Query(value = "SELECT name, surname, email, password, fired FROM Client INNER JOIN Plan AS plan_of_client on(plan_of_client.client_id = client.id)")
+//    List<Client> getAllClientsWithoutSupport();
 
     void deleteClientByEmail(String email);
 
