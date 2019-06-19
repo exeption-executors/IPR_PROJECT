@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS client (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     name VARCHAR(32) NOT NULL,
     surname VARCHAR(32) NOT NULL,
-    email VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(16) NOT NULL,
     fired BOOLEAN NOT NULL DEFAULT (FALSE),
     CONSTRAINT client CHECK (TRIM(name) != '' AND
@@ -44,6 +44,6 @@ CREATE TABLE IF NOT EXISTS partner(
 
 CREATE TABLE IF NOT EXISTS support(
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    client_id BIGSERIAL NOT NULL UNIQUE references client(id) ON DELETE CASCADE,
-    partner_id BIGSERIAL NOT NULL UNIQUE references partner(id) ON DELETE CASCADE
+    client_id BIGSERIAL NOT NULL references client(id) ON DELETE CASCADE,
+    partner_id BIGSERIAL NOT NULL references partner(id) ON DELETE CASCADE
 );

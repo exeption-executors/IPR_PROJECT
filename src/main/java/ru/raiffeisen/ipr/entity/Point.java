@@ -39,7 +39,7 @@ public class Point {
         this.id = id;
     }
 
-    public boolean isPointIsDone() {
+    public boolean getPointIsDone() {
         return pointIsDone;
     }
 

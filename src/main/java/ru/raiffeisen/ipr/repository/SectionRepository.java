@@ -13,15 +13,6 @@ import java.sql.Date;
 
 @Repository
 public interface SectionRepository extends JpaRepository<Section, Long> {
-    @Modifying
-    @Transactional
-    @Query(value = "insert into section (plan_id, section_date_end, section_description, priority) values (:plan_id, :section_date_end, :section_description, :priority)", nativeQuery = true)
-    void createSection(@Param("plan_id") Long plan_id, @Param("section_date_end") Date section_date_end, @Param("section_description") String section_description, @Param("priority") String priority);
-
-    @Modifying
-    @Transactional
-    @Query("delete from Section i where i.id = :id")
-    void deleteSectionById(@Param("id") Long id);
 
     @Modifying
     @Transactional

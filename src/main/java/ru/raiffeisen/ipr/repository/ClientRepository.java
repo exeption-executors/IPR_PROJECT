@@ -8,6 +8,8 @@ import ru.raiffeisen.ipr.entity.Client;
         import org.springframework.stereotype.Repository;
         import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Repository
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
@@ -17,11 +19,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Client findByName(String name);
 
-    @Modifying
-    @Transactional
-    @Query("update Client set name = :name, surname = :surname, email = :email, password = :password, " +
-            "fired = :fired where id = :id")
-    void updateClient(@Param("name") String name, @Param("surname") String surname,
-                      @Param("email") String email, @Param("password") String password,
-                      @Param("fired") boolean fired, @Param("id") Long id);
+    @Query("SELECT name, surname, email, password, fired FROM Client")
+    List<Client> findOurClient();
 }

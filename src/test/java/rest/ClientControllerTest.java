@@ -1,3 +1,4 @@
+/*
 package rest;
 
 import static org.junit.Assert.assertEquals;

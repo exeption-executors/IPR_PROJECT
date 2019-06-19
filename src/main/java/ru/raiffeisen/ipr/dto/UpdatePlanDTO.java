@@ -4,27 +4,24 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
+import java.util.List;
 
-public class PlanDTO {
+public class UpdatePlanDTO {
 
-    private Long client_id;
+    private Long id;
 
     @JsonFormat(pattern = "yyyy/MM/dd")
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date planDateStart;
 
-    @JsonFormat(pattern = "dd/MM/yyyy")
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy/MM/dd")
+    @DateTimeFormat(pattern = "yyyy/MM/dd")
     private Date planDateEnd;
 
-    public PlanDTO() {}
+    private List<CreateSectionDTO> sectionEntities;
 
-    public Long getClient_id() {
-        return client_id;
-    }
 
-    public void setClient_id(Long client_id) {
-        this.client_id = client_id;
+    public UpdatePlanDTO() {
     }
 
     public Date getPlanDateStart() {
@@ -41,5 +38,21 @@ public class PlanDTO {
 
     public void setPlanDateEnd(Date planDateEnd) {
         this.planDateEnd = planDateEnd;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<CreateSectionDTO> getSectionEntities() {
+        return sectionEntities;
+    }
+
+    public void setSectionEntities(List<CreateSectionDTO> sectionEntities) {
+        this.sectionEntities = sectionEntities;
     }
 }

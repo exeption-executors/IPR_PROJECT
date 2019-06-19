@@ -2,17 +2,16 @@ package ru.raiffeisen.ipr.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import ru.raiffeisen.ipr.dto.ClientDTO;
+import ru.raiffeisen.ipr.dto.ClientUpdateDTO;
 import ru.raiffeisen.ipr.dto.ClientDeleteByEmailDTO;
-import ru.raiffeisen.ipr.dto.ShowAllClientDTO;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.service.ClientService;
-import ru.raiffeisen.ipr.service.impl.ClientServiceImpl;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -22,44 +21,43 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    public ClientController(ClientService clientService){
-        this.clientService = clientService;
-    }
-
-
+/**------SHOW ALL CLIENT OPERATION-------
+ * @return**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public List<ShowAllClientDTO> list(){
-        return (List) clientService.getAll();
+    public List<Serializable> getOurClient(ClientDTO clientDTO) {
+        return Arrays.asList(
+                clientDTO.getName(),
+                clientDTO.getSurname(),
+                clientDTO.getPassword(),
+                clientDTO.getSurname(),
+                clientDTO.isFired());
     }
 
-
+/**------ADD NEW CLIENT OPERATION-------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void createClient(@RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
         clientService.saveClient(client);
-        System.out.println(client.getName());
-        System.out.println(client.getSurname());
     }
 
+/**------DELETE CLIENT BY EMAIL-------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
-    public void deleteClient(@RequestBody Client client){
-        ClientDeleteByEmailDTO clientDeleteByEmailDTO = ClientMapper.deleteByEmailDTO(client);
+    public void deleteClient(@RequestBody ClientDeleteByEmailDTO clientDeleteByEmailDTO){
         clientService.deleteClientByEmail(clientDeleteByEmailDTO.getEmail());
     }
 
+/**------UPDATE CLIENT BY ID------**/
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.CREATED)
-    public void updateClient(@RequestBody Client client) {
-        ClientDTO clientDTO1 = ClientMapper.fromClientEntityToClientDTO(client);
-        clientService.findByEmail(clientDTO1.getEmail());
-        Client client1 = ClientMapper.fromClientDTOToClientEntity(clientDTO1);
-        clientService.saveClient(client1);
+    public void updateClient(@RequestBody ClientUpdateDTO clientUpdateDTO) {
+        Client clientForSave = ClientMapper.fromClientUpdateDTOToClientEntity(clientUpdateDTO);
+        clientService.saveClient(clientForSave);
     }
 }
