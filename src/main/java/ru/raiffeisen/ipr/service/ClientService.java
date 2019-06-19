@@ -12,4 +12,5 @@ public interface ClientService {
     void deleteClientByEmail (String email);
     Client findByEmail(String email);
     List<Client> findOurClient();
+
 }
