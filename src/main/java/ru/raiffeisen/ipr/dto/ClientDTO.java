@@ -1,13 +1,25 @@
 package ru.raiffeisen.ipr.dto;
 
+import java.util.List;
+
 public class ClientDTO {
     private String name;
     private String surname;
     private String email;
     private boolean fired;
     private String password;
+    private List<PartnerDTO> partnerList;
 
     public ClientDTO() {
+    }
+
+    public ClientDTO(String name, String surname, String email, boolean fired, String password, List<PartnerDTO> partnerList) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.fired = fired;
+        this.password = password;
+        this.partnerList = partnerList;
     }
 
     public String getName() {
@@ -50,4 +62,11 @@ public class ClientDTO {
         this.fired = fired;
     }
 
+    public List<PartnerDTO> getPartnerList() {
+        return partnerList;
+    }
+
+    public void setPartnerList(List<PartnerDTO> partnerList) {
+        this.partnerList = partnerList;
+    }
 }

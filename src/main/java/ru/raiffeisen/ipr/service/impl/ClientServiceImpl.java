@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.service.impl;
 
+import org.springframework.transaction.annotation.Transactional;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Optional<Client> findById(Long id) {
-       return clientRepository.findById(id);
+        return clientRepository.findById(id);
     }
 
     @Override
@@ -38,5 +39,15 @@ public class ClientServiceImpl implements ClientService {
     public Client saveClient(Client client) {
         return clientRepository.saveAndFlush(client);
     }
+
+    @Override
+    public List<Client> findOurClient() {
+        return clientRepository.findOurClient();
+    }
+
+//    public List<Client> getAllClients() {
+//        System.out.println(clientRepository.getAllClientsWithoutSupport());
+//        return clientRepository.getAllClientsWithoutSupport();
+//    }
 
 }

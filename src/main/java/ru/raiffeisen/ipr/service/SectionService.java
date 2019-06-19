@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface SectionService {
     void deleteSectionById(Long id);
     void updateSectionById(Date section_date_end, String section_description, String priority, Long id);
-    void postSection(PostSectionDTO postSectionDTO, PlanService planService);
+    Section postSection(PostSectionDTO postSectionDTO, PlanService planService);
     Optional<Section> findById(Long id);
     Section saveSection (Section section);
 }

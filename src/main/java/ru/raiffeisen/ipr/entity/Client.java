@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,8 +40,9 @@ public class Client {
     @Column(name = "fired")
     private boolean fired;
 
+
     @Fetch(FetchMode.JOIN)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "client_id", nullable = false)
     private List<Plan> planEntities;
 
@@ -49,7 +51,7 @@ public class Client {
     }
 
     @Fetch(FetchMode.JOIN)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "support",
             joinColumns = @JoinColumn(name = "client_id"),
             inverseJoinColumns = @JoinColumn(name = "partner_id")
@@ -123,5 +125,4 @@ public class Client {
     public void setPlanEntities(List<Plan> planEntities) {
         this.planEntities = planEntities;
     }
-
 }

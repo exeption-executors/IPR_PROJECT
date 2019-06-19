@@ -31,11 +31,12 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public void postSection(PostSectionDTO postSectionDTO, PlanService planService) {
+    public Section postSection(PostSectionDTO postSectionDTO, PlanService planService) {
         Section section = SectionMapper.fromSectionDTOToSectionEntity(postSectionDTO);
         Plan plan = planService.findById(postSectionDTO.getPlan_id()).orElseThrow(RuntimeException::new);
         plan.addSectionEntity(section);
-        planService.savePlan(plan);
+        sectionRepository.save(section);
+        return section;
     }
 
     @Override
@@ -50,6 +51,6 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public Section saveSection(Section section) {
-        return sectionRepository.saveAndFlush(section);
+        return sectionRepository.save(section);
     }
 }

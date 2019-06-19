@@ -1,5 +1,7 @@
 package ru.raiffeisen.ipr.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,8 +21,8 @@ public class Partner {
     @Basic
     @Column(name = "requirements")
     private String requirements;
-
-    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     @JoinTable(name = "support",
             joinColumns = @JoinColumn(name = "partner_id"),
             inverseJoinColumns = @JoinColumn(name = "client_id"))
@@ -52,5 +54,17 @@ public class Partner {
 
     public void setRequirements(String requirements) {
         this.requirements = requirements;
+    }
+
+    public Set<Client> getSupport() {
+        return support;
+    }
+
+    public void setSupport(Set<Client> support) {
+        this.support = support;
+    }
+
+    public void addSupport(Client client) {
+        support.add(client);
     }
 }
