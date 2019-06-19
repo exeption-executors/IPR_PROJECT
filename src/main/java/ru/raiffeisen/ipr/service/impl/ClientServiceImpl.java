@@ -22,7 +22,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Optional<Client> findById(Long id) {
-       return clientRepository.findById(id);
+        return clientRepository.findById(id);
     }
 
     @Override
@@ -41,6 +41,13 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Client> findOurClient() {return  clientRepository.findOurClient();}
+    public List<Client> findOurClient() {
+        return clientRepository.findOurClient();
+    }
+
+//    public List<Client> getAllClients() {
+//        System.out.println(clientRepository.getAllClientsWithoutSupport());
+//        return clientRepository.getAllClientsWithoutSupport();
+//    }
 
 }
