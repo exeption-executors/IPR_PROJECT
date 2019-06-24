@@ -32,19 +32,11 @@ public class PartnerServiceImpl implements PartnerService {
 
         partner.setSection(section);
 
-        //Client clientOwner = clientRepository.findById(createPartnerDTO.getClient_id()).orElseThrow(RuntimeException::new);
         Client client1 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail1());
-        Client client2 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail2());
-        Client client3 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail3());
-        Client client4 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail4());
-        Client client5 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail5());
 
 
-        partner.setSupport(new HashSet<>(List.of(client1, client2, client3,client4,client5)));
+        partner.setClient(client1);
         partnerRepository.save(partner);
-
-        //clientOwner.addPartnerToClient(partner);
-        //clientRepository.save(clientOwner);
     }
 
     @Override

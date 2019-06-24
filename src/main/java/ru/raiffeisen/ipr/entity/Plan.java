@@ -71,4 +71,5 @@ public class Plan {
     public void addSectionList(List<Section> sectionList) {
         sectionEntities.addAll(sectionList);
     }
+
 }

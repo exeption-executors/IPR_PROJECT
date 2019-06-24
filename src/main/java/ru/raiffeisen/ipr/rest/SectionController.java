@@ -12,6 +12,8 @@ import ru.raiffeisen.ipr.mappers.SectionMapper;
 import ru.raiffeisen.ipr.service.PlanService;
 import ru.raiffeisen.ipr.service.SectionService;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/section")
@@ -37,10 +39,8 @@ public class SectionController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public SectionReturnDTO createSection(@RequestBody PostSectionDTO postSectionDTO) {
-        Section sectionAfterSave = sectionService.postSection(postSectionDTO,planService);
-
-        System.out.println(sectionAfterSave);
-        return SectionMapper.fromSectionEntityToSectionDTO(sectionAfterSave);
+        SectionReturnDTO section = sectionService.postSection(postSectionDTO, planService);
+        return section;
     }
 
     /**-----UPDATE SECTION FUNCTION----**/

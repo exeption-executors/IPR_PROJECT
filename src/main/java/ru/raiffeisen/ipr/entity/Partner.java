@@ -18,27 +18,17 @@ public class Partner {
     @Column(name = "id")
     private Long id;
 
+    @ManyToOne
+    @JoinColumn(name = "section_id")
+    Section section;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    Client client;
+
     @Basic
     @Column(name = "requirements")
     private String requirements;
-    @JsonIgnore
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
-    @JoinTable(name = "support",
-            joinColumns = @JoinColumn(name = "partner_id"),
-            inverseJoinColumns = @JoinColumn(name = "client_id"))
-    private Set<Client> support = new HashSet<>();
-
-    @OneToOne()
-    @JoinColumn(name = "section_id", nullable = false)
-    private Section section;
-
-    public Section getSection() {
-        return section;
-    }
-
-    public void setSection(Section section) {
-        this.section = section;
-    }
 
     public Long getId() {
         return id;
@@ -48,23 +38,27 @@ public class Partner {
         this.id = id;
     }
 
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
     public String getRequirements() {
         return requirements;
     }
 
     public void setRequirements(String requirements) {
         this.requirements = requirements;
-    }
-
-    public Set<Client> getSupport() {
-        return support;
-    }
-
-    public void setSupport(Set<Client> support) {
-        this.support = support;
-    }
-
-    public void addSupport(Client client) {
-        support.add(client);
     }
 }

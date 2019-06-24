@@ -6,6 +6,7 @@ import org.hibernate.annotations.FetchMode;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "section", schema = "public", catalog = "ipr")
@@ -34,13 +35,16 @@ public class Section {
     @Fetch(FetchMode.JOIN)
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "section_id", nullable = false)
-    private List<Point>  points;
+    private List<Point> points;
 
-    @OneToOne(mappedBy = "section", cascade = CascadeType.MERGE)
-    private Partner partner;
+    @OneToMany(mappedBy = "section")
+    Set<Partner> partners;
 
     public void addPointEntity(Point point) {
         points.add(point);
+    }
+    public void addPartnerEntity(Partner partner) {
+        partners.add(partner);
     }
 
     public Long getId() {
@@ -83,11 +87,11 @@ public class Section {
         this.points = pointEntities;
     }
 
-    public Partner getPartner() {
-        return partner;
+    public Set<Partner> getPartners() {
+        return partners;
     }
 
-    public void setPartner(Partner partner) {
-        this.partner = partner;
+    public void setPartners(Set<Partner> partners) {
+        this.partners = partners;
     }
 }

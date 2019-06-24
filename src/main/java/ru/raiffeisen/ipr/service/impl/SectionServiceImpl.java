@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.raiffeisen.ipr.dto.CreateSectionDTO;
 import ru.raiffeisen.ipr.dto.PostSectionDTO;
+import ru.raiffeisen.ipr.dto.SectionReturnDTO;
 import ru.raiffeisen.ipr.entity.Client;
 import ru.raiffeisen.ipr.entity.Plan;
 import ru.raiffeisen.ipr.entity.Section;
@@ -31,12 +32,14 @@ public class SectionServiceImpl implements SectionService {
     }
 
     @Override
-    public Section postSection(PostSectionDTO postSectionDTO, PlanService planService) {
+    public SectionReturnDTO postSection(PostSectionDTO postSectionDTO, PlanService planService) {
         Section section = SectionMapper.fromSectionDTOToSectionEntity(postSectionDTO);
         Plan plan = planService.findById(postSectionDTO.getPlan_id()).orElseThrow(RuntimeException::new);
         plan.addSectionEntity(section);
-        sectionRepository.save(section);
-        return section;
+        Plan planAfterSave = planService.savePlan(plan);
+        int lastAddedIndex = planAfterSave.getSectionEntities().size() - 1;
+        SectionReturnDTO sectionReturnDTO = SectionMapper.fromSectionEntityToSectionDTO(planAfterSave.getSectionEntities().get(lastAddedIndex));
+        return sectionReturnDTO;
     }
 
     @Override
