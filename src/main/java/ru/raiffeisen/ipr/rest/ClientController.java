@@ -38,7 +38,7 @@ public class ClientController {
         clientService.saveClient(client);
 
         // Sending email to the queue with further sending to gmail smtp server
-        template.convertAndSend("clients", client.getEmail());
+//        template.convertAndSend("clients", client.getEmail());
         return ClientMapper.fromClientToClientDTOAfterSave(client);
     }
 

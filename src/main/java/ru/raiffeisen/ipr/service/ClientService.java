@@ -8,6 +8,7 @@ import java.util.Optional;
 public interface ClientService {
     Client saveClient(Client client);
     Client updateClient(Client client);
+    Client updateGrand(Client client);
     List<Client> getAll();
     Optional<Client> findById(Long id);
     void deleteClientByEmail (String email);

@@ -29,6 +29,6 @@ public class GrandPostServiceImpl implements GrandPostService {
         List<Section> section = PlanMapper.createSection(createPlanDTO.getSectionDTO());
         plan.setSectionEntities(section);
         client.addPlanEntity(plan);
-        clientService.updateClient(client);
+        clientService.updateGrand(client);
     }
 }
