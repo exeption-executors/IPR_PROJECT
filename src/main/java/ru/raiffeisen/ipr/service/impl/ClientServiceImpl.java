@@ -54,7 +54,7 @@ public class ClientServiceImpl implements ClientService {
         if(!clientFromDB.isPresent()) {
             throw new ClientNotFoundException();
         } else {
-            return  clientRepository.save(client);
+            return clientRepository.save(clientFromDB.get());
         }
     }
 

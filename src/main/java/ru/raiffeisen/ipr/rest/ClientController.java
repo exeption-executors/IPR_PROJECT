@@ -36,11 +36,10 @@ public class ClientController {
     public ClientDTOAfterSave createClient(@Valid @RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
         clientService.saveClient(client);
-        Client clientAfterSave = clientService.saveClient(client);
 
         // Sending email to the queue with further sending to gmail smtp server
-        template.convertAndSend("clients", clientAfterSave.getEmail());
-        return ClientMapper.fromClientToClientDTOAfterSave(clientAfterSave);
+        template.convertAndSend("clients", client.getEmail());
+        return ClientMapper.fromClientToClientDTOAfterSave(client);
     }
 
     /**
@@ -64,20 +63,20 @@ public class ClientController {
         clientService.updateClient(clientForSave);
     }
 
-    @CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public List<ClientDTO> getClients() {
-        List<Client> all = clientService.getAll();
-        return all.stream().map(client -> new ClientDTO(
-                client.getName(),
-                client.getSurname(),
-                client.getEmail(),
-                client.isFired(),
-                client.getPassword(),
-                client.getAllIncludedPartner().stream()
-                        .map(partner -> new PartnerDTO(partner.getSupport().stream().findFirst().get().getName(), partner.getRequirements()))
-                        .collect(Collectors.toList())))
-                .collect(Collectors.toList());
-    }
+//    @CrossOrigin(origins = "*")
+//    @RequestMapping(method = RequestMethod.GET)
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<ClientDTO> getClients() {
+//        List<Client> all = clientService.getAll();
+//        return all.stream().map(client -> new ClientDTO(
+//                client.getName(),
+//                client.getSurname(),
+//                client.getEmail(),
+//                client.isFired(),
+//                client.getPassword(),
+//                client.getPartners().stream()
+//                        .map(partner -> new PartnerDTO(partner.getSupport().stream().findFirst().get().getName(), partner.getRequirements()))
+//                        .collect(Collectors.toList())))
+//                .collect(Collectors.toList());
+//    }
 }

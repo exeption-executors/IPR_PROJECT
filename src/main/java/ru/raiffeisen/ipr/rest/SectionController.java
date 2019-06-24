@@ -14,6 +14,8 @@ import ru.raiffeisen.ipr.service.exeption.SectionNotFoundException;
 
 import java.util.Optional;
 
+import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/section")
@@ -39,11 +41,12 @@ public class SectionController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public SectionReturnDTO createSection(@RequestBody PostSectionDTO postSectionDTO) {
-        Section sectionAfterSave = sectionService.postSection(postSectionDTO, planService);
-        Optional<Section> sectionFromDB = sectionService.findById(sectionAfterSave.getId());
-        return  SectionMapper.fromSectionEntityToSectionDTO(sectionFromDB
-                .orElseThrow(() -> { throw new SectionNotFoundException(sectionFromDB.get().getId());
-        }));
+        SectionReturnDTO sectionAfterSave = sectionService.postSection(postSectionDTO, planService);
+//        return  SectionMapper.fromSectionEntityToSectionDTO(sectionFromDB
+//                .orElseThrow(() -> { throw new SectionNotFoundException(sectionFromDB.get().getId());
+//        }));
+        SectionReturnDTO section = sectionAfterSave;
+        return section;
     }
 
     /**-----UPDATE SECTION FUNCTION----**/

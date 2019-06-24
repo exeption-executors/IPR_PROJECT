@@ -50,24 +50,15 @@ public class Client {
         this.planEntities.add(plan);
     }
 
-    @Fetch(FetchMode.JOIN)
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "support",
-            joinColumns = @JoinColumn(name = "client_id"),
-            inverseJoinColumns = @JoinColumn(name = "partner_id")
-    )
-    private Set<Partner> allIncludedPartner = new HashSet<>();
+    @OneToMany(mappedBy = "client")
+    Set<Partner> partners;
 
-    public Set<Partner> getAllIncludedPartner() {
-        return allIncludedPartner;
+    public Set<Partner> getPartners() {
+        return partners;
     }
 
-    public void setAllIncludedPartner(Set<Partner> allIncludedPartner) {
-        this.allIncludedPartner = allIncludedPartner;
-    }
-
-    public void addPartnerToClient(Partner partner) {
-        allIncludedPartner.add(partner);
+    public void setPartners(Set<Partner> partners) {
+        this.partners = partners;
     }
 
     public Long getId() {

@@ -9,6 +9,7 @@ import ru.raiffeisen.ipr.entity.Section;
 import ru.raiffeisen.ipr.mappers.PartnerMapper;
 import ru.raiffeisen.ipr.repository.ClientRepository;
 import ru.raiffeisen.ipr.repository.PartnerRepository;
+import ru.raiffeisen.ipr.service.ClientService;
 import ru.raiffeisen.ipr.service.PartnerService;
 import ru.raiffeisen.ipr.service.SectionService;
 
@@ -25,33 +26,14 @@ public class PartnerServiceImpl implements PartnerService {
     private ClientRepository clientRepository;
 
     @Override
-    public void postPartner(CreatePartnerDTO createPartnerDTO, SectionService sectionService) {
-
+    public void postPartner(CreatePartnerDTO createPartnerDTO, SectionService sectionService, ClientService clientService) {
+        Partner partner = PartnerMapper.fromPartnerDTOToPartnerEntity(createPartnerDTO);
+        Section section = sectionService.findById(createPartnerDTO.getSection_id()).orElseThrow(RuntimeException::new);
+        partner.setSection(section);
+        Client client = clientService.findById(createPartnerDTO.getClient_id()).orElseThrow(RuntimeException::new);
+        partner.setClient(client);
+        partnerRepository.save(partner);
     }
-
-    //
-//    @Override
-//    public void postPartner(CreatePartnerDTO createPartnerDTO, SectionService sectionService) {
-//        Partner partner = PartnerMapper.fromPartnerDTOToPartnerEntity(createPartnerDTO);
-//
-//        Section section = sectionService.findById(createPartnerDTO.getSection_id()).orElseThrow(RuntimeException::new);
-//
-//        partner.setSection(section);
-//
-//        //Client clientOwner = clientRepository.findById(createPartnerDTO.getClient_id()).orElseThrow(RuntimeException::new);
-//        Client client1 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail1());
-//        Client client2 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail2());
-//        Client client3 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail3());
-//        Client client4 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail4());
-//        Client client5 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail5());
-//
-//
-//        partner.setSupport(new HashSet<>(List.of(client1, client2, client3,client4,client5)));
-//        partnerRepository.save(partner);
-//
-//        //clientOwner.addPartnerToClient(partner);
-//        //clientRepository.save(clientOwner);
-//    }
 
     @Override
     public void deletePartnerById(Long id) {partnerRepository.deleteById(id);
