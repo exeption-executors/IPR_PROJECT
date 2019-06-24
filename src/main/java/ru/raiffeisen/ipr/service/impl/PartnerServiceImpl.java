@@ -9,6 +9,7 @@ import ru.raiffeisen.ipr.entity.Section;
 import ru.raiffeisen.ipr.mappers.PartnerMapper;
 import ru.raiffeisen.ipr.repository.ClientRepository;
 import ru.raiffeisen.ipr.repository.PartnerRepository;
+import ru.raiffeisen.ipr.service.ClientService;
 import ru.raiffeisen.ipr.service.PartnerService;
 import ru.raiffeisen.ipr.service.SectionService;
 
@@ -25,17 +26,12 @@ public class PartnerServiceImpl implements PartnerService {
     private ClientRepository clientRepository;
 
     @Override
-    public void postPartner(CreatePartnerDTO createPartnerDTO, SectionService sectionService) {
+    public void postPartner(CreatePartnerDTO createPartnerDTO, SectionService sectionService, ClientService clientService) {
         Partner partner = PartnerMapper.fromPartnerDTOToPartnerEntity(createPartnerDTO);
-
         Section section = sectionService.findById(createPartnerDTO.getSection_id()).orElseThrow(RuntimeException::new);
-
         partner.setSection(section);
-
-        Client client1 = clientRepository.findByEmail(createPartnerDTO.getSupportEmail1());
-
-
-        partner.setClient(client1);
+        Client client = clientService.findById(createPartnerDTO.getClient_id()).orElseThrow(RuntimeException::new);
+        partner.setClient(client);
         partnerRepository.save(partner);
     }
 

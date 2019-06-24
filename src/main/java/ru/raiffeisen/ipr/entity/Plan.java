@@ -28,7 +28,7 @@ public class Plan {
     private Date planDateEnd;
 
     @Fetch(FetchMode.JOIN)
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "plan_id", nullable = false)
     private List<Section> sectionEntities;
 

@@ -3,7 +3,6 @@ package ru.raiffeisen.ipr.dto;
 public class CreatePartnerDTO {
     private Long section_id;
     private Long client_id;
-    private String supportEmail1;
     private String requirements;
 
     public CreatePartnerDTO() {
@@ -15,14 +14,6 @@ public class CreatePartnerDTO {
 
     public void setSection_id(Long section_id) {
         this.section_id = section_id;
-    }
-
-    public String getSupportEmail1() {
-        return supportEmail1;
-    }
-
-    public void setSupportEmail1(String supportEmail1) {
-        this.supportEmail1 = supportEmail1;
     }
 
     public String getRequirements() {

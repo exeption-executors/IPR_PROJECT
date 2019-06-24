@@ -1,11 +1,12 @@
 package ru.raiffeisen.ipr.service.impl;
 
-import org.springframework.transaction.annotation.Transactional;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.raiffeisen.ipr.repository.ClientRepository;
 import ru.raiffeisen.ipr.service.ClientService;
+import ru.raiffeisen.ipr.service.exeption.ClientNotFoundException;
+import ru.raiffeisen.ipr.service.exeption.ExistClientException;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,37 +18,48 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void deleteClientByEmail(String email) {
-        clientRepository.delete(clientRepository.findByEmail(email));
+        Optional<Client> client = clientRepository.findByEmail(email);
+        client.orElseThrow(ClientNotFoundException::new);
+        clientRepository.delete(client.get());
     }
 
     @Override
     public Optional<Client> findById(Long id) {
-        return clientRepository.findById(id);
-    }
-
-    @Override
-    public Client findByEmail(String email) {
-        return clientRepository.findByEmail(email);
+        Optional<Client> client = clientRepository.findById(id);
+        client.orElseThrow(ClientNotFoundException::new);
+        return client;
     }
 
     @Override
     public List<Client> getAll() {
-        return clientRepository.findAll();
+        List<Client> clientList = clientRepository.findAll();
+        if (clientList.isEmpty()){
+            throw new ClientNotFoundException();
+        }
+        return clientList;
     }
 
     @Override
     public Client saveClient(Client client) {
+        Optional<Client> clientFromDB = clientRepository.findByEmail(client.getEmail());
+        clientFromDB.ifPresent((Client clientExist) -> {
+            throw new ExistClientException(clientExist.getEmail());
+        });
         return clientRepository.saveAndFlush(client);
+    }
+
+    @Override
+    public Client updateClient(Client client) {
+        Optional<Client> clientFromDB = clientRepository.findByEmail(client.getEmail());
+        if(!clientFromDB.isPresent()) {
+            throw new ClientNotFoundException();
+        } else {
+            return clientRepository.save(clientFromDB.get());
+        }
     }
 
     @Override
     public List<Client> findOurClient() {
         return clientRepository.findOurClient();
     }
-
-//    public List<Client> getAllClients() {
-//        System.out.println(clientRepository.getAllClientsWithoutSupport());
-//        return clientRepository.getAllClientsWithoutSupport();
-//    }
-
 }
