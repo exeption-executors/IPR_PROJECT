@@ -8,6 +8,9 @@ import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.service.ClientService;
+import ru.raiffeisen.ipr.service.exeption.ClientNotFoundException;
+import ru.raiffeisen.ipr.service.exeption.ExistClientException;
+import ru.raiffeisen.ipr.service.exeption.SectionNotFoundException;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -58,7 +61,7 @@ public class ClientController {
     @ResponseStatus(HttpStatus.CREATED)
     public void updateClient(@RequestBody ClientUpdateDTO clientUpdateDTO) {
         Client clientForSave = ClientMapper.fromClientUpdateDTOToClientEntity(clientUpdateDTO);
-        clientService.saveClient(clientForSave);
+        clientService.updateClient(clientForSave);
     }
 
     @CrossOrigin(origins = "*")

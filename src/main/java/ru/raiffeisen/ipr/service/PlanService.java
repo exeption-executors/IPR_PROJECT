@@ -5,6 +5,6 @@ import java.util.Optional;
 
 public interface PlanService {
     void deletePlanById (Long id);
-    Plan savePlan (Plan plan);
+    Plan updatePlan (Plan plan);
     Optional<Plan> findById(Long id);
 }
