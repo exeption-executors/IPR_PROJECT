@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.rest;
 
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import ru.raiffeisen.ipr.dto.*;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.service.ClientService;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,18 +19,10 @@ import java.util.stream.Collectors;
 public class ClientController {
 
     @Autowired
+    AmqpTemplate template;
+
+    @Autowired
     private ClientService clientService;
-
-///**------SHOW ALL CLIENT OPERATION-------
-// * @return**/
-//    @CrossOrigin(origins = "*")
-//    @RequestMapping(method = RequestMethod.GET)
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Client> getOurClient() {
-//        System.out.println(clientService.getAll());
-//        return clientService.getAll();
-//    }
-
 
     /**
      * ------ADD NEW CLIENT OPERATION-------
@@ -35,10 +30,13 @@ public class ClientController {
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public ClientDTOAfterSave createClient(@RequestBody ClientDTO clientDTO) {
+    public ClientDTOAfterSave createClient(@Valid @RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
         clientService.saveClient(client);
         Client clientAfterSave = clientService.saveClient(client);
+
+        // Sending email to the queue with further sending to gmail smtp server
+        template.convertAndSend("clients", clientAfterSave.getEmail());
         return ClientMapper.fromClientToClientDTOAfterSave(clientAfterSave);
     }
 
