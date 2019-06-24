@@ -45,6 +45,6 @@ public class PlanController {
     @ResponseStatus(HttpStatus.CREATED)
     public void updatePlan(@RequestBody UpdatePlanDTO updatePlanDTO) {
         Plan planForUpdate = PlanMapper.updatePlan(updatePlanDTO);
-        planService.savePlan(planForUpdate);
+        planService.updatePlan(planForUpdate);
     }
 }

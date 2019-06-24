@@ -1,6 +1,5 @@
 package ru.raiffeisen.ipr.rest;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +10,9 @@ import ru.raiffeisen.ipr.entity.Section;
 import ru.raiffeisen.ipr.mappers.SectionMapper;
 import ru.raiffeisen.ipr.service.PlanService;
 import ru.raiffeisen.ipr.service.SectionService;
+import ru.raiffeisen.ipr.service.exeption.SectionNotFoundException;
+
+import java.util.Optional;
 
 
 @RestController
@@ -37,10 +39,11 @@ public class SectionController {
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public SectionReturnDTO createSection(@RequestBody PostSectionDTO postSectionDTO) {
-        Section sectionAfterSave = sectionService.postSection(postSectionDTO,planService);
-
-        System.out.println(sectionAfterSave);
-        return SectionMapper.fromSectionEntityToSectionDTO(sectionAfterSave);
+        Section sectionAfterSave = sectionService.postSection(postSectionDTO, planService);
+        Optional<Section> sectionFromDB = sectionService.findById(sectionAfterSave.getId());
+        return  SectionMapper.fromSectionEntityToSectionDTO(sectionFromDB
+                .orElseThrow(() -> { throw new SectionNotFoundException(sectionFromDB.get().getId());
+        }));
     }
 
     /**-----UPDATE SECTION FUNCTION----**/

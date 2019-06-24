@@ -7,6 +7,9 @@ import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.service.ClientService;
+import ru.raiffeisen.ipr.service.exeption.ClientNotFoundException;
+import ru.raiffeisen.ipr.service.exeption.ExistClientException;
+import ru.raiffeisen.ipr.service.exeption.SectionNotFoundException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,17 +21,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-///**------SHOW ALL CLIENT OPERATION-------
-// * @return**/
-//    @CrossOrigin(origins = "*")
-//    @RequestMapping(method = RequestMethod.GET)
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<Client> getOurClient() {
-//        System.out.println(clientService.getAll());
-//        return clientService.getAll();
-//    }
-
-
     /**
      * ------ADD NEW CLIENT OPERATION-------
      **/
@@ -38,8 +30,7 @@ public class ClientController {
     public ClientDTOAfterSave createClient(@RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
         clientService.saveClient(client);
-        Client clientAfterSave = clientService.saveClient(client);
-        return ClientMapper.fromClientToClientDTOAfterSave(clientAfterSave);
+        return ClientMapper.fromClientToClientDTOAfterSave(client);
     }
 
     /**
@@ -60,7 +51,7 @@ public class ClientController {
     @ResponseStatus(HttpStatus.CREATED)
     public void updateClient(@RequestBody ClientUpdateDTO clientUpdateDTO) {
         Client clientForSave = ClientMapper.fromClientUpdateDTOToClientEntity(clientUpdateDTO);
-        clientService.saveClient(clientForSave);
+        clientService.updateClient(clientForSave);
     }
 
     @CrossOrigin(origins = "*")
