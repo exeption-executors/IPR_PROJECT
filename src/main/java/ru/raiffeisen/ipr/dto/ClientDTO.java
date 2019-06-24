@@ -1,13 +1,28 @@
 package ru.raiffeisen.ipr.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 public class ClientDTO {
+    @NotBlank
+    @Size(min=2, max=18)
     private String name;
+
+    @NotBlank
+    @Size(min=2, max=18)
     private String surname;
+
+    @Email()
     private String email;
+
     private boolean fired;
+
+    @NotBlank
+    @Size(min=8)
     private String password;
+
     private List<PartnerDTO> partnerList;
 
     public ClientDTO() {
