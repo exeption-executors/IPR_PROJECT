@@ -49,12 +49,27 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client updateGrand(Client client) {
+        Optional<Client> clientFromDB = clientRepository.findByEmail(client.getEmail());
+        if(!clientFromDB.isPresent()) {
+            throw new ClientNotFoundException();
+        } else {
+            return clientRepository.save(client);
+        }
+    }
+
+    @Override
     public Client updateClient(Client client) {
         Optional<Client> clientFromDB = clientRepository.findByEmail(client.getEmail());
         if(!clientFromDB.isPresent()) {
             throw new ClientNotFoundException();
         } else {
-            return clientRepository.save(clientFromDB.get());
+            Client clientValue = clientFromDB.get();
+            clientValue.setName(client.getName());
+            clientValue.setSurname(client.getSurname());
+            clientValue.setPassword(client.getPassword());
+            clientValue.setFired(client.isFired());
+            return clientRepository.save(clientValue);
         }
     }
 
