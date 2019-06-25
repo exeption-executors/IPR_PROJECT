@@ -63,20 +63,17 @@ public class ClientController {
         clientService.updateClient(clientForSave);
     }
 
-//    @CrossOrigin(origins = "*")
-//    @RequestMapping(method = RequestMethod.GET)
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<ClientDTO> getClients() {
-//        List<Client> all = clientService.getAll();
-//        return all.stream().map(client -> new ClientDTO(
-//                client.getName(),
-//                client.getSurname(),
-//                client.getEmail(),
-//                client.isFired(),
-//                client.getPassword(),
-//                client.getPartners().stream()
-//                        .map(partner -> new PartnerDTO(partner.getSupport().stream().findFirst().get().getName(), partner.getRequirements()))
-//                        .collect(Collectors.toList())))
-//                .collect(Collectors.toList());
-//    }
+    @CrossOrigin(origins = "*")
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public List<ClientDTO> getClients() {
+        List<Client> all = clientService.getAll();
+        return all.stream().map(client -> new ClientDTO(
+                client.getName(),
+                client.getSurname(),
+                client.getEmail(),
+                client.getPassword(),
+                client.isFired()
+                )).collect(Collectors.toList());
+    }
 }

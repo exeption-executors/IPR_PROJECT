@@ -28,13 +28,12 @@ public class ClientDTO {
     public ClientDTO() {
     }
 
-    public ClientDTO(String name, String surname, String email, boolean fired, String password, List<PartnerDTO> partnerList) {
+    public ClientDTO(String name, String surname, String email, String password, boolean fired) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.fired = fired;
         this.password = password;
-        this.partnerList = partnerList;
     }
 
     public String getName() {

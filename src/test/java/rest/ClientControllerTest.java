@@ -48,13 +48,14 @@ public class ClientControllerTest {
         MockHttpServletResponse response = mvcResult.getResponse();
 
         String clientJsonString = response.getContentAsString().substring(1, response.getContentAsString().length() - 1);
+        System.out.println(clientJsonString);
         ClientDTO client = mapper.readValue(clientJsonString, ClientDTO.class);
+
         assertEquals("Andrew", client.getName());
         assertEquals("Levkin", client.getSurname());
         assertEquals("Andrewlev@gmail.com", client.getEmail());
         assertEquals("1820", client.getPassword());
         assertFalse(client.isFired());
-        assertEquals(0, client.getPartnerList().size());
     }
 
 
