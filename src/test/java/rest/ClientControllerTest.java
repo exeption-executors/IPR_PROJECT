@@ -64,8 +64,8 @@ public class ClientControllerTest {
         clientDTO.setName("alexandr");
         clientDTO.setSurname("alexandrovich");
         clientDTO.setFired(false);
-        clientDTO.setEmail("jerry.@gmail.com");
-        clientDTO.setPassword("sdfsf");
+        clientDTO.setEmail("jerry@gmail.com");
+        clientDTO.setPassword("sdfsfjksdjkvs");
 
 
         ObjectMapper mapper = new ObjectMapper();
