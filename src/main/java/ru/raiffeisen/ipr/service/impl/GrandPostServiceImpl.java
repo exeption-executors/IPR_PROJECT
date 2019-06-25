@@ -12,6 +12,8 @@ import ru.raiffeisen.ipr.mappers.SectionMapper;
 import ru.raiffeisen.ipr.service.ClientService;
 import ru.raiffeisen.ipr.service.GrandPostService;
 import ru.raiffeisen.ipr.service.PlanService;
+import ru.raiffeisen.ipr.service.exeption.ClientNotFoundException;
+import ru.raiffeisen.ipr.service.exeption.PlanNotFoundException;
 
 import java.util.List;
 
@@ -21,11 +23,12 @@ public class GrandPostServiceImpl implements GrandPostService {
     @Override
     public void createFullPlan(CreatePlanDTO createPlanDTO, ClientService clientService) {
         Plan plan = PlanMapper.createFullPlan(createPlanDTO);
-        Client client = clientService.findById(createPlanDTO.getClient_id()).orElseThrow(RuntimeException::new);
+        Client client = clientService.findById(createPlanDTO.getClient_id())
+                .orElseThrow(() -> { throw new ClientNotFoundException();
+                });
         List<Section> section = PlanMapper.createSection(createPlanDTO.getSectionDTO());
         plan.setSectionEntities(section);
         client.addPlanEntity(plan);
-        clientService.saveClient(client);
+        clientService.updateGrand(client);
     }
-
 }

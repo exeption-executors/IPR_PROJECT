@@ -8,6 +8,9 @@ import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
 import ru.raiffeisen.ipr.mappers.ClientMapper;
 import ru.raiffeisen.ipr.service.ClientService;
+import ru.raiffeisen.ipr.service.exeption.ClientNotFoundException;
+import ru.raiffeisen.ipr.service.exeption.ExistClientException;
+import ru.raiffeisen.ipr.service.exeption.SectionNotFoundException;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -33,11 +36,10 @@ public class ClientController {
     public ClientDTOAfterSave createClient(@Valid @RequestBody ClientDTO clientDTO) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
         clientService.saveClient(client);
-        Client clientAfterSave = clientService.saveClient(client);
 
         // Sending email to the queue with further sending to gmail smtp server
-        //template.convertAndSend("clients", clientAfterSave.getEmail());
-        return ClientMapper.fromClientToClientDTOAfterSave(clientAfterSave);
+        //template.convertAndSend("clients", client.getEmail());
+        return ClientMapper.fromClientToClientDTOAfterSave(client);
     }
 
     /**
@@ -58,23 +60,23 @@ public class ClientController {
     @ResponseStatus(HttpStatus.CREATED)
     public void updateClient(@RequestBody ClientUpdateDTO clientUpdateDTO) {
         Client clientForSave = ClientMapper.fromClientUpdateDTOToClientEntity(clientUpdateDTO);
-        clientService.saveClient(clientForSave);
+        clientService.updateClient(clientForSave);
     }
 
-    @CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.OK)
-    public List<ClientDTO> getClients() {
-        List<Client> all = clientService.getAll();
-        return all.stream().map(client -> new ClientDTO(
-                client.getName(),
-                client.getSurname(),
-                client.getEmail(),
-                client.isFired(),
-                client.getPassword(),
-                client.getAllIncludedPartner().stream()
-                        .map(partner -> new PartnerDTO(partner.getSupport().stream().findFirst().get().getName(), partner.getRequirements()))
-                        .collect(Collectors.toList())))
-                .collect(Collectors.toList());
-    }
+//    @CrossOrigin(origins = "*")
+//    @RequestMapping(method = RequestMethod.GET)
+//    @ResponseStatus(HttpStatus.OK)
+//    public List<ClientDTO> getClients() {
+//        List<Client> all = clientService.getAll();
+//        return all.stream().map(client -> new ClientDTO(
+//                client.getName(),
+//                client.getSurname(),
+//                client.getEmail(),
+//                client.isFired(),
+//                client.getPassword(),
+//                client.getPartners().stream()
+//                        .map(partner -> new PartnerDTO(partner.getSupport().stream().findFirst().get().getName(), partner.getRequirements()))
+//                        .collect(Collectors.toList())))
+//                .collect(Collectors.toList());
+//    }
 }

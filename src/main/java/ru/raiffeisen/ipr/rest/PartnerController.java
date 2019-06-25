@@ -8,6 +8,7 @@ import ru.raiffeisen.ipr.dto.DeletePartnerDTO;
 import ru.raiffeisen.ipr.dto.UpdatePartnerDTO;
 import ru.raiffeisen.ipr.entity.Partner;
 import ru.raiffeisen.ipr.mappers.PartnerMapper;
+import ru.raiffeisen.ipr.service.ClientService;
 import ru.raiffeisen.ipr.service.PartnerService;
 import ru.raiffeisen.ipr.service.SectionService;
 
@@ -21,11 +22,14 @@ public class PartnerController {
     @Autowired
     private SectionService sectionService;
 
+    @Autowired
+    private ClientService clientService;
+
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void createPartner(@RequestBody CreatePartnerDTO createPartnerDTO) {
-        partnerService.postPartner(createPartnerDTO, sectionService);
+        partnerService.postPartner(createPartnerDTO, sectionService, clientService);
     }
 
     @CrossOrigin(origins = "*")
