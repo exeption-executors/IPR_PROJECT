@@ -12,12 +12,13 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import ru.raiffeisen.ipr.dto.CreatePartnerDTO;
 import ru.raiffeisen.ipr.entity.Client;
 import ru.raiffeisen.ipr.rest.ClientController;
+import ru.raiffeisen.ipr.rest.PartnerController;
 import ru.raiffeisen.ipr.service.ClientService;
 
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
