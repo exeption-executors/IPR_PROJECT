@@ -23,7 +23,7 @@ CREATE TABLE section (
 );
 
 CREATE TABLE  point (
-    id BIGINT PRIMARY KEY NOT NULL,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     section_id BIGINT  NOT NULL references section(id) ON DELETE CASCADE,
     point_is_done BOOLEAN NOT NULL,
     point_description VARCHAR(512) NOT NULL,
