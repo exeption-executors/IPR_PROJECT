@@ -6,5 +6,4 @@ public interface PartnerService {
     void postPartner(CreatePartnerDTO createPartnerDTO, SectionService sectionService, ClientService clientService);
     void deletePartnerById(Long id);
     void updatePartnerById(String requirements, Long id);
-
 }
