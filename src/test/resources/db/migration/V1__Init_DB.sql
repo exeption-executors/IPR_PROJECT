@@ -8,14 +8,14 @@ CREATE TABLE  client (
 );
 
 CREATE TABLE  plan (
-     id BIGINT PRIMARY KEY NOT NULL,
+     id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
      client_id BIGINT NOT NULL references client(id) ON DELETE CASCADE,
      plan_date_start DATE NOT NULL,
      plan_date_end DATE NOT NULL
 );
 
 CREATE TABLE section (
-     id BIGINT PRIMARY KEY NOT NULL,
+     id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
      plan_id BIGINT NOT NULL references plan(id) ON DELETE CASCADE,
      section_date_end DATE NOT NULL,
      section_description VARCHAR(512) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE section (
 );
 
 CREATE TABLE  point (
-    id BIGINT PRIMARY KEY NOT NULL,
+    id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     section_id BIGINT  NOT NULL references section(id) ON DELETE CASCADE,
     point_is_done BOOLEAN NOT NULL,
     point_description VARCHAR(512) NOT NULL,
