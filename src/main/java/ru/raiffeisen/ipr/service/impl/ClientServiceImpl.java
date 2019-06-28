@@ -1,5 +1,6 @@
 package ru.raiffeisen.ipr.service.impl;
 
+import org.springframework.amqp.core.AmqpTemplate;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ import java.util.Optional;
 public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    AmqpTemplate template;
 
     @Override
     public void deleteClientByEmail(String email) {
@@ -45,7 +49,10 @@ public class ClientServiceImpl implements ClientService {
         clientFromDB.ifPresent((Client clientExist) -> {
             throw new ExistClientException(clientExist.getEmail());
         });
-        return clientRepository.saveAndFlush(client);
+
+        // Sending email to the queue with further sending to gmail smtp server
+        template.convertAndSend("clients", client.getEmail());
+        return clientRepository.save(client);
     }
 
     @Override
