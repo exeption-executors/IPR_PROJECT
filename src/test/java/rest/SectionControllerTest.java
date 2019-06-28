@@ -79,7 +79,7 @@ public class SectionControllerTest {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson = ow.writeValueAsString(postSectionDTO);
 
-        this.mockMvc.perform(post("/section").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/section").contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson))
                 .andExpect(status().isCreated());
 
@@ -102,7 +102,7 @@ public class SectionControllerTest {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson = ow.writeValueAsString(deleteSectionByIdDTO);
 
-        this.mockMvc.perform(delete("/section").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(delete("/section").contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson))
                 .andExpect(status().isOk());
 

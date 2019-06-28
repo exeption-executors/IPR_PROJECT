@@ -58,7 +58,7 @@ public class PlanControllerTest {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson = ow.writeValueAsString(createPlanDTO);
 
-        this.mockMvc.perform(post("/plans").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/plans").contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson))
                 .andExpect(status().isCreated());
     }
@@ -81,7 +81,7 @@ public class PlanControllerTest {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson = ow.writeValueAsString(createPlanDTO);
 
-        this.mockMvc.perform(post("/plans").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(post("/plans").contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson))
                 .andExpect(status().isCreated());
 
@@ -107,7 +107,7 @@ public class PlanControllerTest {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson = ow.writeValueAsString(planDeleteDTO);
 
-        this.mockMvc.perform(delete("/plans").contentType(MediaType.APPLICATION_JSON)
+        mockMvc.perform(delete("/plans").contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson))
                 .andExpect(status().isOk());
 
