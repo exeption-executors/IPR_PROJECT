@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/client")
 public class ClientController {
 
     @Autowired
@@ -38,7 +38,7 @@ public class ClientController {
         clientService.saveClient(client);
 
         // Sending email to the queue with further sending to gmail smtp server
-        //template.convertAndSend("clients", client.getEmail());
+        template.convertAndSend("clients", client.getEmail());
         return ClientMapper.fromClientToClientDTOAfterSave(client);
     }
 
