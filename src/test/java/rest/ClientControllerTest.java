@@ -75,7 +75,7 @@ public class ClientControllerTest {
         String requestJson = ow.writeValueAsString(clientDTO);
 
 
-        MvcResult mvcResult = this.mockMvc.perform(post("/clients").contentType(MediaType.APPLICATION_JSON)
+        MvcResult mvcResult = mockMvc.perform(post("/clients").contentType(MediaType.APPLICATION_JSON)
                 .content(requestJson))
                 .andExpect(status().isCreated())
                 .andReturn();
