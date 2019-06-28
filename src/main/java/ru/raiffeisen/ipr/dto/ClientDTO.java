@@ -1,5 +1,7 @@
 package ru.raiffeisen.ipr.dto;
 
+import ru.raiffeisen.ipr.constraints.ValidPassword;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -20,7 +22,7 @@ public class ClientDTO {
     private boolean fired;
 
     @NotBlank
-    @Size(min=8)
+    @ValidPassword
     private String password;
 
     private List<PartnerDTO> partnerList;
