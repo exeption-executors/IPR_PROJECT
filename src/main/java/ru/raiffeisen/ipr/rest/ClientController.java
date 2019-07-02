@@ -2,7 +2,9 @@ package ru.raiffeisen.ipr.rest;
 
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 import ru.raiffeisen.ipr.dto.*;
 import ru.raiffeisen.ipr.entity.Client;
 import org.springframework.web.bind.annotation.*;
@@ -27,15 +29,41 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Value("${welcome.message}")
+    private String message;
+
+    @Value("${error.message}")
+    private String errorMessage;
+
+
+
     /**
      * ------ADD NEW CLIENT OPERATION-------
      **/
+//    @CrossOrigin(origins = "*")
+//    @RequestMapping(method = RequestMethod.POST)
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ClientDTOAfterSave createClient(@Valid @RequestBody ClientDTO clientDTO) {
+//        Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
+//        clientService.saveClient(client);
+//
+//        // Sending email to the queue with further sending to gmail smtp server
+//        template.convertAndSend("clients", client.getEmail());
+//        return ClientMapper.fromClientToClientDTOAfterSave(client);
+//    }
+
+    @GetMapping("*")
+    public String clientSignUpForm(ClientDTO clientDTO) {
+        return "add-client";
+    }
+
     @CrossOrigin(origins = "*")
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public ClientDTOAfterSave createClient(@Valid @RequestBody ClientDTO clientDTO) {
+    public ClientDTOAfterSave createClient(@Valid ClientDTO clientDTO, Model model) {
         Client client = ClientMapper.fromClientDTOToClientEntity(clientDTO);
         clientService.saveClient(client);
+        model.addAttribute("clients", clientService.getAll());
 
         // Sending email to the queue with further sending to gmail smtp server
         template.convertAndSend("clients", client.getEmail());
@@ -64,7 +92,7 @@ public class ClientController {
     }
 
     @CrossOrigin(origins = "*")
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ClientDTO> getClients() {
         List<Client> all = clientService.getAll();

@@ -4,6 +4,7 @@ CREATE TABLE  client (
     surname VARCHAR(32) NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(16) NOT NULL,
+    role varchar (32),
     fired BOOLEAN NOT NULL,
 );
 

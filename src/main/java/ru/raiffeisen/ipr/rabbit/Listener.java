@@ -9,8 +9,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
 
-@EnableRabbit
-@Component
+//@EnableRabbit
+//@Component
 public class Listener {
     Logger logger = Logger.getLogger(Listener.class);
 
