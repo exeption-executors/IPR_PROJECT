@@ -29,14 +29,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @Value("${welcome.message}")
-    private String message;
-
-    @Value("${error.message}")
-    private String errorMessage;
-
-
-
     /**
      * ------ADD NEW CLIENT OPERATION-------
      **/
